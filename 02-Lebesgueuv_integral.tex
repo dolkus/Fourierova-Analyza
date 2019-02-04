@@ -1,0 +1,470 @@
+
+
+\chapter{Lebesgueův Integrál}
+\section{Zavedení Lebesgueova Integrálu}
+
+\begin{definition}[Lebesgueův Integrál ohraničené funkce]
+Nechť $f:E \to \R$ je měřitelná a ohraničená funkce. Pak je funkce $f$ \textit{integrovatelná}. Její integrál pak značíme
+\begin{align*}
+\int \limits _{E} f(x) \, dx.
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+Nechť $f \in M(E)$ a $f(x) \geq 0$ pro $x \in E$. Nechť dále $n \in \mathbb{N}$ a 
+\begin{align*}
+[f(x)]_{n \in \mathbb{N}}=\min\{n,f(x)\} \quad \text{pro $x \in E$.}
+\end{align*}
+Potom $[f]_n$  je měřitelná funkce.
+\label{l_2.1}
+\end{lemma}
+
+\begin{proof}
+Zřejmě platí, že
+\begin{align*}
+E([f]_n>a)&  = E(f>a) \quad \text{pro $a<n$,} \\
+E([f]_n>a)&=\emptyset \quad \text{pro $a>n$.}
+\end{align*}
+Také platí
+\begin{align*}
+[f(x)]_1 \leq [f(x)]_2 \leq ... [f(x)]_k \leq ... \quad \text{pro $x \in E$.}
+\end{align*}
+\end{proof}
+Kromě toho, každá z $[f]_k$ je ohraničená a měřitelná (viz. Lemma \ref{l_2.1}) a tedy integrovatelná. Dále 
+\begin{align*}
+\int \limits _E [f(x)]_1 \, dx \leq \int \limits _E [f(x)]_2 \, dx \leq ...\int \limits _E  [f(x)]_k  \, dx  \leq ...
+\end{align*}
+Uvažujeme limitu 
+\begin{align}
+\lim \limits _{n \to \infty} \int \limits _E  [f(x)]_n \, dx
+\label{vztah_2.1}
+\end{align}
+která určitě existuje a nabývá konečných a nebo nekonečných hodnot.
+
+
+
+
+
+
+
+
+\begin{definition}[Lebesgue\r uv integrál nezáporné funkce]
+Limitě \eqref{vztah_2.1} se říká \textit{Lebesgue\r uv integrál funkce $f$ na množině $E$} a značí se
+\begin{align*}
+\int \limits _E f(x) \, dx.
+\end{align*}
+Pokud tato limita je konečná, pak říkáme, že funkce $f$ (nezáporná) je \textit{integrovatelná}.
+\label{Lebesgue_int}
+\end{definition}
+
+
+
+\begin{theorem}
+Nechť nezáporná funkce $f:E \to \R_+$ je integrovatelná na $E$. Potom je $f$ skoro všude konečná.
+\end{theorem}
+
+\begin{proof}
+Položme $A:=E(f=\infty)$. Zřejmě $[f(x)]_n=n$ pro $x \in A$. Proto 
+\begin{align*}
+\int \limits _E [f(x)]_n \, dx \geq \int \limits _A [f(x)]_n \, dx = n \mes(A).
+\end{align*}
+Tedy pokud $\mes(A)>0$, pak limita \eqref{vztah_2.1} nabývá hodnoty $\infty$.
+\end{proof}
+
+\begin{theorem}
+Nechť $f:E \to \R_+$, $f \geq 0$, $\mes(E)=0$. Potom je funkce $f$ integrovatelná na $E$ a $\int \limits _E f(x) \, dx=0$.
+\end{theorem}
+
+
+\begin{theorem}
+Nechť $f,g:E \to \R_+$ a $f \sim g$. Potom 
+\begin{align*}
+\int \limits _E f(x) \, dx= \int \limits _E g(x) \, dx.
+\end{align*}
+\end{theorem}
+\begin{proof}
+$E(f=g)=E([f]_n=[g]_n)$.
+\end{proof}
+
+\begin{theorem}
+Nechť $f:E \to \R_+$ a $f \in M(E)$. Nechť dále $E_0 \subset E$ měřitelná. Pak 
+\begin{align*}
+\int \limits _{E_0} f(x) \, dx \leq \int \limits _{E} f(x) \, dx.
+\end{align*}
+\end{theorem}
+
+\begin{theorem}
+Nechť $f,g:E \to \R_+$ a $f,g \in M(E)$ a $f(x) \leq g(x)$ pro $x \in E$. Pak 
+\begin{align*}
+\int \limits _{E} f(x) \, dx \leq \int \limits _{E} g(x) \, dx.
+\end{align*}
+\end{theorem}
+
+\begin{theorem}
+Nechť $f:E \to \R_+$ a $\int \limits _{E} f(x) \, dx=0$. Potom $f \sim 0$.
+\end{theorem}
+
+\begin{theorem}[Aditivita integrálu]
+Nechť $f,g:E \to \R_+$ a $f,g \in M(E)$. Potom 
+\begin{align*}
+\int \limits _E (f(x)+g(x)) \, dx = \int \limits _E f(x) \, dx+\int \limits _E g(x) \, dx.
+\end{align*}
+\end{theorem}
+
+\begin{theorem}[Homogenita integrálu]
+Nechť $f:E \to \R_+$, $k \in \R_+$. Pak $\int \limits _E k f(x) \, dx = k \int \limits _E f(x) \, dx$.
+\end{theorem}
+
+Na závěr sekce si ukážeme alternativní zavedení Lebesgueova integrálu, pomocí jednoduchých funkcí. Toto zavedení je ekvivalentně předchozímu avšak umožňuje najít explicitní formule pro výpočet Lebesgueovo integrálu. Jelikož ale tuto formuli nebudeme v rámci tohoto kurzu potřebovat toto zavedení je jen doplňkovou informací.
+
+\begin{dusledek}[Integrál z jednoduché funkce]
+Nechť je $\phi:E \to \R$ jednoduchá funkce (t.j. $\phi(x)=\sum \limits _j c_j \Phi_{E_j}(x)$, kde $E_j$ jsou disjunktní kompaktní množiny). Pak její Lebesgue\r uv integrál je
+\begin{align*}
+\int \limits _{E} \phi(x) \, dx = \sum \limits _j c_j m(E_j).
+\end{align*}
+\end{dusledek}
+
+\begin{dusledek}[Integrál z nezáporné funkce]
+Nechť $f:E \to \R$ je nezáporná měřitelná funkce. Pak její Lebesgue\r uv integrál se rovná
+\begin{align*}
+\int \limits _{E} f(x) \, dx = \sup \limits _{\phi \leq f} \{\int \limits _{E} \phi(x) \, dx\}.
+\end{align*}
+\end{dusledek}
+
+
+\section{Konvergenční Vlastnosti Lebesgueova Integrálu}
+
+
+
+
+\begin{theorem}[Beppo-Levi, Monotone Convergence Theorem]
+\label{veta_2.1_Beppo-Levi}
+Nechť $f_k:\R \to [0,\infty]$ je posloupnost měřitelných funkcí s vlastností
+\begin{align}
+\label{vztah_monotone_convergence_rust}
+f_k(x) \leq f_{k+1}(x)
+\end{align}
+pro skoro všechna $x \in E$ a pro všechna $n \in \mathbb{N}$. Potom platí
+\begin{align*}
+\int \limits _{E} \Big(\lim \limits _{k \to \infty} f_k(x) \Big)\, dx= \lim \limits _{k \to \infty} \int \limits _{E} f_k(x) \, dx.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Zavedeme $f(x)=\sup \limits _{n \in \mathbb{N}}f_n(x)$. Jelikož platí $f_k \leq f$
+
+\begin{align*}
+\lim \limits _{k \to \infty} \int \limits _E f_k(x) \, dx = \sup _{k} \int \limits _E f_k (x) \, dx  \leq \int \limits _E \lim \limits _{k \to \infty} f_k(x) \, dx .
+\end{align*}
+
+
+
+Aby jsme dokončili důkaz, je nutno ukázat, že 
+\begin{align*}
+\lim \limits _{k \to \infty} \int \limits _E f_k(x) \, dx \geq \int \limits _E f(x) \, dx .
+\end{align*}
+Nechť $\phi(x)=\sum \limits _{j=1}^{N} c_j \Phi(x)$ je jednoduchá funkce, taková, že $0 \leq \phi(x)\leq f(x)$.
+Pro $t \in ]0,1[$ zavedeme $E(f_k(x) \geq t \phi(x))$.
+Vzhledem k \eqref{vztah_monotone_convergence_rust} platí, že $E_k \subset E_{k+1}$. 
+
+
+Ukážeme, že $\bigcup \limits _{k} E_k=E$.
+Nechť $x \in E$. Platí $t \phi(x) < \phi (x) \leq f(x)$. Jelikož $f_k(x) \to f(x)$, platí $f_k(x) \geq t\phi(x)$ pro všechna $k \geq K$, $K \in \mathbb{N}$. Dostáváme 
+\begin{align*}
+\int \limits _{E} f_k(x) \, dx \geq \int \limits _{E_k} f_k(x) \, dx \geq t \int \limits _{E_k} \phi(x) \, dx = t \sum \limits _{j=1}^{N}c_j \mes(E_k \cap B_j).
+\end{align*}
+Nechť $k \to \infty$. Díky monotónnosti Lebesgueové míry dostáváme
+\begin{align*}
+\lim \limits _{k \to \infty} \int \limits _{E} f_k(x) \, dx \geq t \int \limits _{E} \phi(x) \, dx.
+\end{align*}
+Jelikož je $\phi$ libovolná jednoduchá funkce, můžeme vzít supremum těchto funkcí, čímž dostáváme hledaný výsledek.
+\end{proof}
+
+\begin{theorem}[Fatou]
+\label{veta_2.8_Fatou}
+Nechť $f_k:E \to \R_+$, $k \in \mathbb{N}$ je posloupnost měřitelných funkcí. 
+Potom platí 
+\begin{align*}
+\int \limits _E \liminf_{n \to \infty} f_n(x) \,dx \leq \liminf \limits _{n \to \infty} \int \limits _E f_n(x) \,dx.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Nechť $g_n(x)=\inf \limits _{k \geq n} \{f_k(x)\}$. Platí
+\begin{align*}
+\liminf \limits _{n \to \infty} \{f_n(x)\}= \lim \limits _{n \to \infty} \inf \limits _{k \geq n} \{f_k(x)\}= \lim \limits _{n \to \infty} g_n(x).
+\end{align*}
+Jelikož $g_n$ je monotonní rostoucí funkce, díky Větě \ref{veta_2.1_Beppo-Levi} platí
+\begin{align*}
+\int \limits _{E} \liminf \limits _{n \to \infty} \{f_n(x)\} \, dx= \int \limits _{E} \lim \limits _{n \to \infty} g_n(x) \, dx = \lim \limits _{n \to \infty} g_n(x) \, dx.
+\end{align*}
+Pro všechna $k \geq n$ platí $g_n(x) \leq f_k(x)$ a tedy
+\begin{align*}
+\int \limits _{E} g_n(x) \, dx \leq \inf \limits _{k\geq n} \int \limits _{E} f_k(x) \, dx.
+\end{align*}
+Dostáváme tedy
+\begin{align*}
+\int \limits _{E} \liminf_{n \to \infty} f_n(x) \, dx  = \lim \limits _{n \to \infty} \int \limits _{E} g_n(x) \, dx \leq \lim \limits _{n \to \infty} \inf \limits _{k \geq n} \int \limits _{E} f_k(x) \, dx = \liminf \limits _{n \to \infty}  \int \limits _{E} f_n(x) \, dx.
+\end{align*}
+\end{proof}
+
+\begin{poznamka}
+Beppo-Leviho \ref{veta_2.1_Beppo-Levi} i Fatouova Věta \ref{veta_2.8_Fatou} se dají dokázat nezávisle na sobě.
+\end{poznamka}
+
+
+%\begin{poznamka}
+%Věta \ref{veta_2.8_Fatou} platí aj tehdy, když namísto \eqref{vztah_2.2} předpokládáme, že $f_k(x)$ konverguje k $F(x)$ podle míry. 
+%\end{poznamka}
+
+%\begin{dusledek}
+%\label{dusledek_2.1}
+%Nechť platí předpoklady Věty \ref{veta_2.8_Fatou} a navíc existuje $\lim \limits _{k \to \infty} \int \limits _E f_k(x) \, dx$. Potom
+%\begin{align}
+%\int \limits _E (\lim \limits _{k \to \infty} f_k(x)) \, dx \leq \lim \limits _{k \to \infty} \int \limits _E f_k(x) \, dx.
+%\label{vztah_2.3}
+%\end{align}
+%\end{dusledek}
+%
+%
+%
+%\begin{theorem}[Beppo-Levi]
+%\label{v_2.11_Beppo-Levi}
+%Nechť $f_k:E \to \R_+$, $f_k \in M(E)$, $k \in \mathbb{N}$ a 
+%\begin{align*}
+%f_1(x) \leq f_2(x) \leq ... \quad \text{pro $x \in E$.}
+%\end{align*}
+%Nechť dále 
+%\begin{align*}
+%\lim \limits _{k \to \infty} f_k(x) = F(x) \quad \text{pro $x \in E$.}
+%\end{align*}
+%Potom 
+%\begin{align}
+%\int \limits _E F(x) \,dx =  \lim _{k \to \infty} \int \limits _E f_k(x) \, dx.
+%\label{vztah_2.4}
+%\end{align}
+%\end{theorem}
+%
+%\begin{proof}
+%Zřejmě existuje $\lim \limits _{k \to \infty} \int \limits _E f_k(x) \,dx$. Proto vzhledem k D\r usledku \ref{dusledek_2.1} platí \eqref{vztah_2.3}. Na druhé straně $f_k(x)\leq F(x)$ pro $x \in E$. Proto
+%\begin{align*}
+%\int \limits _E f_k(x) \, dx \leq \int \limits _E F(x) \, dx  \quad \quad \quad \forall k \in \mathbb{N}
+%\end{align*}
+%a tedy
+%\begin{align*}
+%\lim \limits _{k \to \infty} \int \limits _E f_k(x) \, dx \leq \int \limits _E F(x) \, dx 
+%\end{align*}
+%Vezmeme-li v úvahu \eqref{vztah_2.3}, zjistíme, že platí \eqref{vztah_2.4}.
+%\end{proof}
+
+\begin{theorem}[Tonelli]
+\label{v_2.11_Tonelli}
+Nechť $u_k:E \to \R_+$, $u_k \in M(E)$, $k \in \mathbb{N}$. Nechť dále
+\begin{align*}
+\sum \limits _{k=1}^{\infty} u_k(x)=F(x) \quad \text{pro $x \in E$.}
+\end{align*}
+Potom platí
+\begin{align*}
+\int \limits _E F(x) \, dx=\sum \limits _{k=1}^{\infty} \int \limits _E u_k(x) \,dx
+\end{align*}
+\end{theorem}
+
+\begin{theorem}[Úplná aditivita integrálu]
+Nechť $E$ je měřitelná množina a $E=\bigcup \limits _{k \in I} E_k$ přičemž $E_k \cap E_i = \emptyset$ pro $k \neq i$, $E_k$ je měřitelná a indexová množina $I$ nejvíc spočetná. Nechť dále $f:E \to \R_+$. Potom
+\begin{align*}
+\int \limits _E f(x) \, dx = \sum \limits _{k \in I} \int \limits _{E_k} f(x) \, dx.
+\end{align*}
+\end{theorem}
+
+
+\section{Lebesgueův integrál (obecný případ)}
+
+
+Nechť $f:E \to \mathbb{R}$ kde $E$ je měřitelná množina a $f \in M(E)$. Položme
+\begin{align*}
+  [f(x)]_+:=\begin{cases}
+    f(x), & \text{pro $f(x) \geq 0$}\\
+    0, & \text{pro $f(x)<0$} \\
+  \end{cases} 
+  \qquad
+    [f(x)]_-:=\begin{cases}
+    0, & \text{pro $f(x) \geq 0$}\\
+    -f(x), & \text{pro $f(x)<0$}. 
+  \end{cases}
+\end{align*}
+(nebo alternativně $[f(x)]_+=\frac{1}{2}\Big(|f(x)|+f(x)\Big)$ a $[f(x)]_-=\frac{1}{2}\Big(|f(x)|-f(x)\Big)$. \\
+Zřejmě platí $f(x)=[f(x)]_+-[f(x)]_-$.
+
+\begin{definition}
+Nechť alespoň jedna z funkcí $[f]_+$ nebo $[f]_-$ je integrovatelná. Potom výraz (připouštíme i nekonečnou hodnotu)
+\begin{align*}
+\int \limits _E [f(x)]_+ \,dx - \int \limits _E [f(x)]_- \,dx 
+\end{align*}
+se nazývá \textit{Lebesgueovým integrálem funkce $f$} a značí se $\int \limits _E f(x) \, dx$.
+\end{definition}
+
+
+\begin{definition}[Lebesgueovsky integrovatelné funkce]
+\label{d_2.14_Lebesgueovsky_integrovatelne_funkce}
+Funkce $f:E \to \R$ (měřitelná) se nazývá \textit{Lebesgueovsky integrovatelná} jestli integrál $\int \limits _E f(x) \, dx$ existuje a je konečný. \\
+\textit{Množinu Lebesgueovsky integrovatelných funkcí} označíme $L(E)$.
+\end{definition}
+
+
+
+
+\begin{poznamka}
+Pro nezáporné funkce tato "nová"\, definice je téměř shodná se "starou". Dále platí, že každá ohraničená funkce je integrovatelná.
+\end{poznamka}
+
+\begin{theorem}
+\label{v_2.16}
+$f \in L(E)$ právě tehdy když $|f| \in L(E)$. 
+Pokud $|f| \in L(E)$ pak 
+\begin{align*}
+\int \limits _E |f(x)| \, dx \geq |\int \limits _E f(x) \, dx|.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Plyne ze vzorce $|f|=[f]_+ + [f]_-$.
+\end{proof}
+
+Uvedeme několik vlastností:
+\begin{enumerate}
+\item[1.]{Pokud $f \in L(E)$, pak je $f$ skoro všude konečná.}
+\item[2.]{Je-li $\mes(E)=0$, pak libovolná $f \in L(E)$.}
+\item[3.]{Nechť $f \in L(E)$ a $E_0 \in E$ je měřitelná. Pak $f \in L(E_0)$.}
+\item[4.]{Nechť $f,g:E \to \R$ jsou měřitelné. Nechť navíc $|f(x)|\leq g(x)$ pro $x \in E$.\\
+Pokud navíc $g \in L(E)$ pak $f \in L(E)$.}
+\end{enumerate}
+
+\begin{theorem}
+Nechť $f,g:E \to \R$ a $f \sim g$. Pak $f \in L(E)$ právě tehdy když $g \in L(E)$.
+\end{theorem}
+
+\begin{theorem}[Konečná aditivita]
+Nechť $E=\bigcup \limits _{k=1}^n E_k$, kde $E_k \cap E_i = \emptyset$ pro $k \neq i$ a $E_k$ jsou měřitelná. Nechť dále $f \in L(E_k)$ pro $k=1,..,n$. Pak $p \in L(E)$ a 
+\begin{align*}
+\int \limits _E f(x) \, dx = \sum \limits _{k=1}^n \int \limits _{E_k} f(x) \, dx.
+\end{align*}
+\label{v_2.18_konecna_aditivita}
+\end{theorem}
+
+\begin{poznamka}
+Ve Věte \ref{v_2.18_konecna_aditivita} předpoklad o tom, že $E$ je sjednocením konečného počtu $E_k$ je důležitým a nelze ho vypustit. V skutku, nechť $f:]0,1] \to \R$ je dána vztahem
+\begin{align*}
+f(x) = \begin{cases}
+n \qquad &\text{pro $\frac{2n+1}{2n(n+1)} < x \leq \frac{1}{n} $}\\
+-n \qquad &\text{pro $\frac{1}{n+1} < x \leq \frac{2n+1}{2n(n+1)} $}
+\end{cases}
+\qquad \text{pro $n \in \mathbb{N}$.}
+\end{align*}
+Potom $f \in L(]\frac{1}{n+1}, \frac{1}{n}])$ $\forall n \in \mathbb{N}$ a 
+\begin{align*}
+\int \limits _{\frac{1}{n+1}}^{\frac{1}{n}} f(x) \, dx = 0.
+\end{align*}
+Avšak $f \notin L(]0,1])$ neboť
+\begin{align*}
+\int \limits _{0}^1 |f(x)| \, dx = \sum \limits _{n=1}^{\infty} \int \limits _{\frac{1}{n+1}}^{\frac{1}{n}} |f(x)| \, dx = \sum \limits _{n=1}^{\infty} \frac{1}{n+1} = \infty.
+\end{align*}
+Platí však následující tvrzení:
+\end{poznamka}
+
+
+\begin{theorem}
+Nechť $f \in L(E)$ a $E=\bigcup \limits _{k=1}^{\infty} E_k$, kde $E_k \cap E_i = \emptyset$ po $k \neq i$ a $E_k$ jsou měřitelné množiny. Potom
+\begin{align}
+\int \limits _{E} f(x) \, dx = \sum \limits _{k=1}^{\infty} \int \limits _{E_k} f(x) \, dx.
+\label{vztah_2.5}
+\end{align}
+\end{theorem}
+
+\begin{theorem}
+Nechť $E$ je měřitelná množina. $E=\bigcup \limits _{k=1}^{\infty}E_k$. Nechť dále $f \in L(E_k)$ pro $k \in \mathbb{N}$ a 
+\begin{align*}
+\sum \limits _{k=1}^{\infty} \int \limits  _{E_k} |f(x)| \,dx < \infty,
+\end{align*}
+potom $f \in L(E)$ a platí \eqref{vztah_2.5}.
+\end{theorem}
+
+Mezi nejd\r uležitejší věty, které si uvedeme rozhodně musí patřit i následující věta, která poskytuje možnost záměny limit a integrál\r u v případě Lebesgueovho integrálu obecné funkce.
+
+\begin{theorem}[Lebesgue Dominated Convergence Theorem]
+Nechť $\{f\}_{n \in \mathbb{N}}:E \to \R$ je posloupnost měřitelných funkcí a funkce $f:E \to \R$ je také měřitelná a nechť platí $f_n(x) \to f$ pro s.v. $x \in E$. Dále nechť existuje funkce $g:E \to \R_+$, $g \in L(E)$, měřitelná, a taková, že 
+\begin{align*}
+    |f_n(x)| \leq g(x) \qquad \text{pro s.v. $x \in E$.}
+\end{align*}
+Potom 
+\begin{align*}
+    \int \limits _E f(x) \, dx = \lim \limits _{n \to \infty}\int \limits _E f_n(x) \, dx.
+\end{align*}
+\end{theorem}
+
+
+\section{Prostor \texorpdfstring{$L(E)$}{LE}}
+
+Uvažujme množinu $L(E)$. Zápis $f=g$ pro nás znamená $f \sim g$. Vzhledem k Větě \ref{v_2.16} můžeme zavést pro $f \in L(E)$ normu
+\begin{align*}
+\| f \|_L = \int \limits_E |f(x)| dx.
+\end{align*}
+
+
+\begin{uloha}
+Dokažte, že $L(E)$ tvoří lineární prostor.
+\end{uloha}
+
+
+\begin{uloha}
+Dokažte, že $(L(E),|| \cdot ||)$ tvoří normovaný prostor.
+\end{uloha}
+
+\begin{theorem}[Riesz-Fisher \footnote{Tento výsledek je malou částí teorému známého jako Riesz-Fisherova Věta, který ukazuje mimo jiné úplnost $L^p$ prostor\r u.}]
+Prostor $(L(E),\| \cdot \|_L)$ je úplný.
+\end{theorem} 
+
+
+\begin{theorem}
+Množina spojitých funkcí $C(E)$ je hustá v $L(E)$.
+\end{theorem}
+
+\begin{definition}[Nosič funkce]
+Nechť $E \in \R$ je otevřená množina. Nechť $f$ je spojitá funkce na $E$. \textit{Nosič funkce }$f$ na $E$ je množina
+\begin{align*}
+\spt(f)=\{x \in E:f(x) \neq 0\}.
+\end{align*}
+Pokud je $\spt(f)$ kompaktní, nazýváme $f$ s kompaktním nosičem. \textit{Prostor funkcní s kompaktním nosičem na $E$} značíme $C_C(E)$.
+\end{definition}
+
+\begin{poznamka}
+\begin{align*}
+C_C(E) \subset C(E).
+\end{align*}
+\end{poznamka}
+
+\begin{theorem}
+$C_C(E)$ je hustá v $L(E)$.
+\label{veta_cc_husta_v_LE}
+\end{theorem}
+
+
+\begin{definition}[Esenciální supremum]
+\end{definition}
+
+\begin{theorem}
+Prostor  $L(E)$ je separabilní.
+\end{theorem}
+
+\begin{proof}
+Nechť $E \in \R$. Nechť $\mathcal{E}=\bigcup \limits _{k} \mathcal{E}_k$ je spočetná množina, kde $\mathcal{E}_k=\bigcup \limits _{k=1}^{\infty}]a_k,b_k[$ kde $a_k,b_k \in \mathbb{Q}$. Nechť $\zeta$ je lineární prostor nad $\mathbb{Q}$ generovaný funkcemi $\chi_{\mathcal{E}_k}$. Prostor $\zeta$ tedy pozůstává z konečných lineárních kombinací s racionálními koeficienty indikátorových funkcí množin typu $\mathcal{E}_k$.
+Ukážeme, že $\mathcal{E}$ je hustá v $L(E)$. Nechť $f \in L(E)$, $\epsilon > 0$. Díky \ref{veta_cc_husta_v_LE} víme, že existuje $f_1 \in C_C(E)$ taková, že $||f-f_1||_L \leq \epsilon$. Nechť $E_j$ je libovolná množina obsahující $\spt(f_1)$. Pro dané $\delta>0$ konstruujeme funkci $f_2 \in \mathcal{E}$ splňující $||f_1-f_2||_L \leq \delta$, takovou, že $f_2=0$ mimo $E_j$. Dostáváme
+\begin{align*}
+||f_1-f_2||_L \leq \esssup\{f_1-f_2\} m(E_j).
+\end{align*}
+Volbou $\delta>0$ dostáváme $||f-f_2||_L< 2 \epsilon$.
+\end{proof}
+
+
+
+
+

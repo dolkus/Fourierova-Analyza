@@ -1,0 +1,418 @@
+
+
+\chapter{Fourier\r uv integrál a transformace}
+\section{Prostory \texorpdfstring{$L(\R)$ a $L^2(\R)$}{sss}}
+V této sekci se budeme zabývat rozdílem mezi případy, kdy studujeme prostory $L$ a $L^2$ na konečných intervalech a na celé reálné ose.
+
+\begin{tvrz}
+$L^2(\R) \not\subset L(\R) $
+\end{tvrz}
+\begin{priklad}
+Příkladem funkce, která leží v prostoru $L^2(\R)$ a neleží v prostoru $L(\R)$ je funkce $f(x)=\frac{1}{\sqrt{1+x^2}}$.
+\end{priklad}
+
+
+\begin{tvrz}
+Prostor $L(\R)$ je úplný.
+\end{tvrz}
+
+\begin{tvrz}
+Prostor $L^2(\R)$ je úplný, unitární a separabilní.
+\end{tvrz}
+
+Přirozeně vzniká otázka o ortogonální bázi prostoru $L^2(\R)$ resp $L^2([0,\infty[)$. 
+Báze lze získat ortogonalizacií posloupnosti $\{x^n e^{\frac{-x^2}{2}}\}_{n=0}^{\infty}$. Při této proceduře dostaneme systém funkcí tvaru 
+\begin{align}
+\phi_n(x)=H_n(x)e^{-\frac{1}{2}x^2} \qquad n=0,1,...
+\end{align}
+kde $H_n$ je polynom stupně $n$. 
+$H_n$ nazýváme \textit{Hermitovými polynomy} a funkce $\phi_n$ nazýváme Hermitovými funkcemi. Lze ukázat, že Hermitovy polynomy jsou až na multiplikativní konstantu totožné s polynomy 
+\begin{align}
+H^*_n(x)=(-1)^ne^{x^2}\frac{d^n}{dx^n}(e^{-x^2}).
+\end{align}
+
+Analogicky v prostoru $L^2(\R_+)$ ortogonalizace systému $\{x^n e^{-x}\}_{n=0}^{\infty}$ dává systém $L_n(x) e^{-x}$, který nazýváme Lagnerrovými funkcemi. Příslušné polynomy $L_n$ nazýváme \textit{Lagnerovy polynomy}.
+
+
+\section{Základní věta}
+
+\begin{theorem}
+\label{v_6.3}
+Nechť $f \in L(\R)$ a v každém $x \in \R$ platí Diniova podmínka. Potom 
+\begin{align}\label{vztah_6.1}
+f(x)=\frac{1}{\pi} \int \limits _0^{\infty} \Big( \int \limits _{-\infty}^{\infty} f(t)\cos(\lambda (t-x)) \, dt \Big) \, d \lambda.
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Zavedeme označení 
+\begin{align}
+J(A)=\frac{1}{\pi}  \int \limits _{0}^A \Big(\int \limits\limits_{-\infty}^{\infty} f(t) \cos ( \lambda (t-x)) \, dt \Big) \, d\lambda
+\end{align}
+a ukážeme, že existují $\lim \limits _{A \to \infty} J(A)$ a že tato limita je rovna $f(x)$. Poněvadž $f \in L(\R)$ vnitřní integrál konverguje a vnější integrál konverguje absolutně. Proto m\r užeme použít Fubiniho větu a tedy dostáváme
+\begin{align*}
+J(A)=\frac{1}{\pi}\int \limits_{-\infty}^{\infty} \Big(\int \limits _0^A f(t) \cos (\lambda(t-x) )\, d \lambda \Big)\, dt=\frac{1}{\pi}\int \limits _{-\infty}^{\infty}
+f(t) \frac{\sin(A(t-x)}{t-x} \, dt.
+\end{align*}
+Substitucí $t-x=z$ přepíšeme
+\begin{align*}
+J(A)=\frac{1}{\pi}\int \limits _{-\infty}^{\infty} f(x+z) \frac{\sin(Az)}{z} \, dz.
+\end{align*}
+Je známo, že
+\begin{align*}
+\frac{1}{\pi}\int \limits _{-\infty}^{\infty}\frac{\sin(Az)}{z}\, dz=1 \qquad \text{pro $A>0$.}
+\end{align*}
+Proto platí
+\begin{align*}
+J(A)-f(x)=\frac{1}{\pi}\int \limits _{-\infty}^{\infty} \frac{f(x+z)-f(x)}{z} \sin(Az) \, dz.
+\end{align*}
+Dále tedy
+\begin{align*}
+J(A)-f(x)&=\frac{1}{\pi}\int \limits _{-N}^{N} \frac{f(x+z)-f(x)}{z}\sin(Az) \, dz + \frac{1}{\pi} \int \limits _{|z|\geq N} \frac{f(x+z)}{z}\sin(Az)\, dz-\frac{f(x)}{\pi} \int \limits _{|z|\geq N}\frac{\sin(Az)}{z}\, dz\\
+&=I_{1n}+I_{2n}-I_{3n}.
+\end{align*}
+Zřejmě, pro každé $A \geq 1$ platí $I_{2n} \to 0$, $I_{3n} \to 0$ pro $n \to \infty$.\\
+Dále pro Diniove podmínky pro $x$ a $N$ funkce $\phi(z)=\frac{f(x+z)-f(z)}{z}$ je integr. $\phi \in L([-N,N])$. Proto 
+\begin{align*}
+\int \limits _{-N}^N \phi(z) \sin(Az) \, dz \to 0 \qquad \text{pro $A \to \infty$}
+\end{align*}
+dle Riemann-Lebesgueové věty. Z uvedených úvah plyne, že $J(A)\to f(x)$ pro $A \to \infty$.
+ \end{proof}
+ 
+\begin{poznamka}
+\label{p_6.5}
+Rovnost \eqref{vztah_6.1} se nazývá Fourier\r uv vzorec. Jeho pravou stranou lze chápat jako jisté zobecnění Fourierovy řady. V skutku, položme 
+\begin{align*}
+a(\lambda)&=\frac{1}{\pi}\int \limits _{-\infty}^{\infty} f(t) \cos(\lambda t) \, dt \\
+b(\lambda)&=\frac{1}{\pi}\int \limits _{-\infty}^{\infty} f(t) \sin(\lambda t) \, dt 
+\end{align*}
+Potom pravá strana vztahu \eqref{vztah_6.1} má tvar 
+\begin{align*}
+\int \limits _{0}^{\infty} \Big(a(\lambda)\cos(\lambda x)+b(\lambda)\sin(\lambda x)\Big) \, dx.
+\end{align*}
+\end{poznamka}
+\begin{poznamka}
+Občas je pohodlnější přepsat Fourier\r uv vzorec (resp. pravou stranu, kterou nazveme Fourierovým integrálem) v komplexním tvaru následovně. Všimneme si, že Fourier\r uv integrál je sudá funkce vzhledem k $\lambda$ - t.j. je-li
+\begin{align*}
+g(\lambda):=\int \limits _{-\infty}^{\infty} f(t) \cos (\lambda (t-x) ) \, dt
+\end{align*}
+pak $g(-\lambda)=g(\lambda)$. Proto \eqref{vztah_6.1} lze přepsat takto
+\begin{align*}
+f(x)=\frac{1}{2\pi}\int \limits _{-\infty}^{\infty} \Big(\int \limits _{-\infty}^{\infty} f(t) \cos (\lambda (t-x)) \, dt \Big) \, d\lambda.
+\end{align*}
+Dále, poněvadž $f \in L(\R)$ funkce 
+\begin{align*}
+h(\lambda):= \int \limits _{-\infty}^{\infty} f(t) \sin(\lambda (t-x)) \, dt
+\end{align*}
+existuje a je lichá. Proto
+\begin{align*}
+\int \limits _{-\infty}^{\infty} h(\lambda) \, d\lambda = 0.
+\end{align*}
+Tedy lze psát \eqref{vztah_6.1} v komplexním tvaru
+\begin{align*}
+f(x)=\frac{1}{2\pi}\int \limits _{-\infty}^{\infty} \Big(\int \limits _{-\infty}^{\infty} f(t) e^{-i\lambda (t-x)}\, dt \Big)\, d\lambda.
+\end{align*}
+\end{poznamka}
+
+
+
+\section{Fourierova transformace}
+Nechť $f \in L(\R)$. Položme 
+\begin{align}\label{vztah_6.2}
+g(\lambda)=\int \limits _{-\infty}^{\infty} f(t)e^{-i\lambda t}\, dt \qquad \text{pro $\lambda \in \R$.}
+\end{align}
+Zřejmě pro $\forall \lambda \in \mathbb{R}$ je funkce $g$ definována. Funkci $g$ nazveme Fourierov obraz funkce $f$. Zobrazení definované vztahem \eqref{vztah_6.2} se nazývá Fourierova transformace. Věta \ref{v_6.3} spolu s Poznámkou \ref{p_6.5} říkakí, že pokud navíc funkce $f$ vyhovuji Diniové podmínce pro $\forall x$, potom platí
+\begin{align} \label{vztah_6.3}
+f(x)=\frac{1}{2\pi}\int \limits _{-\infty}^{\infty} g(\lambda) e^{i\lambda x} \, d\lambda \qquad \text{pro $x \in \R$.}
+\end{align}
+Tento vzorec se nazývá inverzním vzorcem Fourierové transformace. Ješté jednou si všimněme, že aby platila rovnost \eqref{vztah_6.3} je třeba na $f$ položit dodatečné podmínky.
+
+\begin{poznamka}
+Někteří autoři tyto vzorce píší následujícím zp\r usobem
+\begin{align*}
+f(x)&=\frac{1}{\sqrt{2\pi}}\int \limits _{-\infty}^{\infty} g(\lambda) e^{i\lambda x} \, d\lambda \\
+g(\lambda)&=\frac{1}{\sqrt{2\pi}} \int \limits _{-\infty}^{\infty} f(t)e^{-i\lambda t}\, dt.
+\end{align*}
+Všimněme si, že vztahy \eqref{vztah_6.2} a \eqref{vztah_6.3} mají r\r uzný význam. Vztah \eqref{vztah_6.2} definuje a \eqref{vztah_6.3} je Větou.
+\end{poznamka}
+
+\begin{theorem}\label{v_6.7}
+Nechť $p \in L(\R)$ a $g \equiv 0$ t.j. 
+\begin{align}\label{vztah_6.4}
+\int \limits _{-\infty}^{\infty} f(x) e^{-\lambda i x } \, dx = 0.
+\end{align}
+Potom $f \sim 0$.
+\end{theorem}
+
+\begin{proof}
+Z \eqref{vztah_6.4} plyne, že
+\begin{align*}
+\int \limits _{-\infty}^{\infty} f(x+t) e^{-i \lambda x} \, dx = 0 \quad \text{pro $t \in \R$.}
+\end{align*}
+Zvolíme pevné $y \in \R$ a položíme 
+\begin{align*}
+\phi(x)=\int \limits _{0}^{y} f(x+t) \, dt.
+\end{align*}
+Použitím Fubiniho věty lze ověřit , že 
+\begin{align}\label{vztah_6.5}
+\int \limits _{-\infty}^{\infty} \phi(x) e^{-i \lambda x} \, dx = 0
+\end{align}
+(navíc $\phi \in L(\R)$). Dále, je zřejmé, že 
+\begin{align*}
+\phi(x)=\int \limits _{x}^{x+y}f(\zeta) \, d \zeta \qquad \text{pro $x \in \R$.}
+\end{align*}
+Proto je funkce $\phi$ absolutně spojitá v každém konečném intervalu a tedy má skoro všude konečnou derivaci. Tedy $\phi$ splňuje skoro všude Diniovou podmínku. Proto lze pro funkce $\phi$ použít Větu \ref{v_6.3}. Vezmeme-li v úvahu \eqref{vztah_6.5} a Poznámku \ref{p_6.5}, zjistíme, že 
+\begin{align*}
+\phi(x)=\frac{1}{2\pi} \int \limits _{-\infty}^{\infty} \Big( \int \limits _{-\infty}^{\infty} \phi(t) e^{-\lambda i (t-x)} \, dx \Big) \, d\lambda = 0 \quad \text{pro s.v. $x \in \R$.}
+\end{align*}
+Poněvadž $\phi$ je spojitá, máme $\phi \equiv 0$. Jelikož jsme $y$ volili libovolně
+\begin{align*}
+\int \limits _0^y f(t) \, dt = 0 \qquad \text{$\forall y \in \R$}
+\end{align*}
+a tedy $f \sim 0$.
+\end{proof}
+
+Na závěr si uvedeme několik příklad\r u.
+
+\begin{priklad}
+Nechť $f(x)=e^{-\gamma|x|}$, $\gamma>0$. Potom
+\begin{align*}
+g(\lambda)=\int \limits _{-\infty}^{\infty} e^{-\gamma|x|} e^{-i \lambda x} \, dx = \int \limits _{-\infty}^{\infty} e^{-\gamma|x|} (\cos(x)-i \sin(x)) \, dx = 2 \int \limits _0^{\infty}e^{-\gamma x} \cos(\lambda x) \, dx = \frac{2 \lambda}{x^2+\gamma ^2}.
+\end{align*}
+\end{priklad}
+
+\begin{priklad}
+Nechť $f(x)=1$ pro $|x|\leq a$ a $f(x)=0$ pro $|x|>a.$ Potom 
+\begin{align*}
+g(\lambda)=\int \limits _{-\infty}^{\infty} e^{-\gamma x} f(x) \, dx = \int \limits _{-a}^{a} e^{-\gamma|x|} \, dx = \frac{2 \sin(\lambda a) }{\lambda}.
+\end{align*}
+Všimněme si, že $g \notin L(\R)$.
+\end{priklad}
+
+\begin{priklad}
+Nechť $f(x)=\frac{1}{a^2+x^2}$ Potom pro $\lambda \in \R$
+\begin{align*}
+g(\lambda)= \frac{\pi e^{-a|\lambda|}}{a}.
+\end{align*}
+\end{priklad}
+
+\begin{priklad}
+Nechť $f(x)=e^{-ax^2}$. Potom pro $\lambda \in \R$
+\begin{align*}
+g(\lambda)= \int \limits _{-\infty}^{\infty} e^{-ax^2}e^{-i\lambda x} \, dx = e^{-\frac{-\lambda^2}{4a}} \sqrt{\frac{\pi}{a}}.
+\end{align*}
+Pro $a=\frac{1}{2}$
+\end{priklad}
+
+\section{Základní vlastnosti Fourierovy transformace}
+
+Pro stručnost zavedeme označení 
+\begin{align*}
+F[f]=\int \limits _{-\infty}^{\infty} f(t) e^{-i \lambda t} \, dt, \quad \lambda \in \R.
+\end{align*}
+Tedy Fourierova transformace je lineární operátor $F:L(\R) \to \mathcal{X}$.
+
+\begin{tvrz}\label{t_6.8}
+Nechť $\{f_n\} \subset L(\R)$ a $||f_n-f||_{L(\R)} \to 0$. Potom posloupnost Fourierových obraz\r u $\{F[f_n]\}=\{g_n\}$ konverguje stejnoměrně v $\R$.
+\end{tvrz}
+
+\begin{proof}
+Plyne z 
+\begin{align*}
+|g_n(\lambda)-g_m(\lambda)| \leq \int \limits _{-\infty}^{\infty} |f_n(x)-f_m(x)| \, dx.
+\end{align*}
+\end{proof}
+
+\begin{tvrz}\label{t_6.9}
+Nechť $f \in L(\R)$. Potom $F[f]$ je ohraničená spojitá funcke konvergující k $0$ pro $|\lambda| \to \infty$.
+\end{tvrz}
+
+\begin{proof}
+$g(\lambda) \equiv F[f](\lambda)$. Ohraničenost je triviální
+\begin{align*}
+|g(\lambda)| \leq \int \limits _{-\infty}^{\infty} |f(x)| \, dx \quad \text{pro $\lambda \in \R$.}
+\end{align*}
+Dále je-li $\phi_{[a,b]}$ charaketristická funkce intervalu $[a,b]$, pak 
+\begin{align}
+F[\phi_{[a,b]}](\lambda) \to 0 \quad \text{pro $|\lambda| \to \infty$.}
+\end{align}
+Poněvadž $F$ je lineární operátor, lin. kombinace funkcí má stejnou vlasnost $f_j \to 0$ pro $|\lambda| \to \infty$. 
+
+Proto množina jendoduchých funkcí je hustá v $L(\R)$. Tedy $\exists \{f_n\}$ jednoduchých funkcí taká, že $||f_n-f||_{L(R)} \to 0$. Posloupnost $g_n=F[f_n] \to 0$ pro $|\lambda | \to 0$. 
+\end{proof}
+\begin{poznamka}
+Nechť $B$ je prostor všech stenoměrně spojitých funkcí v $R$ konvergujících k $0$ pro $|\lambda| \to 0$. Potom lze ukázat, že 
+\begin{align*}
+F:L(\R) \to B \qquad Ker(f)=\{0\}.
+\end{align*}
+\end{poznamka}
+
+\begin{tvrz}\label{t_6.10}
+Nechť $f \in AC([a,b])$ pro $\forall a<b$ a $f' \in L(\R)$. Potom
+\begin{align*}
+F[f']=i \lambda F[f]
+\end{align*}
+\end{tvrz}
+
+
+\begin{proof}
+Zřejmě platí
+\begin{align*}
+f(x)=f(0)+\int \limits _0^x f'(t) \, dt.
+\end{align*}
+Poněvadž $f' \in L(R)$ existuje $\lim \limits _{x \to \pm \infty} \int \limits _0^xf'(t) \, dt$. Tedy $\exists \lim \limits _{x \to \pm \infty} f(x) $. Jelikož $f \in L(\R)$ 
+\begin{align*}
+\lim \limits _{x \pm \infty} f(x)=0.
+\end{align*}
+Dále je zřejmé, že 
+\begin{align*}
+F[f'](\lambda)&=\int \limits _{-\infty}^{\infty}f'(x) e^{-ix \lambda} \, dx \\
+&= f(x) e^{-i \lambda x} \big |  _{-\infty}^{\infty} + i \lambda \int \limits _{-\infty}^{\infty} f(x) e^{-i \lambda x} \, dx = i \lambda F[f](\lambda). 
+\end{align*}
+\end{proof}
+
+\begin{tvrz}\label{t_6.11}
+Je-li $f^{k-1} \in AC$ pro $\forall$ konečný interval a $f,...,f^{(k)} \in L(\R)$, pak
+\begin{align*}
+F[f^{k}]=(i \lambda)^k F[f]
+\end{align*}
+\end{tvrz}
+\begin{proof}
+Zřejmý.
+\end{proof}
+
+\begin{tvrz}\label{t_6.12}
+Nechť $f^{(k)} \in L(\R)$. Pak
+\begin{align*}
+|F[f]|=\frac{1}{|\lambda|^k}|F[f^{(k)}]|\to 0.
+\end{align*}
+(Přesněji $|F[f]|=0(\frac{1}{|\lambda|^k})$.
+\end{tvrz}
+
+\begin{proof}
+Plyne z Tvrzení \ref{t_6.9}
+\end{proof}
+
+\begin{tvrz}
+Nechť $f'' \in L(\R)$. Pak $F[f] \in L(\R)$.
+\end{tvrz}
+
+\begin{proof}
+Podle Tvrzení \ref{t_6.11} a \ref{t_6.9}
+\begin{align*}
+|F[f](\lambda)|=\frac{1}{\lambda^2} \phi(\lambda),
+\end{align*}
+kde $\phi$ je spojitá a její limita je $0$ pro $|\lambda | \to \infty.$
+\end{proof}
+
+\begin{tvrz}
+Nechť $f,xf \in L(\R)$. Potom $F[f]$ je diferencovtelná a 
+\begin{align*}
+(F[f](\lambda))'=F[-ixf(x)].
+\end{align*}
+\end{tvrz}
+\begin{proof}
+
+\begin{align*}
+g(\lambda)= \int \limits _{-\infty}^{\infty} f(x) e^{-i \lambda x} \, dx.
+\end{align*}
+Derivací podle $\lambda$ dostaneme
+\begin{align*}
+g'(\lambda)= -i \int \limits _{-\infty}^{\infty} xf(x) e^{-i \lambda x} \, dx.
+\end{align*}
+
+\end{proof}
+
+\begin{tvrz}
+\label{t_6.15}
+Nechť $f, xf, ... , x^pf \in L(\R)$. Potom $F[f]$ je diferencovatelná do $p$-teho řádu včetně. Navíc
+\begin{align*}
+g^{(k)}(\lambda)=F[(-ix)^kf(x)] \qquad k=0,1,...,p.
+\end{align*}
+
+\end{tvrz}
+
+\section{Úplnost systému Hermitových a Lagrangeových funkcí}
+
+\begin{theorem}
+Nechť $f:I\to\R$, kde $I=\R$ nebo $I=\R_+$ a $f(x) \neq 0$ pro s.v. $x \in I$. Nechť dále $|f(x)|\leq c e^{-\delta|x|}$ pro $\delta>0$, $x \in I$. Potom systém $\{x^nf(x)\}_{n=0}^{\infty}$ je úplný v prostoru $L^2(I)$.
+\end{theorem}
+
+\begin{proof}
+Připustme opak, že $\{x^nf(x)\}_{n=0}^{\infty}$ není úplný. Poněvadž $L^2(I)$ je Hilbert\r uv prostor, existují $h \in L^2(I)$ takové, že $h \not\equiv 0$ a 
+\begin{align*}
+\int \limits _{-\infty}^{\infty}x^nf(x)h(x)\, dx = 0 \quad n=0,1,...
+\end{align*}
+Zřejmě $fh \in L(I)$ a navíc
+\begin{align*}
+e^{\delta_1|x|}fh \in L(I) \qquad \text{pro $\delta_1<\delta$}.
+\end{align*}
+Nechť $g$ je Fourier\r uv obraz funkce $fh$ t.j. 
+\begin{align*}
+g(\lambda)=\int \limits _{-\infty}^{\infty} f(x)h(x)e^{-i\lambda x}\, dx.
+\end{align*}
+
+Vzhledem k Tvrzení \ref{t_6.15} je $g^{(n)}(0)=0$ pro $\forall n \in \mathbb{N}$. 
+Avšak funkce $g$ je analytická a proto $g \equiv 0$. 
+Proto plyne z Věty \ref{v_6.7} že $fh \sim 0$. 
+Poněvadž $f(x) \neq 0$ pro s.v. $x \in I$, dostáváme $h \sim 0$ a tedy spor.
+\end{proof}
+
+\begin{tvrz}
+Systém Hermitových resp. Leguerových funkcí je úplný v príslušných prostorech.
+\end{tvrz}
+
+\section{Fourierova transformace a konvoluce funkcí}
+
+Nechť $f_1,f_2 \in L(\R)$ a 
+\begin{align*}
+f(x)=\int \limits _{-\infty}^{\infty} f_1(\zeta) f_2(x-\zeta) \, d\zeta \quad \text{pro $x \in \R$}.
+\end{align*}
+Pak je $f$ definována pro s.v. $x \in \R$ a je integrovatelná. V skustku dvojný integrál 
+\begin{align*}
+\int \limits _{-\infty}^{\infty} \Big(\int \limits _{-\infty}^{\infty} f_1(\zeta) f_2(x-\zeta) \, d\zeta \Big) \, dx
+\end{align*}
+existuje protože extisuje integrál (viz. Fubiniho věta)
+
+\begin{align*}
+\int \limits _{-\infty}^{\infty} \Big(\int \limits _{-\infty}^{\infty} |f_1(\zeta) f_2(x-\zeta)| \, d\zeta \Big) \, dx.
+\end{align*}
+
+
+Funkce $f$ se nazývá konvolucí funkcí $f_1$ a $f_2$ a značí se $f_1 * f_2$.
+
+Použitím Fubiniho věty (a substitucí $x-\zeta=\nu$) obdržíme
+
+\begin{align*}
+\int \limits _{-\infty}^{\infty} f(x) e^{-i \lambda x } \, dx &= \int \limits  _{-\infty}^{\infty} \Big( \int \limits  _{-\infty}^{\infty} f_1(\zeta) f_2(x-\zeta) \, d \zeta \Big) e^{-i \lambda x} \, dx \\
+&=\int \limits _{-\infty}^{\infty} f_1(\zeta) \Big(\int \limits _{-\infty}^{\infty} f_2(x-\zeta) e^{-i\lambda x} \, dx \Big) \, d\zeta \\
+&=\int \limits _{-\infty}^{\infty} f_1(\zeta) \Big(\int \limits _{-\infty}^{\infty} f_2(\nu) e^{-i\lambda \nu} e^{-i\lambda \zeta} \, d \nu \Big) \, d\zeta \\
+&=\int \limits _{-\infty}^{\infty} f_1(\zeta) e^{-i\lambda \zeta} \, d\zeta \int \limits _{-\infty}^{\infty} f_2(\nu) e^{-i\lambda \nu} \, d\nu.
+\end{align*}
+Platí tedy
+\begin{align*}
+F[f_1 * f_2] = F[f_1] \cdot F[f_2]
+\end{align*}
+
+\section{Fourierova transformace v prostoru \texorpdfstring{$L^2(\R)$}{L2R}}
+
+\begin{theorem}[Plancherel 1910]
+Nechť $f \in L^2(\R)$. Potom pro každé $n \in \mathbb{N}$ funkce 
+\begin{align*}
+g_n(\lambda):=\int \limits _{-n}^{n} f(x) e^{-i\lambda x} \, dx
+\end{align*}
+patří do $L^2(\R)$. Pro $n \to \infty$ posloupnost $\{g_n\}$ konverguje v metrice k $L^2(\R)$ k limitě $g$, přičemž
+\begin{align*}
+\int \limits _{-\infty}^{\infty} |g(\lambda)|^2 \, d \lambda = 2 \pi \int \limits _{-\infty}^{\infty} |f(x)|^2 \, dx.
+\end{align*}
+
+\end{theorem}
+
+
+\begin{poznamka}
+Funkci $g$ se říká Fourier\r uv obraz funcke $f \in L^2( \R )$. 
+Je-li navíc $f \in L( \R )$ pak $g \equiv F[f]$.
+\end{poznamka}
+
+
+

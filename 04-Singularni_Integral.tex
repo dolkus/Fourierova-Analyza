@@ -1,0 +1,913 @@
+
+
+\chapter{Singulární integrál}
+
+
+\section{Motivace}
+
+Nechť $\phi_n : \mathbb{R}^2 \rightarrow \mathbb{R}$ je dána tvarem
+\begin{align}\label{vztah_4.1}
+\phi_n (t, x) = \frac{1}{\pi} \frac{n}{1+n^2(t-x)^2}.
+\end{align}
+Nechť dále $f \in L([0,1])$. Položme
+\begin{align}\label{vztah_4.2}
+f_n (x) = \frac{n}{\pi} \int \limits_0^1 \frac{f(t)}{1+n^2(t-x)^2} dt \quad \textrm{ tj. } = \int \limits_0^1 \phi_n (t,x) f(t) dt.
+\end{align}
+Ukážeme, že je-li $x \in ]0,1[$ a v bodě $x$ je funkce $f$ spojitá, pak platí
+\begin{align}\label{vztah_4.3}
+\lim_{n \rightarrow \infty} f_n (x) = f(x).
+\end{align}
+Všimněme si, že
+\begin{align*}
+\int \limits_0^1 \phi_n (t,x) dt = \frac{n}{\pi} \int \limits_0^1 \frac{dt}{1+n^2(t-x)^2} = \frac{1}{\pi} \int \limits_{-nx}^{n(1-x)} \frac{ds}{1+s^2}
+\end{align*}
+a tedy
+\begin{align}\label{vztah_4.4}
+\lim_{n \rightarrow \infty} \int \limits_0^1 \phi_n (t,x) dt = 1.
+\end{align}
+Zaveďme označení
+\begin{align*}
+r_n = f_n (x) - f (x) \int \limits_0^1 \phi_n (t,x) dt.
+\end{align*}
+Zřejmě pro dokázaní vztahu \eqref{vztah_4.3} stačí ukázat (vzhledem k \eqref{vztah_4.4}), že $\lim \limits _{n \rightarrow \infty} r_n = 0$.\\
+Ukážeme nyní, že platí poslední rovnost. Zvolíme $\epsilon > 0$. Poněvadž $x$ je bodem spojitosti $f$, existuje $\delta > 0$ tak, že pro $t \in [0,1] : |t - x| < \delta$ platí $|f(t) - f(x)| < \epsilon$. Zřejmě můžeme předpokládat, že $0 < x- \delta < x + \delta < 1$. Pak
+\begin{align*}
+r_n &= \frac{n}{\pi} \int \limits_0^{x-\delta} \frac{f(t) - f(x)}{1 +  n^2 (t-x)^2} \, dt + \frac{n}{\pi} \int \limits_{x-\delta}^{x+\delta} \frac{f(t) - f(x)}{1 +  n^2 (t-x)^2} \, dt + \frac{n}{\pi} \int \limits_{x+\delta}^1 \frac{f(t) - f(x)}{1 +  n^2 (t-x)^2} \, dt \\
+&= A_n + B_n + C_n.
+\end{align*}
+Odhadneme jednotlivě
+\begin{align*}
+|B_n| \leq \frac{n}{\pi} \int \limits_{x-\delta}^{x+\delta} \frac{f(t) - f(x)}{1 +  n^2 (t-x)^2} \, dt \leq \epsilon \frac{n}{\pi} \int \limits_{x-\delta}^{x+\delta} \frac{1}{1+n^2(t-x)^2} dt \leq \frac{\epsilon}{\pi} \int \limits_{-\infty}^{+infty} \frac{ds}{t+s^2} = \epsilon.
+\end{align*}
+Pro odhad $A_n$ si všimneme, že pro jmenovatel platí $|t-x| \geq \delta$, tedy
+\begin{align*}
+|A_n| \leq \frac{n}{\pi (1 + n^2 \delta^2)} \int \limits_0^{x-\delta} |f(t) - f(x)| dt \leq \frac{n}{\pi (1 + n^2 \delta^2)} \int \limits_0^1 |f(t) - f(x)| dt \leq \frac{A(\delta)}{n}
+\end{align*}
+pro dostatečně velké $n$. Analogicky pro dostatečně velké $n$ platí
+\begin{align*}
+|C_n| \leq \frac{C(\delta)}{n}.
+\end{align*}
+Z těchto odhadů zřejmě plyne, že $\lim \limits _{n \to \infty} r_n = 0$.\\
+Můžeme si všimnout, že konkrétní tvar funkce $\phi_n$ není tak d\r uležitým a platnost vztahu \eqref{vztah_4.3} závisí na kvantitativním chování funkce $\phi_n$.
+
+%jádro
+\begin{definition}[Jádro a Singulární Integrál]
+\label{d_4.1.definition}
+Nechť $\phi_n : [a,b] \times ]a,b[ \rightarrow \mathbb{R}$ a pro každé $x \in ]a,b[$ je $\phi_n (\cdot, x) \in L([a,b])$. Nechť dále pro každé $a \leq \alpha < x < \beta \leq b$ platí
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_{\alpha}^{\beta} \phi_n (t,x) dt = 1.
+\end{align*}
+Potom se funkce $\phi_n$ nazývá \textit{jádro}. Je-li $\phi_n$ jádro, pak integrál
+\begin{align*}
+f_n (x) = \int \limits_a^b \phi_n (t,x) f(t) dt
+\end{align*}
+se nazývá \textit{singulárním integrálem}.
+\end{definition}
+
+
+Teorie singulárních integrálů má četné aplikace. Jednou s fundamentálních otázek této teorie je vztah limity $\lim \limits _{n \rightarrow \infty} f_n(x)$ a hodnoty $f(x)$. Dále se seznámíme s touto teorií a budeme zkoumat vybrané její aplikace v teorií Fourierových řad a obecně trigonormetrických řad.
+
+\begin{theorem}[Lebesgue]\label{v_4.2}
+Nechť $\{ \varphi_n \}_{n=1}^{\infty} \subset M ([a,b])$ a existuje $M > 0$ tak, že
+\begin{align}\label{vztah_4.5}
+|\varphi_n (t)| < M \quad \textrm{ pro skoro všechna } t \in [a,b], n \in \mathbb{N.}
+\end{align}
+Nechť dále pro $\forall c \in [a,b]$ platí
+\begin{align}\label{vztah_4.6}
+\lim_{n \rightarrow \infty} \int \limits_a^c \varphi_n (t) dt = 0.
+\end{align}
+Potom pro každou $f \in L([a,b])$ platí
+\begin{align}\label{vztah_4.7}
+\lim_{n \rightarrow \infty} \int \limits_a^b f(t) \varphi_n (t)\, dt = 0.
+\end{align}
+\begin{proof}
+Nejprve si všimneme, že vzhledem k (\eqref{vztah_4.6}) platí
+\begin{align}\label{vztah_4.8}
+\lim_{n \rightarrow \infty} \int \limits_{\alpha}^{\beta} \varphi_n (t) \, dt = 0
+\end{align}
+pro libovolný interval $[\alpha, \beta] \subseteq [a,b]$. Důkaz věty provedeme v několika fázích. Nechť nejprve $f \in C([a,b])$. Zvolíme $\epsilon > 0$. Potom existuje dělení $a=x_0 < x_1 < \ldots < x_m = b$ tak, že
+\begin{align}
+\label{vztah_max}
+\max \{ |f(t) - f(s)| : t,s \in [x_i, x_{i+1}], i = \{0,1,..., m-1\} \} < \epsilon.
+\end{align}
+Pak zřejmě platí, že
+\begin{align}\label{vztah_4.9}
+\int \limits_a^b f(t) \varphi_n (t) dt = \sum \limits _{k=0}^{m-1} \int \limits_{x_k}^{x_{k+1}} [f(t) - f(x_k)] \varphi_n (t)  \, dt + \sum \limits _{k=0}^{m-1} f(x_k) \int \limits_{x_k}^{x_{k+1}} \varphi_n (t) \, dt.
+\end{align}
+Využitím  vztah\r u \eqref{vztah_4.5} a \eqref{vztah_max} odhadujeme
+\begin{align*}
+\left| \int \limits_{x_k}^{x_{k+1}} [f(t) - f(x_k)] \varphi_n (t) dt \right| \leq M \epsilon (x_{k+1} - x_k) \quad \textrm{ pro } k = \{0,1,..., m-1\}.
+\end{align*}
+Vezmeme-li navíc v úvahu \eqref{vztah_4.8} obdržíme z \eqref{vztah_4.9}, že
+\begin{align*}
+\limsup_{n \rightarrow \infty} \left| \int \limits_a^b f(t) \varphi_n (t) dt \right| \leq M \epsilon (b-a).
+\end{align*}
+Avšak volba $\epsilon > 0$ byla libovolná. Proto plyne z poslední nerovnosti, že pokud $f \in C ([a,b])$, pak platí \eqref{vztah_4.7}. \\
+Nechť nyní funkce $f$ je ohraničená (tedy je také měřitelná a integrovatelná). Potom existuje konstanta $f^* \geq 0$, pro kterou platí
+\begin{align*}
+|f(t)| \leq f^* \quad \textrm{ pro skoro všechna } t \in [a,b].
+\end{align*}
+Zvolíme $\epsilon > 0$. Potom vzhledem k Lusinově větě \ref{v_1.4.6_Lusin} existuje funkce $g \in C([a,b])$ taková, že
+\begin{align*}
+|g(t)| \leq f^* \quad \textrm{ a } \quad \mes\{t \in [a,b] : f(t) \neq g(t)\} < \epsilon.
+\end{align*}
+Proto obdržíme
+\begin{align}\label{vztah_4.10}
+\int \limits_a^b f(t) \varphi_n(t) dt = \int \limits_a^b [f(t) -g(t)] \varphi_n(t) dt + \int \limits_a^b g(t) \varphi_n (t) dt.
+\end{align}
+Na druhé straně, je-li $E = \{ t : f(t) \neq g(t) \}$, platí
+\begin{align*}
+\left| \int \limits_a^b [f(t) - g(t)] \varphi_n (t) dt \right| = \left|  \int \limits_E [f(t) - g(t)] \varphi_n (t) dt \right| \leq 2M f^* - \epsilon.
+\end{align*}
+Vezmeme-li nyní v úvahu už dokázanou část, obdržíme z vztahu \eqref{vztah_4.10}, že
+\begin{align*}
+\limsup \limits _{n \to \infty} \left| \int \limits_a^b f(t) \varphi_n (t) dt \right| \leq 2M f^* \epsilon,
+\end{align*}
+a tedy vzhledem k libovolnosti $\epsilon  > 0$ platí vztah \eqref{vztah_4.7}.
+Nechť nyní $f \in L([a,b])$. Zvolíme $\epsilon > 0$. Potom existuje $\delta > 0$ tak, že pro každou měřitelnou množinu $A \subset [a,b]$ takovou, že $\mes (A) < \delta$ platí
+\begin{align}\label{vztah_4.11}
+\int \limits_A |f(t)| dt < \epsilon.
+\end{align}
+Vzhledem k Větě \ref{v_1.19} existuje ohraničená a měřitelná $g$ taková, že
+\begin{align*}
+\mes\{t : f(t) \neq g(t)\} < \delta.
+\end{align*}
+Z důkazu Věty \ref{v_1.19} můžeme předpokládat, že
+\begin{align*}
+g(t) = 0 \quad \textrm{ pro } t \in A \textrm{ kde } A = \{ t : f(t) \neq g(t) \}.
+\end{align*}
+Dále
+\begin{align*}
+\int \limits_a^b f(t) \varphi_n (t) dt = \int \limits_a^b [f(t) - g(t)] \varphi_n (t) dt + \int \limits_a^b g(t) \varphi_n (t) dt.
+\end{align*}
+Avšak vzhledem ke vztahu \eqref{vztah_4.11}
+\begin{align*}
+\left| \int \limits_a^b [ f(t) - g(t)] \varphi_n (t) dt \right| = \left| \int \limits_A f(t) \varphi_n (t) dt \right| \leq \epsilon M.
+\end{align*}
+Opakováním stejných argumentů dokončíme důkaz.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}[Riemann-Lebesgue]\label{v_4.3_Riemann_Lebesgue}
+Nechť $f \in L([a,b])$. Potom
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_a^b f(t) \cos(nt) \, dt = 0 \quad \textrm{ a } \lim_{n \rightarrow \infty} \int \limits_a^b f(t) \sin(nt) \, dt = 0.
+\end{align*}
+\begin{proof}
+Plyne z Věty \ref{v_4.3_Riemann_Lebesgue}, protože funkce $\varphi_n(t) = \cos(nt)$ $(= \sin(nt))$ vyhovují (\eqref{vztah_4.5}) a (\eqref{vztah_4.6}).
+\end{proof}
+\end{theorem}
+
+\begin{definition}[Slabá konvergence posloupnosti k nule]
+\label{d_4.4} 
+Nechť $\{ \varphi_n \}_{n=1}^{\infty} \subset M([a,b])$ a pro každé $f \in L([a,b])$ platí 
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_a^b f(t) \varphi_n (t)\, dt = 0.
+\end{align*}
+ Pak řekneme, že posloupnost $\{ \varphi_n \}$ slabě konverguje k nule (na $[a,b]$).
+\end{definition}
+
+
+
+
+\section{Věty o reprezentaci}
+
+Dále všude budeme navíc předpokládat, že je jádro $\phi_n (\cdot, x)$ ohraničené. Potom singulární integrál
+\begin{align*}
+f_n (x) = \int \limits_a^b \phi_n (t,x) f(t) dt
+\end{align*}
+má smysl pro každou $f \in L([a,b])$.
+
+
+
+
+\begin{theorem}[Lebesgue]\label{v_4.4}
+Nechť $x \in ]a,b[$ a $\delta \in ]0,\cdot[$ jádro $\phi_n$ slabě konverguje k nule na množinách $[a, x - \delta]$ a $[x + \delta, b]$. Nechť dále
+\begin{align*}
+\int \limits_a^b |\phi_n (t,x)| dt < H(x) \quad \textrm{ pro } n \in \mathbb{N}.
+\end{align*}
+Potom pro každou funkci $f \in L([a,b])$spojitou v $x$ platí
+\begin{align*}
+\lim_{n \rightarrow \infty} f_n(x) = f(x).
+\end{align*}
+\begin{proof}
+Poněvadž $\phi_n$ je jádro, stačí ukázat, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_a^b [f(t) - f(x)] \phi_n (t,x) dt = 0.
+\end{align*}
+Zvolíme $\epsilon > 0$. Jelikož $f$ je spojitá v $x$, $\exists \delta > 0$ tak, že
+\begin{align*}
+|f(t) - f(x)| < \frac{\epsilon}{3H(x)} \quad \textrm{ pro } |t-x| < \delta.
+\end{align*}
+Proto je zřejmé, že
+\begin{align*}
+\left| \int \limits_{x - \delta}^{x + \delta} [f(t) - f(x)] \phi_n (t,x) dt \right| \leq \frac{\epsilon}{3H(x)} \int \limits_a^b |\phi_n (t,x)| dt < \frac{\epsilon}{3} \quad \textrm{ pro } n \in \mathbb{N}.
+\end{align*}
+Na druhé straně, protože $\{ \phi_n \}$ slabě konverguje k nule na $[a, x - \delta]$ a $[x + \delta, b]$, tak platí
+\begin{align*}
+\lim \limits _{n \to \infty} \int \limits_a^{x - \delta} [f(t) - f(x)] \phi_n (t,x) dt = 0, \quad \lim \limits _{n \to \infty} \int \limits_{x + \delta}^b [f(t) - f(x)] \phi_n (t,x) dt = 0
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{poznamka}\label{p_4.5a}
+Předchozí věta udává \textit{reprezentaci} integrovatelné funkce $f$ v bodě spojitosti. Ale integrovatelná funkce nemusí vůbec mít bod spojitosti (např. Dirichletova funkce). Proto má věta omezenou aplikaci. Zajímavější by byla Věta o reprezentaci v Lebegueových bodech.
+\end{poznamka}
+
+\begin{lemma}[Natanson]\label{l_4.6_Natanson}
+Nechť $f \in L([a,b])$ je taková, že
+\begin{align*}
+M = \sup_{0 < h \leq b-a} \left\{ \frac{1}{h} \left| \int \limits_a^{a+h} f(t) dt \right| \right\} < \infty.
+\end{align*}
+Nechť dále $g \in L([a,b])$, $g(t) \geq 0$ pro $t \in [a,b]$ a $g$ je klesající. Potom $fg \in L([a,b])$ a platí odhad
+\begin{align*}
+\left| \int \limits_a^b f(t) g(t) dt \right| \leq M \int \limits_a^b g(t) dt.
+\end{align*}
+\end{lemma}
+
+\begin{theorem}[Romanovský]\label{v_4.7_Romanovsky}
+Nechť $\phi_n$ je jádro, $\phi_n (t,x) > 0$ pro $t$, $x$, $n$ a pro $n$ a $x$ (otazník) funkce $\phi_n ( \cdot, x)$ je rostoucí na $[a,x]$ a klesající na $[x,b]$. Nechť dále $f \in L([a,b])$  a v bodě $x$ je $f(x) = F'(x)$ ($f$ je derivací své primitivní funkce). Potom
+\begin{align}\label{vztah_4.12}
+\lim_{n \rightarrow \infty} \int \limits_a^b f(t) \phi_n (t,x) dt = f(x)
+\end{align}
+
+\begin{proof}
+Poněvadž $\phi_n$ je jádro, stačí ukázat, že
+\begin{align}\label{vztah_4.13}
+\lim_{n \rightarrow \infty} \int \limits_a^b [f(t) - f(x)] \phi_n (t,x) dt = 0.
+\end{align}
+Dále, díky aditivitě integračního oboru integrálu, stačí ukázat, že každý z integrál\r u $\int \limits _a^x [f(t) - f(x)] \phi_n (t,x) \, dt$ a $\int \limits _x^b [f(t) - f(x)] \phi_n (t,x) \, dt$ pro $x \in [a,b]$ platí, že pro $n \to \infty$ konvergují k nule. \\
+
+Bez újmy na obecnosti ukážeme, že $\int \limits _x^b [f(t) - f(x)] \phi_n (t,x) \, dt \rightarrow 0$. Poněvadž $F'(x) = f(x)$ (v bodě $x$) pro zvolené $\epsilon > 0$ existuje $\delta > 0$ tak, že
+\begin{align*}
+\left| \frac{1}{h}\int \limits_x^{x+b} [f(t) - f(x)] dt \right| < \epsilon \quad \textrm{ pro } h \in ]0, \delta].
+\end{align*}
+Vzhledem k Lemmatu \eqref{vztah_4.6} proto platí
+\begin{align}\label{vztah_4.14}
+\left| \int \limits_x^{x+\delta} [f(t) - f(x)] \phi_n (t,x) dt \right| \leq \epsilon \int \limits_x^{x+\delta} \phi_n (t,x) dt \leq \epsilon \int \limits_a^b \phi_n (t,x) dt.
+\end{align}
+Dále víme, že $\lim \limits_{n \to \infty} \int \limits_a^b \phi_n (t,x) dt = 1$. Proto existuje konstanta $K(x)$ tak, že
+\begin{align*}
+\int \limits_a^b \phi_n (t,x) dt \leq K(x).
+\end{align*}
+Nyní plyne z \eqref{vztah_4.14}, že
+\begin{align}\label{vztah_4.15}
+\left| \int \limits_x^{x+\delta} [f(t) - f(x)] \phi_n (t,x) dt \right| \leq \epsilon K(x).
+\end{align}
+Na druhé straně pro $t \in [x + \delta, b]$ platí
+\begin{align*}
+\phi_n (t,x) \leq \phi_n (x + \delta, x) \leq \frac{1}{\delta} \int \limits_x^{x+\delta} \phi_n (s,x) ds < \frac{1}{\delta} K(x).
+\end{align*}
+Uvažujme posloupnost funkce $\varphi_n (t) = \phi_n (t,x)$. Předchozí nerovnost říká, že $\{ \varphi_n \}$ je stejnoměrně ohraničená posloupnost. Platí tedy podmínka \eqref{vztah_4.5} Věty \ref{v_4.2}. Dále, protože $\phi_n$ je jádro, platí i vztah \eqref{vztah_4.6} Věty \ref{v_4.2} (všechno pro $[x + \delta, b]$), tj. $\varphi_n$ slabě konverguje k $0$. Vzhledem k Větě \ref{v_4.2} tedy máme, že pro dostatečně velké $n$ platí
+\begin{align*}
+\left| \int \limits_{x + \delta}^b [f(t) - f(x)] \phi_n (t,x) dt \right| < \epsilon.
+\end{align*}
+Poslední nerovnost spolu s \eqref{vztah_4.15} dává
+\begin{align*}
+\left| \int \limits_x^b [f(t) - f(x)] \phi_n (t,x) dt \right| \leq \epsilon (K(x) + 1).
+\end{align*}
+Tedy jsme dokázali Vztah \eqref{vztah_4.13} a tím dokončujeme také d\r ukaz.
+\end{proof}
+\end{theorem}
+
+\begin{priklad}[Weierstrassův integrál]\label{u_4.8_Weierstrassov_integral}
+Výraz
+\begin{align*}
+W_n (x) = \frac{n}{\sqrt{\pi}} \int \limits_a^b e^{-n^2 (t-x)^2} f(t) dt
+\end{align*}
+se nazývá Weierstrassův integrál. V tomto případě uvažujeme jádro $\phi_n (t,x) = \frac{n}{\sqrt{\pi}} e^{-n^2 (t-x)^2}$.
+\begin{align*}
+\int \limits_\alpha^\beta \phi (t,x) dt = \frac{n}{\sqrt{\pi}} \int \limits_\alpha^\beta e^{-n^2 (t-x)^2} f(t) dt = \frac{1}{\sqrt{\pi}} \int \limits_{n(\alpha-x)}^{n(\beta-x)} e^{-s^2} ds \rightarrow \frac{1}{\sqrt{\pi}} \int \limits_{-\infty}^{\infty} e^{-s^2} ds = 1.
+\end{align*}
+Dále je zřejmé, že $\phi_n (\cdot, x)$ je rostoucí na $[a,x]$ a klesající na $[x,b]$. Tedy lze použít Větu \ref{v_4.7_Romanovsky}. Proto platí: "Je-li $f \in L([a,b])$ a $x \in ]a,b[$ je bod, v němž je $f(x)$ derivací své primitivní funkce, pak
+\begin{align*}
+\lim_{n \rightarrow \infty} W_n(x) = f(x)."
+\end{align*}
+\end{priklad}
+
+\begin{definition}[Hrbolatá majoranta funkce]
+\label{d_4.9}
+Řekneme, že funkce $\psi (t,x)$ je \textit{hrbolatou majorantou} funkce $\phi$, je-li $|\phi (t,x)| \leq \psi (t,x)$ a $\psi (\cdot,x)$ je rostoucí na $[a,x]$ a klesající na $[x,b]$.
+\end{definition}
+
+\begin{theorem}[Fadeev]\label{v_4.10_Fadeev}
+Nechť $\phi_n$ je jádro a $\forall n\in \mathbb{N}$ je jeho hrbolatou majorantou $\psi_n$, přičemž existuje konstanta $K(x)$
+\begin{align*}
+\int \limits_a^b \psi_n (t,x) dt < K(x) < \infty \quad \forall n \in \mathbb{N}.
+\end{align*}
+Potom pro každou $f \in L([a,b])$ pro kterou $x$ je Lebesgueův bod platí Vztah \eqref{vztah_4.12}.
+\begin{proof}
+Stačí ukázat, že
+\begin{align*}
+\lim_{x \rightarrow \infty} \int \limits_x^b [f(t) - f(x)] \phi_n (t,x) dt = 0.
+\end{align*}
+Poněvadž $x$ je Lebesgueův bod $f$ pro $\epsilon > 0$, existuje $\delta > 0$ tak, že
+\begin{align*}
+\frac{1}{h} \int \limits_x^{x+b} |f(t) - f(x)| dt < \epsilon.
+\end{align*}
+Vzhledem k Lemmatu \ref{l_4.6_Natanson} platí
+\begin{align*}
+\left| \int \limits_x^{x+\delta} [f(t) - f(x)] \phi_n(t,x) dt \right| \leq \int \limits_x^{x + \delta} |f(t) - f(x)| \psi_n (t,x) dt \leq \epsilon \int \limits_x^{x + \delta} \psi_n (t,x) dt \leq \epsilon K(x).
+\end{align*}
+Na druhé straně $\varphi_n (t) = \phi (t,x)$ je slabě konvergující k $0$ (na $[x + \delta, b]$), neboť
+\begin{align*}
+|\phi_n (t,x)| \leq \psi_n (t,x) \leq \psi_n (x + \delta, x) \leq \frac{1}{\delta} \int \limits_x^{x+\delta} \psi_n (t,x) dt < \frac{1}{\delta} K(x).
+\end{align*}
+Na závěr opakujeme stejné úvahy jako při důkazu předešlé věty.
+\end{proof} 
+\end{theorem}
+
+
+
+
+\section{Aplikace pro Fourierovy řady}
+
+Uvažujeme systém
+\begin{align*}
+\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}} \cos(kt), \frac{1}{\sqrt{\pi}} \sin(kt).
+\end{align*}
+Nechť $f \in L([-\pi, \pi])$. Zavedeme označení
+\begin{align}\label{vztah_4.16}
+a_k = \frac{1}{\pi} \int \limits_{-\pi}^\pi f(s) \cos(ks) ds, \quad b_k = \frac{1}{\pi} \int \limits_{-\pi}^\pi f(s) \sin(ks) ds,
+\end{align}
+a uvažujme formální řadu
+\begin{align*}
+\frac{a_0}{2} + \sum \limits _{k=1}^{\infty} \Big( a_k \cos(kx) + b_k \sin(kx) \Big).
+\end{align*}
+Této řadě budeme opět říkat Fourierova řada. Dále uvažujme částečné sumy
+\begin{align*}
+S_n(x) = \frac{a_0}{2} + \sum \limits _{k=1}^n \Big( a_k \cos(kx) + b_k \sin (kx) \Big).
+\end{align*}
+Zřejmě platí, vzhledem ke Vztahu \eqref{vztah_4.16}, že
+\begin{align*}
+S_n(x) = \frac{1}{\pi} \int \limits_{-\pi}^\pi \left[ \frac{1}{2} + \sum \limits _{k=1}^n \cos(k(t-x)) \right] f(t) dt.
+\end{align*}
+Je známo, že
+\begin{align*}
+\frac{1}{2} + \sum \limits _{k=1}^n \cos(k \alpha) = \frac{\sin \left( \frac{2n+1}{2}\alpha \right)}{2 \sin \left( \frac{\alpha}{2} \right)}.
+\end{align*}
+%Třeba takto:
+%\begin{align*}
+%\sin \left( (k + \frac{1}{2}) \alpha \right) \sin \left( (k - \frac{1}{2}) \alpha \right) &= 2 \sin \left( \frac{\alpha}{2} \right) \cos(k \alpha), \quad k = \{1,2,...,n\}\\
+%\sin \left( \frac{\alpha}{2} \right) &= \sin \left( \frac{\alpha}{2} \right),
+%\end{align*}
+%což sečteme a dostaneme předchozí rovnost.
+Proto platí
+\begin{align}\label{vztah_4.17}
+S_n(x) = \frac{1}{2\pi} \int \limits_{-\pi}^\pi \frac{\sin \left(\frac{2n+1}{2}(t-x) \right)}{\sin \left( \frac{t-x}{2} \right)} f(t) \, dt.
+\end{align}
+Tomuto singulárnímu integrálu se říká \textit{Dirichletův singulární integrál}. Budeme se zabývat otázkou \textit{konvergence} řady metodou Cesara. Položme
+\begin{align*}
+\sigma_n (x) = \frac{1}{n} \Big( S_0(x) + S_1(x) + \ldots + S_{n-1}(x)\Big).
+\end{align*}
+Vzhledem k Vztahu \eqref{vztah_4.17}
+\begin{align*}
+\sigma_n (x) = \frac{1}{2 \pi n} \int \limits_{-\pi}^\pi \left[ \sum \limits _{k=0}^{n-1} \sin \left( \frac{2k+1}{2}(t-x) \right) \right] \frac{f(t)}{\sin \left( \frac{t-x}{2} \right) }\, dt.
+\end{align*}
+Avšak
+\begin{align*}
+\sum \limits _{k=0}^{n-1} \sin ( (2k + 1) \alpha ) &= \frac{\sin^2 (n \alpha)}{\sin (\alpha)}\\
+\cos (2k \alpha) - \cos (2(k+1) \alpha)&= 2\sin (\alpha) \sin ((2k + 1) \alpha) \quad k=0,1, \ldots, n-1,
+\end{align*}
+spočteme
+\begin{align*}
+2 \sin (\alpha) \sum \limits _{k=0}^{n-1} \sin ((2k+1)\alpha) = 1 - \cos (2n \alpha) = 2 \sin^2 (n \alpha).
+\end{align*}
+Proto
+\begin{align*}
+\sigma_n (x) = \frac{1}{2 \pi n} \int \limits_{-\pi}^\pi \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 f(t) \, dt.
+\end{align*}
+Tento integrál se nazývá \textit{Fejerův integrál} a $\frac{1}{2\pi n} \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2$ je \textit{Fejerovo jádro}. Ukážeme, že můžeme použít Fadeevovu větu \ref{v_4.10_Fadeev}. Je-li $f=1$, pak $a_0 = 2$, $a_k = 0$, $b_k = 0$. Tedy $S_n (x) = 1$. Proto $\sigma_n (x) = 1$ (pro $f = 1$) a tedy
+\begin{align}\label{vztah_4.18}
+\frac{1}{2 \pi n} \int \limits_{-\pi}^\pi \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 \, dt = 1.
+\end{align}
+Nyní ukážeme, že funkce
+\begin{align*}
+\frac{1}{2 \pi n} \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2
+\end{align*}
+je jádro.
+Položme $x \in ]-\pi, \pi[$, $-\pi \leq \alpha < x < \beta \leq \pi$,
+\begin{align*}
+A (x,\alpha) = \max \left\{ \frac{1}{\sin^2 \left( \frac{\alpha - x}{2} \right)}, \frac{1}{\sin^2 \left( \frac{-\pi - x}{2} \right)} \right\}.
+\end{align*}
+Zřejmě pro $t \in [-\pi, \alpha]$ platí
+\begin{align*}
+\frac{1}{\sin^2 \left( \frac{t - x}{2} \right)} \leq A(x, \alpha),
+\end{align*}
+proto
+\begin{align*}
+\frac{1}{2 \pi n} \int \limits_{-\pi}^\alpha \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 dt < \frac{1}{n} A(x, \alpha).
+\end{align*}
+Odtud plyne, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \frac{1}{2 \pi n} \int \limits_{-\pi}^\alpha \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 = 0.
+\end{align*}
+Analogicky lze ukázat, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \frac{1}{2 \pi n} \int \limits_\beta^\pi \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 = 0.
+\end{align*}
+Poslední dvě rovnosti spolu s (\eqref{vztah_4.18}) dávají, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \frac{1}{2 \pi n} \int \limits_\alpha^\beta \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 dt = 1,
+\end{align*}
+a tedy $\frac{1}{2 \pi n} \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2$ je jádro. Sestrojíme nyní hrbolatou majorantu pro Fejerovo jádro. Všimněme si, že $|\sin s| \leq |s|$. Tedy $\frac{1}{\sin^2 s} \geq \frac{1}{s^2}$. Zřejmě $\frac{1}{\sin^2 s} \geq 1$. Proto
+\begin{align*}
+\frac{1}{\sin^2 s} \geq \frac{1}{2} \left( 1 + \frac{1}{s^2} \right) = \frac{s^2 + 1}{2s^2},
+\end{align*}
+a tedy
+\begin{align}\label{vztah_4.19}
+\sin^2 \left( \frac{n(t-x)}{2} \right) \leq \frac{2n^2 (t-x)^2}{n^2 (t-x)^2 + 4}.
+\end{align}
+Na druhé straně pro $|s| \leq \frac{\pi}{2}$ platí $|\sin s| \geq \frac{2}{\pi} |s|$. Tedy
+\begin{align}\label{vztah_4.20}
+\sin^2 \left( \frac{t-x}{2} \right) \geq \frac{1}{\pi^2} (t - x)^2.
+\end{align}
+Nyní plyne ze Vztah\r u \eqref{vztah_4.19} a \eqref{vztah_4.20}, že
+\begin{align*}
+\frac{1}{2 \pi n} \left[ \frac{\sin \left( n \frac{t-x}{2} \right)}{\sin \left( \frac{t-x}{2} \right)} \right]^2 \leq \frac{1}{2 \pi n} \frac{2n^2 (t-x)^2}{n^2 (t-x)^2 + 4} \frac{\pi^2}{(t-x)^2} = \frac{n \pi}{n^2 (t-x)^2 + 4}.
+\end{align*}
+Tedy $\frac{n \pi}{n^2 (t-x)^2 + 4}$ je hrbolatou majorantou Fejerova jádra. Dále
+\begin{align*}
+\int \limits_{-\pi}^\pi \frac{n \pi}{n^2 (t-x)^2 + 4} dt < \int \limits_{-\infty}^{\infty} \frac{\pi ds}{s^2 + 4} = \frac{\pi^2}{2},
+\end{align*}
+a tedy je stejnoměrně ohraničená. Ukázali jsme že, v tomto případě lze použít Fadeevovu  větu, tj. platí nasledující Věta:
+
+\begin{theorem}[Fejer-Lebesgue]\label{v_4.11_Fejer-Lebesgue}
+Nechť $f\in L([-\pi, \pi])$ a 
+\begin{align*}
+\sigma_n (x) = \frac{1}{n} ( S_0(x) + S_1(x) + \ldots + S_{n-1}(x)),
+\end{align*}
+kde \begin{align*}
+S_n(x) = \frac{1}{2\pi} \int \limits_{-\pi}^\pi \frac{\sin \left(\frac{2n+1}{2}(t-x) \right)}{\sin \left( \frac{t-x}{2} \right)} f(t) \, dt.
+\end{align*}
+Potom
+\begin{align}\label{vztah_4.21}
+\lim_{n \rightarrow \infty} \sigma_n (x) = f(x) \quad \textrm{ pro skoro všechna } x \in [-\pi, \pi].
+\end{align}
+Navíc (\eqref{vztah_4.21}) platí pro všechny Lebesgueovy body a body spojitosti z otevřeného intervalu $]-\pi, \pi[$.
+\end{theorem}
+
+\begin{poznamka}\label{p_4.12}
+V předchozím jsme ukázali, že trigonometrický systém je úplný v $L^2([-\pi, \pi])$. Proto, je-li Fourierův koeficient roven nule, pak $f = 0$. Z Fejer-Lebesgueovy Věty \ref{v_4.11_Fejer-Lebesgue} plyne, že podobný výsledek platí také pro funkce $f \in L([-\pi, \pi])$.
+\end{poznamka}
+
+\begin{theorem}\label{v_4.12}
+Je-li $f \in L([-\pi, \pi])$ taková, že se její Fourierovy koeficienty vzhledem k trigonometrickému systému jsou nulové, potom $f \sim 0$.
+\begin{proof}
+V předpokladech věty máme, že $\sigma_n (x) = 0$ a tedy $f \sim 0$.
+\end{proof}
+\end{theorem}
+
+\begin{poznamka}\label{p_4.13.poznamka}
+Všimněme si, že z definice $\sigma_n$ obdržíme
+\begin{align*}
+\sigma_n (x) = \frac{a_0}{2} + \sum \limits _{k=1}^{n-1} \frac{n-k}{n} \Big(a_k \cos (kx) + b_k \sin (kx)\Big).
+\end{align*}
+Dále je zřejmé, že
+\begin{align}\label{vztah_4.22}
+S_n (x) - \sigma_n (x) = \sum \limits _{k=1}^n \frac{k}{n} \Big(a_k \cos (kx) + b_k \sin (kx)\Big).
+\end{align}
+Odtud máme
+\begin{align}\label{vztah_4.23}
+\frac{1}{\pi} \int \limits_{-\pi}^\pi \Big(S_n (x) - \sigma_n (x) \big)^2 dx = \sum \limits _{k=1}^n \frac{k^3}{n^2}(k^2 + b_k^2).
+\end{align}
+\end{poznamka}
+
+\begin{definition}[Lakulární Posloupnost]
+\label{d_4.14.definition}
+Posloupnost přirozených čísel $n_1$, $n_2$, ... se nazývá \textit{lakunární}, pokud existuje $A > 1$ taková, že
+\begin{align*}
+\frac{n_{i+1}}{n_i} > A \quad (> 1) \quad \textrm{ pro } i \in \mathbb{N}.
+\end{align*}
+\end{definition}
+
+\begin{theorem}[Kolmogorov]\label{vztah_4.15.Kolmogorov}
+Nechť $f \in L^2([-\pi, \pi])$ a $\{ n_i \}_{i=1}^{\infty}$ je lakunární posloupnost. Potom
+\begin{align*}
+\lim_{i \rightarrow \infty} S_{n_i} (x) = f(x) \quad \textrm{ skoro všechna na } [-\pi, \pi].
+\end{align*}
+\begin{proof}
+Vzhledem k Fejer-Lebesgueově větě stačí ukázat, že
+\begin{align}\label{vztah_4.24}
+\lim_{n_i \rightarrow \infty} [S_{n_i} (x) - \sigma_{n_i} (x)] = 0 \quad \textrm{ skoro všechna na } [-\pi, \pi].
+\end{align}
+Vzhledem k Větě \ref{v_2.11_Tonelli} pro platnost Vztahu \eqref{vztah_4.24} stačí ukázat, že
+\begin{align}\label{vztah_4.25}
+\sum \limits _{i=1}^{\infty} \int \limits_{-\pi}^\pi \big(S_{n_i} (x) - \sigma_{n_i} (x)\big)^2 dx < \infty.
+\end{align}
+Vskutku $u_k (x) = [S_{n_k} (x) - \sigma_{n_k} (x)]^2$, $F (x) = \sum \limits _{k=1}^\infty u_k (x)$. Je-li $\sum \limits _{k=1}^{\infty} \int \limits _{-\pi}^{\pi} u_k < \infty$, pak Beppo-Leviho Věta \ref{v_2.11_Tonelli} říká, že $F \in L([-\pi, \pi])$. Tj. $F$ je skoro všude konečná, tedy řada $\sum \limits _{k=1}^\infty u_k (x)$ je skoro všude konvergentní a proto $u_k \rightarrow 0$ skoro všude. Zřejmě Vztah \eqref{vztah_4.25} je ekvivalentní
+\begin{align*}
+Q = \sum \limits _{i=1}^\infty \left[ \frac{1}{n_i^2} \sum \limits _{k=1}^{n_i} k^2 (a_k^2 + b_k^2) \right] < \infty.
+\end{align*}
+Zavedeme označení $c_k = k^2 (a_k^2 + b_k^2)$. Potom
+\begin{align*}
+Q &= \frac{1}{n_1^2} \sum \limits _{k=1}^{n_1} c_k + \\
+&+ \frac{1}{n_2^2} \sum \limits _{k=1}^{n_1} c_k + \frac{1}{n_2^2} \sum \limits _{k=n_1 + 1}^{n_2} c_k +\\
+&+ \frac{1}{n_3^2} \sum \limits _{k=1}^{n_1} c_k + \frac{1}{n_3^2} \sum \limits _{k=n_1 + 1}^{n_2} c_k + \frac{1}{n_3^2} \sum \limits _{k=n_2 + 1}^{n_3} c_k +\\
+&+ \ldots
+\end{align*}
+Přeuspořádáním těchto sum tak, že sečteme sloupce dostáváme
+\begin{align*}
+Q = \sum \limits _{i=1}^\infty \left( \sum \limits _{s=1}^\infty \frac{1}{n_s^2}\right) \left( \sum \limits _{k = n_{i-1}+1}^{n_i} c_k \right), \quad n_0 = 0.
+\end{align*}
+Díky tomu, že $\{n_i\}$ je lakunární
+\begin{align*}
+\frac{n_i}{n_s} \leq \frac{1}{A^{s-i}}.
+\end{align*}
+Proto
+\begin{align*}
+\left( \sum \limits _{s=1}^\infty \frac{1}{n_s^2} \right) \sum \limits _{k=n_{i-1}+1}^{n_i} c_k &< \sum \limits _{s=i}^\infty \left( \frac{n_i}{n_s} \right)^2 \sum \limits _{n_{i-1}+1}^{n_i} (a_k^2 + b_k^2) <\\
+&< \sum \limits _{s=0}^\infty \frac{1}{A^{2s}} \sum \limits _{n_{i-1}+1}^{n_i} (a_k^2 + b_k^2) <\\
+&< \frac{A^2}{A^2 - 1} \sum \limits _{n_{i-1}+1}^{n_i} (a_k^2 + b_k^2).
+\end{align*}
+Vzhledem k Besselově nerovnosti \ref{v_Besselova_Nerovnost} 
+\begin{align*}
+Q <  \frac{A^2}{A^2 - 1} \sum \limits _{i=1}^\infty \left( \sum \limits _{k=n_{i-1}+1}^{n_i} (a_k^2 + b_k^2) \right) = \frac{A^2}{A^2 - 1} \sum \limits _{k=1}^\infty (a_k^2 + b_k^2) < \infty.
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{definition}\label{d_4.16}
+Trigonometrická řada $\sum \limits _{i=1}^\infty \big(a_{n_i} \cos (n_i x) + b_{n_i} \sin (n_i x)\big)$ se nazývá lakunární, je-li posloupnost $\{ n_i \}_{i=1}^{\infty}$ lakunární.
+\end{definition}
+
+\begin{theorem}[Kolmogorov]\label{v_4.17}
+Nechť $f \in L([-\pi, \pi])$ a její Fourierova řada je lakunární. Potom tato řada skoro všude konverguje k $f$.
+\end{theorem}
+
+
+
+
+\section{Další vlastnosti trigonometrických a Fourierových řad}
+
+V tomto odstavci nejprve ukážeme, že ne každá trigonometrická řada je řadou Fourierovou.
+
+\begin{lemma}[Abel]\label{l_4.18_Abel}
+Nechť $a_i \in \mathbb{R}$, $i = \{1,..., n\}$ a $S_k = \sum \limits _{i=1}^k a_k$, přičemž $|S_k| \leq A$ pro $k = \{1,..., n\}$. Nechť dále $q_1 > q_2 > \ldots > q_n > 0$. Potom
+\begin{align*}
+\left| \sum \limits _{k=1}^n a_k q_k \right| \leq A q_1.
+\end{align*}
+\begin{proof}
+Zřejmě $a_k = S_k - S_{k-1}$ pro $k > 1$. Proto
+\begin{align*}
+\sum \limits _{k=1}^n a_k q_k &= S_1 q_1 + \sum \limits _{k=2}^n (S_k - S_{k-1}) q_k =\\
+&= \sum \limits _{k=1}^n S_k q_k - \sum \limits _{k=2}^n S_{k-1} q_k =\\
+&=  \sum \limits _{k=1}^{n-1} S_k (q_k - q_{k+1}) + S_n q_n.
+\end{align*}
+Proto je zřejmé, že
+\begin{align*}
+\left| \sum \limits _{k=1}^n a_k q_k \right| \leq A \left( \sum \limits _{k=1}^{n-1} (q_k - q_{k+1}) \right) = A q_1.
+\end{align*}
+\end{proof}
+\end{lemma}
+
+\begin{definition}[Abelovská řada]
+\label{d_4.19}
+Řekneme, že (formální) řada $\sum \limits _{k=1}^{\infty} a_k$ je \textit{Abelovská}, je-li $| \sum \limits _{k=1}^n a_k | \leq A$ pro $n \in \mathbb{N}$.
+\end{definition}
+
+\begin{lemma}\label{l_4.20}
+Obě řady $\sum \limits _{k=1}^{\infty} \cos (kx)$ (pro $x \neq 2 \pi k$) a $\sum \limits _{k=1}^{\infty} \sin (kx)$ jsou Abelovské.
+\end{lemma}
+\begin{proof}
+Položme $ x \neq 2 \pi k$ (druhá řada pro $x = 2 \pi k$ je zřejmě Abelovská). Položme
+\begin{align*}
+A_n = \sum \limits _{k=1}^n \cos (kx), \quad B_n = \sum \limits _{k=1}^n \sin (kx), \quad C_n = \sum \limits _{k=1}^n e^{k x i} \quad \left( = \frac{e^{ix}-e^{(n+1)ix}}{1 - e^{ix}} \right).
+\end{align*}
+Zřejmě $Re(C_n) = A_n$, $Im(C_n) = B_n$. Dále $|C_n| \leq \frac{2}{|1-e^{ix}|} = \frac{1}{|\sin (\frac{x}{2})|}$. Proto $|A_n| \leq \frac{1}{| \sin (\frac{x}{2})|} $, $|B_n| \leq \frac{1}{| \sin (\frac{x}{2})|}$.
+\end{proof}
+
+
+\begin{theorem}\label{v_4.21}
+Nechť je řada $\sum \limits _{k=1}^{\infty} a_k$ Abelovská. Nechť dále $ q_1 > q_2 > \ldots > \ldots$ a $\lim \limits _{n \rightarrow \infty} q_n = 0$. Potom je řada $\sum \limits _{k=1}^\infty a_k q_k$ konvergentní.
+\begin{proof}
+$S_n = \sum \limits _{k=1}^n a_k q_k$. Potom vzhledem k Lemmatu \ref{l_4.18_Abel} pro $m > n$ platí
+\begin{align*}
+|S_m - S_n| = \left| \sum \limits _{k = n + 1}^m a_k q_k \right| \leq A q_{n+1}.
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{dusledek}\label{d_4.22}
+Nechť $ q_1 > q_2 > \ldots > \ldots$ a $\lim \limits _{n \rightarrow \infty} q_n = 0$. Potom jsou obě řady
+\begin{align*}
+&\sum \limits _{n=1}^\infty q_n \cos (nx) \qquad \text{kde $x \neq 2 \pi k$} \\
+&\sum \limits _{n=1}^{\infty} q_n \sin (nx)\qquad \text{kde $x \in \mathbb{R}$} 
+\end{align*} 
+konvergentní. 
+\end{dusledek}
+
+Dále ukážeme, že trigonometrická řada
+\begin{align}\label{vztah_4.26}
+\sum \limits _{n=2}^{\infty} \frac{1}{\ln(n)} \sin (nx)
+\end{align}
+není Fourierovou řadou žádné funkce, i když je dle Důsledku \ref{d_4.22} konvergentní.
+
+\begin{lemma}\label{l_4.23}
+Nechť $\psi_n (x) = \sum \limits _{k=1}^n \frac{\sin (kx)}{k}$. Potom $| \psi_n (x)| < 2 \sqrt{\pi} $ $ \forall x \in [0,\pi]$ a $ \forall n \in \mathbb{N}$.
+\begin{proof}
+Nechť $x \in ]0, \pi[$. Vybereme $q \in \mathbb{N} \cup \{ 0 \}$ tak, že $q \leq \frac{\sqrt{\pi}}{x} < q + 1$. Pak
+\begin{align*}
+| \psi_n (x)| \leq | \psi_q (x)| + \left| \sum \limits _{k=q+1}^n \frac{\sin (kx)}{k} \right|.
+\end{align*}
+(Pro $q=0$ je $\psi_q=0$ a je-li $q \geq n$ nulový je druhý člen.) Avšak $| \sin (\alpha)| \leq | \alpha |$. Proto
+\begin{align*}
+| \psi_q (x) | \leq \sum \limits _{k=1}^q \frac{| \sin (kx)|}{k} \leq qx \leq \sqrt{\pi}.
+\end{align*}
+Na druhé straně vzhledem k Lemmatu \ref{l_4.18_Abel} platí
+\begin{align}\label{vztah_4.27}
+\left| \sum \limits _{k=q+1}^n \frac{\sin(kx)}{k} \right| \leq \frac{A}{q+1},
+\end{align}
+kde $A = \max \left| \sum \limits _{k=q+1}^{i} \sin(kx) \right|$ ($q+1 \leq i \leq n$). Zopakujeme-li stejné argumenty jako při důkazu Lemma \eqref{vztah_4.20} zjistíme, že
+\begin{align*}
+\left| \sum \limits _{k=q+1}^{i} \sin(kx) \right| \leq \frac{1}{| \sin (\frac{x}{2})|},
+\end{align*}
+tedy $A \leq \frac{1}{\sin (\frac{x}{2})}$. Proto plyne ze Vztahu \eqref{vztah_4.27}, že
+\begin{align*}
+\left| \sum \limits _{k=q+1}^n \frac{\sin(kx)}{x} \right| \leq \frac{1}{(q+1) \sin \left( \frac{x}{2} \right)}.
+\end{align*}
+Nyní vzhledem k nerovnostem $\sin (\frac{x}{2}) \geq (\frac{x}{\pi})$ a $q+1 > \frac{\sqrt{\pi}}{x}$ obdržíme
+\begin{align*}
+\left| \sum \limits _{k=q+1}^n \frac{\sin(kx)}{x} \right| \leq \sqrt{\pi}.
+\end{align*}
+Tedy pro $x \in ]0, \pi[$ a pro $n \in \mathbb{N}$ platí
+\begin{align*}
+| \psi_n (x)| < 2 \sqrt{\pi}.
+\end{align*}
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{v_4.24}
+Nechť $f \in L([-\pi, \pi])$ a $b_n = \frac{1}{\pi} \int \limits_{-\pi}^\pi f (t) \sin (nt) \, dt$. Potom je řada $\sum \limits _{n=1}^\infty \frac{b_n}{n}$ konvergentní.
+\begin{proof}
+Vzhledem k Důsledku \ref{d_4.22} je řada $\sum \limits _{n=1}^{\infty} \frac{\sin (nx)}{n}$ konvergentní. Nechť
+\begin{align*}
+\psi (x) = \sum \limits _{n=1}^{\infty} \frac{\sin (nx)}{n} \quad \psi_n (x) = \sum \limits _{k=1}^n \frac{\sin (kx)}{k}.
+\end{align*}
+Potom je zřejmé, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \psi_n (x) f (x) = \psi (x) f (x) \quad \textrm{ pro skoro všechna } x \in [-\pi, \pi].
+\end{align*}
+Vzhledem k Lemma \ref{l_4.23} však platí
+\begin{align*}
+|\psi_n (x) f (x)| \leq 2 \sqrt{\pi} |f(x)| \quad \textrm{ pro skoro všechna } x \in [-\pi, \pi].
+\end{align*}
+Vzhledem k Lebesqueově větě o limitním přechodu proto máme, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_{-\pi}^\pi \psi_n (x) f (x) dx = \int \limits_{-\pi}^\pi \psi (x) f(x) dx.
+\end{align*}
+Avšak
+\begin{align*}
+\frac{1}{\pi} \int \limits_{-\pi}^\pi \psi_n (x) f (x) dx = \sum \limits _{k=1}^n \frac{b_k}{k}.
+\end{align*}
+\end{proof}
+\end{theorem}
+
+Podíváme se nyní, na řadu \eqref{vztah_4.26} tj. $\sum \limits _{n=e}^\infty \frac{1}{\ln (n)} \sin (nx)$. Ukážeme, že je řada $\sum \limits _{n=2}^\infty \frac{1}{n \ln(n)} = \infty$. Vskutku $x \rightarrow \frac{1}{x \ln (x)}$ je klesající. Proto
+\begin{align*}
+\frac{1}{n \ln (n)} > \int \limits_n^{n+1} \frac{1}{x \ln (x)} dx.
+\end{align*}
+Tedy
+\begin{align*}
+\sum \limits _{n=2}^N \frac{1}{n \ln (n)} > \int \limits_2^N \frac{1}{x \ln (x)} dx = \ln (\ln (N)) - \ln (\ln (2)) \rightarrow \infty \quad \textrm{ pro } N \rightarrow \infty.
+\end{align*}
+S použitím Věty \ref{v_4.24} zjistíme, že vztah \eqref{vztah_4.26} není Fourierovou řadou $f \in L ([-\pi, \pi])$, i když je všude konvergentní. Nyní ukážeme jednu pozoruhodnou vlastnost Fourierových řad
+
+\begin{theorem}\label{v_4.25}
+Nechť $f \in L([-\pi, \pi])$ a formální řada
+\begin{align*}
+\frac{a_0}{2} + \sum \limits _{n=1}^\infty \Big(a_n \cos (nx) + b_n \sin (nx)\Big)
+\end{align*}
+je její Fourierova řada. Nechť dále $[A, B] \subset [-\pi, \pi]$. Potom
+\begin{align*}
+\int \limits_A^B f(x) dx = \int \limits_A^B \frac{a_0}{2} \,dx + \sum \limits _{n=1}^{\infty}\int \limits_A^B \Big(a_n \cos (nx) + b_n \sin (nx)\Big) \,dx.
+\end{align*}
+\begin{proof}
+Je-li $f \in L^2$, pak je věta triviální.\\
+Zavedeme funkce
+\begin{align*}
+\varphi (x) = \left\{
+\begin{array}{cl}
+1 & \textrm{ pro } x \in [A, B]\\
+0 & \textrm{ pro } x \notin [A, B].
+\end{array}
+\right.
+\end{align*}
+Lze ukázat, že
+\begin{align*}
+\varphi (x) = \frac{\alpha_0}{2} + \sum \limits _{k=1}^\infty \Big(\alpha_k \cos (kx) + \beta_k \sin (kx)\Big) \quad \textrm{ pro } x \in [-\pi, \pi] \setminus \{ -\pi, A, B, \pi \}.
+\end{align*}
+Nechť dále
+\begin{align*}
+S_n (x) = \frac{\alpha_0}{2} + \sum \limits _{k=1}^n (\alpha_k \cos (kx) + \beta_k \sin (kx)).
+\end{align*}
+Víme že
+\begin{align*}
+\alpha_0 &= \frac{1}{\pi} \int \limits_{-\pi}^\pi \varphi(x) dx = \frac{B-A}{\pi}\\
+\alpha_k &= \frac{1}{\pi} \int \limits_{-\pi}^\pi \varphi (x) \cos (kx) dx = \frac{\sin (kB) - \sin (kA)}{k \pi}\\
+\beta_k &= \frac{\cos (kA) - \cos (kB)}{k \pi}.
+\end{align*}
+Potom
+\begin{align*}
+S_n (x) = \frac{B-A}{2 \pi} + \frac{1}{\pi} \sum \limits _{k=1}^n \left( \frac{\sin (k(B-x))}{k} - \frac{\sin(k(A-x))}{k} \right).
+\end{align*}
+Vzhledem k Lemma \eqref{vztah_4.23} získáme
+\begin{align*}
+|S_n (x)| \leq \frac{B-A}{2 \pi} + \frac{4}{\sqrt{\pi}}.
+\end{align*}
+Tedy posloupnost $\{ S_n \}$ je stejnoměrně ohraničená. Proto vzhledem k Lebesgueově větě o limitním přechodu platí
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_{-\pi}^\pi f(x) S_n (x) dx = \int \limits_{-\pi}^\pi f(x) \varphi (x) dx.
+\end{align*}
+Avšak
+\begin{align*}
+\int \limits_{-\pi}^\pi f(x) S_n (x) dx &= \sum \limits _{k=1}^n \left( \alpha_k \int \limits_{-\pi}^\pi f(x) \cos (kx) dx + \beta_k \int \limits_{-\pi}^\pi f(x) \sin (kx) dx \right) =\\
+&= \sum \limits _{k=1}^n \left( a_k \frac{\sin (kB) - \sin (kA)}{k} + b_k \frac{\cos (kA) - \cos (kB)}{k} \right).
+\end{align*}
+Tedy
+\begin{align*}
+\int \limits_A^B f(x) dx = \int \limits_{-\pi}^\pi f \varphi dx &= \lim_{n \rightarrow \infty} \left( \frac{a_0}{2} (B-A) +  \sum \limits _{k=1}^n (\alpha_k \cos (kx) + \beta_k \sin (kx)) \right)\\ 
+&= \lim_{n \rightarrow \infty} \left( \frac{a_0}{2} (B-A) +  \sum \limits _{k=1}^{\infty} (\alpha_k \cos (kx) + \beta_k \sin (kx)) \right).
+\end{align*}
+Poslední rovnost je však ekvivalentní s tvrzením věty.
+\end{proof}
+\end{theorem}
+
+\begin{poznamka}\label{p_4.28}
+Zajímavou vlastností Věty je: "Fourierovu řadu můžeme integrovat člen po členu, i když sama řada nemusí být vůbec konvergentní."
+\end{poznamka}
+
+\begin{theorem}[Cantor-Lebesgue]\label{v_4.27}
+Nechť na množině $E$, $\mes(E) > 0$ platí
+\begin{align*}
+\lim_{n \rightarrow \infty} (a_n \cos (nx) + b_n \sin (nx)) = 0.
+\end{align*}
+Potom $a_n \rightarrow 0$ a $b_n \rightarrow 0$.
+\end{theorem}
+
+\begin{dusledek}\label{d_4.28}
+Pokud je trigonometrická řada konvergentní na množině kladné míry, potom její koeficienty konvergují k $0$.
+\end{dusledek}
+
+\begin{theorem}[Luzin-Denjoy]\label{v_4.29_Luzin-Denjoy}
+Nechť trigonometrická řada $\frac{a_0}{2} + \sum \limits _{k=1}^\infty \Big(a_k \cos (kx) + b_k \sin (kx)\Big)$ je absolutně konvergentní na množině kladné míry. Potom $\sum \limits _{n=1}^\infty (|a_n| + |b_n|) < \infty$.
+\end{theorem}
+
+
+
+\section{Podmínky konvergence Fourierovy řady}
+
+Vrátíme se ke vzorcům odstavců výše. Připomeňme, že je-li $f \in L([-\pi, \pi])$, pak $a_k$ a $b_k$ jsou čísla zavedeny Vztahem \eqref{vztah_4.16} a částečná suma $S_n$ Fourierovy řady 
+\begin{align*}
+\frac{a_0}{2} + \sum \limits _{k=1}^\infty \Big(a_k \cos (kx) + b_k \sin (kx)\Big)
+\end{align*}
+připustí vyjádření \eqref{vztah_4.17}, tj.
+\begin{align*}
+S_n (x) = \frac{1}{2 \pi} \int \limits_{-\pi}^\pi f(t) \frac{\sin \left( \frac{2n + 1}{2} (t-x) \right)}{\sin \left( \frac{t-x}{2} \right)} dt,
+\end{align*}
+čemuž říkáme Dirichletův singulární integrál. Dále položme
+\begin{align*}
+D_n (s) = \frac{1}{2 \pi} \frac{\sin \left( \frac{2n + 1}{2} s \right)}{\sin \left( \frac{s}{2}\right)}.
+\end{align*}
+Místo funkcí $f \in L([-\pi, \pi])$ je nyní pohodlnější mluvit o $2 \pi$ periodických funkcích, jejichž zúžení je integrovatelné na $[-\pi, \pi]$. Je-li funkce $f$ právě taková, pak reprezentaci \eqref{vztah_4.17} můžeme přepsat takto
+\begin{align*}
+S_n (x) = \frac{1}{2 \pi} \int \limits_{-\pi}^\pi f (x + s) \frac{\sin \left( \frac{2n + 1}{2} s\right)}{\sin \left( \frac{s}{2} \right)} ds.
+\end{align*}
+Dále si všimněme, že při odvození Vztahu \eqref{vztah_4.17} jsme použili identitu
+\begin{align*}
+\frac{1}{2} + \sum \limits _{k=1}^n \cos (ks) = \frac{1}{2} \frac{\sin \left( \frac{2n + 1}{2} s \right)}{\sin \left( \frac{s}{2} \right)}.
+\end{align*}
+Odtud jednoduše plyne, že
+\begin{align*}
+\int \limits_{-\pi}^\pi D_n (s) ds = 1.
+\end{align*}
+Proto platí
+\begin{align}\label{vztah_4.28}
+S_n (x) - f (x) = \frac{1}{2\pi} \int \limits_{-\pi}^\pi \Big(f (x + s) - f (x)\Big) \frac{\sin \left( \frac{2n + 1}{2} s \right)}{\sin \left( \frac{s}{2} \right)} ds.
+\end{align}
+
+\begin{theorem}[Dini]\label{vztah_4.30}
+Nechť $f \in L([-\pi, \pi])$ je $2\pi$ periodická. Nechť dále $x \in [-\pi, \pi]$ a pro každé $\delta > 0$ existuje integrál
+\begin{align}\label{vztah_4.31}
+\int \limits_{-\delta}^\delta \frac{|f(x + s) - f(x)|}{|s|} ds.
+\end{align}
+Potom
+\begin{align}\label{vztah_4.32}
+\lim_{n \rightarrow \infty} S_n (x) = f(x).
+\end{align}
+\end{theorem}
+\begin{proof}
+Zavedeme označení
+\begin{align*}
+\varphi (s) = \frac{1}{2} \frac{f(x + s) - f(x)}{s} \frac{s}{\sin \left( \frac{s}{2} \right) } \quad \textrm{ pro } s \in [-\pi, \pi].
+\end{align*}
+Vzhledem ke Vztahu \eqref{vztah_4.31} platí, že $\varphi \in L([-\pi, \pi])$. Na druhé straně vzhledem ke Vztahu \eqref{vztah_4.28}
+\begin{align*}
+S_n (x) - f(x) = \frac{1}{\pi} \int \limits_{-\pi}^\pi \varphi (s) \sin \left( \frac{2n + 1}{2} \right) ds.
+\end{align*}
+Nyní vzhledem k Větě \eqref{vztah_4.3} obdržíme platnost Vztahu \eqref{vztah_4.32}.
+\end{proof}
+
+
+\begin{poznamka}\label{p_4.31}
+Podmínce \eqref{vztah_4.31} se říká \textit{Diniova podmínka}. Tato podmínka platí například tehdy, když v bodě $x$ má funkce $f$ konečnou derivaci nebo obecněji derivaci zleva a zprava.
+\end{poznamka}
+
+Předpokládejme nyní, že bod $x$ je pro funkci $f$ bodem nespojitosti prvního druhu. Označme $f(x+)$, resp. $f(x-)$, jednostranné limity $f$ v $x$ a položme, že pro každé $\delta > 0$ existují intervaly
+\begin{align}\label{vztah_4.33}
+\int \limits_{-\delta}^0 \frac{f(x + s) - f(x-)}{s} ds, \quad \int \limits_0^\delta \frac{f(x + s) - f(x+)}{s} ds.
+\end{align}
+Uvažujme výraz
+\begin{align*}
+S_n (x) - \frac{1}{2} \Big(f (x+) + f (x-)\Big).
+\end{align*}
+Snadno lze ověřit, že platí
+\begin{align*}
+&S_n (x) - \frac{1}{2} \Big( f (x+) + f (x-) \Big) =\\ &=\int \limits_{-\pi}^0 \Big(f (x + s) - f (x-)\Big) D_n (s) ds + \int \limits_0^\pi \Big(f (x + s) - f (x+)\Big) D_n (s) ds.
+\end{align*}
+Stejnými argumenty jako při důkazu Věty \eqref{vztah_4.30} zjistíme, že oba tyto intervaly  konvergují k $0$.
+
+\begin{theorem}\label{v_4.31}
+Nechť $f$ je ohraničená $2\pi$ periodická funkce mající nezvýše body nespojitosti prvního druhu a mající v každém bodě derivaci zleva a zprava. Potom
+\begin{align*}
+\lim \limits _{n \to \infty} S_n (x) &= f (x) \quad \textrm{ je-li } x \textrm{ bodem spojitosti } f,\\
+\lim \limits _{n \to \infty} S_n (x) &= \frac{1}{2} \Big(f(x+) + f(x-)\Big) \quad \textrm{ je-li } x \textrm{ bodem nespojitosti } f.
+\end{align*}
+\end{theorem}
+
+\begin{poznamka}\label{p_4.32}
+Diniovu podmínku a tedy i podmínku existence derivace nelze vypustit. Lze sestrojit příklad spojité funkce, jejíž Fourierova řada v některých bodech diverguje. V této souvislosti zmíníme také, že Kolmogorov ukázal příklad $f \in L([-\pi, \pi])$, jejíž Fourierova řada diverguje všude. Navíc v roce 1966 Carleson ukázal, že je-li $f \in L^2([-\pi, \pi])$, potom její Fourierova řada konverguje skoro všude.
+\end{poznamka}
+
+
+
+\section{Stejnoměrná konvergence Fourierových řad}
+
+Nyní se budeme zabývat stejnoměrnou konvergencí Fourierových řad. Jak jsme už viděli dřív, jedná-li se o \textit{obyčejnou}, tedy bodovou konvergenci Fourierové řady k funkci $f$, pak $f$ může být i nespojitá funkce. Co se týče stejnoměrné konvergence Fourierových řad k $f$, pak je zřejmé, že samotná funkce $f$ musí být spojitá, neboť částečné sumy Fourierové řady jsou spojité. Tedy je-li Fourierova řada stejnoměrně konvergentní, pak její suma je spojitá funkce. Z toho vidíme, že spojitost $f$ je nutnou podmínkou pro stejnoměrnou konvergenci Fourierové řady.
+
+\begin{theorem}\label{v_4.32}
+Nechť $f$ je $2\pi$ periodická absolutně spojitá funkce a $F' \in L^2 ([-\pi, \pi])$. Pak Frourierova řada funkce $f$ stejnoměrně konverguje k $f$ (v celém $\mathbb{R}$).
+\begin{proof}
+Označme $a'$ a $b'$ Fourierovy koeficienty funkce $f'$. Tj.
+\begin{align*}
+a'_n = \frac{1}{\pi} \int \limits_{-\pi}^\pi f'(x) \cos (nx) dx, \quad b'_n = \frac{1}{\pi} \int \limits_{-\pi}^\pi f'(x) \sin (nx) dx.
+\end{align*}
+Na druhé straně
+\begin{align*}
+a_n = \frac{1}{\pi} \int \limits_{-\pi}^\pi f(x) \cos (nx) dx = \frac{1}{\pi n} \sin (nx) \int \limits_{-\pi}^\pi - \frac{1}{\pi n} \int \limits_{-\pi}^\pi f'(x) \sin (nx) dx = \frac{-b'_n}{n}.
+\end{align*}
+Obdobně
+\begin{align*}
+b_n = \frac{a'_n}{n}.
+\end{align*}
+Tedy
+\begin{align}
+\label{vztah_4.34}
+\frac{|a_0|}{2} + \sum \limits _{n=1}^\infty (|a_n| + |b_n|) = \frac{|a_0|}{2} + \sum \limits _{n=1}^\infty \left( \frac{|a'_n|}{n} + \frac{|b'_n|}{n} \right).
+\end{align}
+Všimněme si, že
+\begin{align*}
+\frac{|b'_n|}{n} \leq \frac{1}{2} \left( b'^2_n + \frac{1}{n^2} \right), \quad \textrm{ a } \quad \frac{|a'_n|}{n} \leq \frac{1}{2} \left( a'^2_n + \frac{1}{n^2} \right).
+\end{align*}
+Poněvadž $f' \in L^2$, podle Besselovy nerovnosti \ref{v_Besselova_Nerovnost} $\sum \limits _{n=1}^{\infty} \Big(a'^2_n + b'^2_n\Big) < \infty$. Tedy plyne z (\eqref{vztah_4.34}), že $\sum \limits _{n=1}^{\infty} \Big(|a_n| + |b_n|\Big) < \infty$. Avšak řada $\sum \limits _{n=1}^{\infty} (|a_n| + |b_n|)$ je majorantou Fourierovy řady funkce $f$, a tedy Fourierova řada funkce $f$ je stejnoměrně konvergentní. Zbývá dokázat, že Fourierova řada konverguje k $f$. Nechť Fourierova řada konverguje k funkci $\varphi$, tj.
+\begin{align*}
+\varphi (x) = \frac{a_0}{2} \sum \limits _{n=1}^{\infty} \Big(a_n \cos (nx) + b_n \sin (nx)\Big).
+\end{align*}
+Potom $\varphi$ má tytéž Fourierovy koeficienty jako $f$. Vzhledem k Větě \ref{v_4.12} pak $f \sim \varphi$. Poněvadž obě funkce jsou spojité, máme že $f = \varphi$.
+\end{proof}
+\end{theorem}
+
+Nyní uvedeme jinou podmínku stejnoměrné konvergence, která je podobná Diniově podmínce.
+
+\begin{theorem}\label{v_4.33}
+Nechť $f \in L([-\pi, \pi])$ je ohraničená, $E \subseteq [-\pi, \pi]$ a $\forall \epsilon > 0$ $\exists \delta > 0$:
+\begin{align*}
+\int \limits_{-\delta}^\delta \frac{|f (x + s) - f (x)|}{|s|} ds < \epsilon \quad \textrm{ pro } \forall x \in E.
+\end{align*}
+Potom Fourierova řada konverguje k $f$ stejnoměrně v $E$.
+Důkaz věty je založen na následujícím Lemmatu:
+\end{theorem}
+
+\begin{lemma}\label{l_4.34}
+Nechť $B \subset L ([a, b])$ je prekompaktní množina. Pak $\forall \epsilon > 0$ $\exists N_{(\epsilon)} : $ je-li $\lambda \geq N_{(\epsilon)}$, pak
+\begin{align*}
+\left| \int \limits_a^b f(t) \sin (\lambda t) dt \right| < \epsilon \quad \textrm{ pro } \forall f \in B.
+\end{align*}
+Lemma \ref{l_4.34} je zesílením Věty \ref{v_4.3_Riemann_Lebesgue}.
+\begin{proof}
+Důkaz Věty \ref{v_4.33} je založen na skutečnosti, že množina funkcí $\varphi_x (t)$ tvaru
+\begin{align*}
+\varphi_x (t) = \frac{f (x + t) - f(x)}{t}
+\end{align*}
+je prekompaktní.
+\end{proof}
+\end{lemma}
+
+Na závěr uvedeme další \textit{zdůraznění} Lebesgue-Fejerovy věty
+
+\begin{theorem}[Fejer]\label{vztah_4.35}
+Nechť $f$ je spojitá $2\pi$ periodická funkce. Pak posloupnost $\sigma_n \rightarrow f$ stejnoměrně.
+\end{theorem}
+% str 23 ------------------
+
+

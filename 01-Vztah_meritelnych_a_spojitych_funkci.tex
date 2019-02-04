@@ -1,0 +1,681 @@
+
+\chapter{Vztah měřitelných a spojitých funkcí}
+
+\section{Měřitelné funkce}
+Pro zavedení pojmu měřitelnosti funkce budeme potřebovat rozumné označení některých vybraných množin. Proto pro měřitelnou množinu $E \subset \R$, zobrazení $f: E \to \R$ a $a,b \in \R$ zavedeme označení
+\begin{align*}
+E(f>a)&:=\{x \in E: f(x)>a\} \\
+E(f \geq a)&:=\{x \in E: f(x) \geq a\} \\
+E(f \leq a)&:=\{x \in E: f(x) \leq a\} \\
+E(f = a)&:=\{x \in E: f(x) = a\} \\
+E(a \leq f  \leq b)&:=\{x \in E: a \leq f(x) \leq b\}
+\end{align*}
+a podobně.
+
+\begin{definition}[Měřitelná funkce]
+\label{mes_f}
+Nechť $E$ je měřitelná množina.
+Funkce $f:E \to \R$ se nazývá měřitelná funkce pokud pro každé $a \in \R$ je množina $E(f>a)$ měřitelná.
+\end{definition}
+Následující věta je triviálním důsledkem Definice \ref{mes_f}.
+\begin{theorem}
+Nechť $\mes(E) = 0$.
+Potom $f:E \to \R$ je měřitelná funkce. \\
+(Každá funkce $f$ definována na množině míry nula je měřitelná funkce).
+\end{theorem}
+
+\begin{definition}[Zúžení funkce]
+Nechť $f:E \to \R$. Nechť $A \subset E$. Pak funkce $f|_{A}:A \to \R$ splňující $f \equiv f|_{A}$ na $A$ se nazývá \textit{zúžením funkce $f$ na množinu $A$}. 
+\end{definition}
+
+\begin{theorem}
+\label{v_zuzeni}
+Nechť $E$ je měřitelná množina a $f:E \to \R$ je měřitelná funkce.
+Nechť dále $A \subset E$ je měřitelná množina a $f|_{A}:A \to \R$ je zúžení funkce $f$ na $A$.
+Potom je $f|_{A}$ měřitelná funkce.
+\end{theorem}
+
+\begin{proof}
+Z Definice \ref{mes_f} víme, že $E(f>a)$ je měřitelná množina. Z teorie Lebesgueovy míry je známo, že pr\r unikem konečně mnoha měřitelných množin je opět měřitelná množina. Tedy množina $E(f|_{A}>a)=A \cap E(f>a)$ je také měřitelnou množinou pro libovolné $a \in \R$.
+\end{proof}
+
+\begin{theorem}
+Nechť $E$ je měřitelná množina a $E=\bigcup\limits_{k \in I} E_k$ kde $I$ je nejvíc spočetná množina a každá z množin $E_k$ je měřitelná.
+Nechť dále $f:E \to \R$ a zúžení $f|_{E_k}:E_k \to \R$ je měřitelná funkce.
+Potom je $f$ měřitelná.
+\label{v_zuzeni_spocetne}
+\end{theorem}
+
+\begin{proof}
+Jelikož platí, že $E(f>a)=\bigcup\limits_{k \in I} E_k(f>a)$ pro libovolné $a$, funkce $f$ je měřitelná funkce.
+\end{proof}
+
+V mnoha případech můžeme pracovat s funkcemi $f$ a $g$ jako se stejnými, pokud platí, že jejich rozdíl je nulová funkce. Proto zavádíme následující relaci: 
+\begin{definition}[Ekvivalence funkcí v míře]
+Nechť $f,g :E \to \R$.
+Řekněme, že $f$ a $g$ jsou v relaci $(f \sim g)$ pokud $\mes(E(f \neq g)) =0$.
+\end{definition}
+
+\begin{theorem}
+Relace $\sim$ je ekvivalence.
+\end{theorem}
+\begin{proof}
+D\r ukaz je ponechán laskavému čtenáři jako cvičení.
+\end{proof}
+
+\begin{theorem}
+Nechť $f,g : E \to \R$ a $f \sim g$.
+Nechť dále $f$ je měřitelná funkce.
+Potom funkce $g$ je také měřitelná.
+\end{theorem}
+
+\begin{proof}
+Položme $A=E(f \neq g)$ a $B=E \setminus A$. Poněvadž $f \sim g$, platí, že $\mes(A)=0$.
+Tedy množina $B$ je měřitelná.
+Vzhledem k Větě \ref{v_zuzeni} $f\big|_B$ je také měřitelná funkce.
+Avšak $f|_B \equiv g|_B$ a tedy $g|_B$ je měřitelná. \\
+Zbývá ukázat, že platí $g\big|_A$ je měřitelná.
+Jelikož platí, že $\mes(A)=0$, usuzujeme, že $g\big|_A$ je měřitelná.
+
+Použitím Věty \ref{v_zuzeni_spocetne} dostáváme, že $g:E \to \R$ je měřitelná, neboť $E=A \cup B$.
+\end{proof}
+
+\begin{theorem}
+Nechť $E$ je měřitelná množina, $f:E \to \R$ a $f(x)=c$ pro $x \in E$. Potom je $f$ měřitelná funkce.
+\label{v_konstanta}
+\end{theorem}
+
+\begin{proof}
+Nechť $a \in \R$. Zřejmě platí
+\begin{align*}
+E(f>a)&=E \quad  \text{je-li $a<c$,} \\
+E(f>a)&=\emptyset \quad \text{je-li $a \geq c$.} 
+\end{align*}
+
+Tedy pro každé $a \in \R$ je množina $E(f>a)$ měřitelná.
+\end{proof}
+
+\begin{definition}[Charakteristická funkce]
+\label{char_f}
+\textit{Charakteristická funkce množiny $E$} je funkce $ \chi :E \to \{0,1\}$.
+\end{definition}
+
+\begin{definition}[Jednoduchá funkce]\label{d_Jednoducha_Funkce}
+\textit{Jednoduchá funkce na $\mathbb{R}$} je funkce $\Phi:\mathbb{R} \to \mathbb{R}$ měřitelná, nulová mimo kompaktní množinu, nabývající jenom konečně mnoha hodnot z $\mathbb{R}$.
+Množina jednoduchých funkcí na $\mathbb{R}$ se značí $\mathcal{S}(\mathbb{R})$.
+\end{definition}
+
+\begin{uloha}
+Ukažte, že každá jednoduchá funkce se dá zapsat jako součet konečně mnoha charakteristických funkcí.
+\end{uloha}
+
+
+\begin{dusledek}
+Každá jednoduchá funkce je měřitelná. 
+\label{d_meritelnost_jednoduche_funkce}
+\end{dusledek}
+
+\begin{uloha}
+Dokažte Důsledek \ref{d_meritelnost_jednoduche_funkce}.
+\end{uloha}
+
+\begin{theorem}
+Nechť $E$ je měřitelná množina a $f:E \to \R$ je měřitelná funkce.
+Potom pro každé $a \in \R$ každá z množin 
+\begin{align*}
+E(f \geq a), \quad E(f=a), \quad E(f \leq a), \quad E(f<a)
+\end{align*}
+je měřitelná.
+\label{v_1.6}
+\end{theorem}
+
+\begin{proof}
+Dá se ukázat, že $E(f \geq a)= \bigcap \limits _{k=1}^{\infty} E(f>a-\frac{1}{k})$.
+Tedy $E(f \geq a)$ je měřitelná množina. Měřitelnost zbývajících množin plyne z následujících vztah\r u:
+\begin{align*}
+E(f=a) &=E(f \geq a) \setminus E(f>a), \\
+E(f \leq a) &=E \setminus E(f>a), \\
+E(f < a) &=E \setminus E(f \geq a).
+\end{align*}
+\end{proof}
+
+\begin{poznamka}
+Zřejmě platí $E(f>a)=\bigcup \limits _{k=1}^{\infty} E(f \geq a+ \frac{1}{k})$.
+Proto platí, že je-li pro každé $a \in \R$ množina $E(f \geq a) $ měřitelná, pak pro každé $a \in \R$ je množina $E(f>a)$ měřitelná.
+V Definici \ref{mes_f} místo $E(f>a)$ můžeme předpokládat měřitelnost $E(f \geq a)$.
+Analogicky lze zjistit, že v Definici \ref{mes_f} místo $E(f>a)$ můžeme psát $E(f \leq a)$ resp. $E(f<a)$.
+\label{p_1}
+\end{poznamka}
+
+V důsledku Věty \ref{v_1.6} a \ref{v_konstanta} dostáváme následující větu:
+
+\begin{theorem}
+Nechť $f:E \to \R$ je měřitelná funkce a $c \in \R$. 
+Potom každá z funkcí $f+c, |f|$ a $f^2$ je měřitelná.
+Je-li navíc $f(x) \neq 0$ pro $x \in E$ pak je funkce $\frac{1}{f}$ také měřitelná.
+\label{v_1.7}
+\end{theorem}
+
+\begin{proof}
+Měřitelnost funkce $f+c$ plyne ze vztahu 
+\begin{align*}
+E(f+c>a)=E(f>a-c).
+\end{align*}
+Měřitelnost funkce $cf$ pro $ c=0$ plyne z Věty \ref{v_konstanta}. 
+Je-li $c \neq 0$, pak
+\begin{align*}
+E(cf>a)&=E(f>\frac{a}{c}) \quad & \textrm{pro $c>0$,} \\
+E(cf>a)&=E(f<\frac{a}{c}) \quad & \textrm{pro $c<0$.}
+\end{align*}
+měřitelnost funkce $cf$ plyne z Věty \ref{v_1.6}. \\
+Měřitelnost $|f|$ plyne ze vztah\r u 
+\begin{align*}
+E(|f|>a)&=E \quad & \textrm{pro $a<0$,} \\
+E(|f|>a)&=E(f>a) \cup E(f<-a) \quad & \textrm{pro $a>0$.} \\
+\end{align*}
+Měřitelnost funkce $f^2$ plyne ze vztah\r u
+\begin{align*}
+E(f^2>a)&=E \quad & \textrm{pro $a<0$,} \\
+E(f^2>a)&=E(|f|>\sqrt{a})\quad & \textrm{pro $a>0$.} \\
+\end{align*}
+Měřitelnost funkce $\frac{1}{f}$ plyne ze vztah\r u
+\begin{align*}
+E(\frac{1}{f}>a)&=E(f>0) \quad & \textrm{pro $a=0$,} \\
+E(\frac{1}{f}>a)&=E(f>0) \cap E(f<\frac{1}{a}) \quad & \textrm{pro $a>0$,} \\
+E(\frac{1}{f}>a)&=E(f>0) \cup \Big(E(f<0) \cap E(f<\frac{1}{a})\Big) \quad & \textrm{pro $a<0$.} 
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+Nechť $f:[\alpha, \beta] \to \R$ je spojitá funkce. 
+Potom $f$ je měřitelná.
+\end{theorem}
+
+\begin{proof}
+Nechť $a \in \R$. Poněvadž funkce $f$ je spojitá, zobrazuje kompaktní množiny na kompaktní, množina $E(f \leq a)=\{x \in [\alpha, \beta]: f(x) \leq a\}$ je kompaktní (a tedy uzavřená a ohraničená v $\R$). Měřitelnost $f$ pak plyne z Poznámky \ref{p_1}.
+\end{proof}
+
+\begin{theorem}
+Nechť $M \subset [\alpha,\beta]$ a $\chi_M:[\alpha,\beta] \to \{0,1\}$ je charakteristickou funkcí množiny M. 
+Potom funkce $\chi_M$ je měřitelná právě tehdy, když je měřitelná množina M.
+\label{meratelnost_char}
+\end{theorem}
+
+\begin{proof}
+Nechť $\chi_M$ je měřitelná funkce. 
+Potom měřitelnost množiny $M$ plyne z rovnosti 
+\begin{align*}
+M=E(\phi_M>0).
+\end{align*}
+Nechť nyní $M$ je měřitelná množina. Zřejmě platí
+\begin{align*}
+E(\phi_M>a) &= \emptyset \quad &\text{pro $a \geq 1$,} \\
+E(\phi_M>a) &= M \quad &\text{pro $a \in [0,1[$,} \\
+E(\phi_M>a) &= [\alpha,\beta] \quad &\text{pro $a <0$.} 
+\end{align*}
+Tedy pro každé $a \in \R$ je množina $E(\phi_M>a)$ měřitelná.
+\end{proof}
+
+
+\begin{poznamka}
+Z Věty \ref{meratelnost_char} plyne existence měřitelných funkcí. 
+\end{poznamka}
+
+\begin{uloha}
+Zkonstruujte nespojitou měřitelnou funkci.\\
+Pomůcka: Použijte Větu \ref{meratelnost_char}.
+\end{uloha}
+
+
+\section{Vlastnosti měřitelných funkcí}
+
+\begin{lemma}
+Nechť $f,g:E \to \R$ jsou měřitelné funkce. Potom je množina $E(f>g)$ měřitelná.
+\label{lemma_1.11}
+\end{lemma}
+
+\begin{proof}
+Víme, že $Q=\{r_1,r_2,...\}$. Jelikož množiny $E(f>r_k)$ a $E(g<r_k)$ jsou měřitelné pro všechna $k \in \mathbb{N}$, měřitelnost spočetně mnoha jejich pr\r unik\r u
+\begin{align*}
+E(f>g)=\bigcup \limits _{k=1}^{\infty} E(f>r_k) \cap E(g<r_k)
+\end{align*}
+je také měřitelná množina.
+\end{proof}
+
+
+
+\begin{theorem}
+Nechť $f,g: E \to \R$ jsou konečné a měřitelné funkce. Potom funkce $f-g$, $f+g$ a $f \cdot g$ jsou měřitelné. 
+Je-li navíc $g(x) \neq 0$ pro $x \in E$, pak je funkce $\frac{f}{g}$ také  měřitelná.
+\end{theorem}
+
+\begin{proof}
+Nechť $a \in \R$. Vzhledem k Větě \ref{v_1.7} je funkce $g+a$ měřitelná. 
+Proto plyne z Lemma \ref{lemma_1.11}, že množina $E(f>g+a)$ je měřitelná. 
+Avšak $E(f-g>a)=E(f>g+a)$. Tedy funkce $f-g$ je také měřitelná funkce. \\
+Jednoduchou úpravou dostáváme, že také funkce $f+g=f-(-g)$ je měřitelná. \\
+Poněvadž jsme už dokázali, že $f+g$ a $f-g$ jsou měřitelné funkce, vzhledem k Věte \ref{v_1.7} také funkce $(f+g)^2$ a $(f-g)^2$ jsou měřitelné. 
+Navíc funkce 
+\begin{align*}
+fg=\frac{1}{4}\Big((f+g)^2-(f-g)^2\Big)
+\end{align*}
+a tedy $fg$ je měřitelná funkce. \\
+Na závěr, je-li $g(x) \neq 0$ pro $x \in E$, vzhledem k Věte \ref{v_1.7} je měřitelná také funkce $\frac{1}{g}$. Tedy $\frac{f}{g}=f \cdot \frac{1}{g}$ je měřitelná funkce.
+\end{proof}
+
+\begin{theorem}
+Nechť $f_k:E \to \R$, $k \in \mathbb{N}$ jsou měřitelné funkce. Nechť pro každé $t \in E$ existuje konečná limita 
+\begin{align}
+F(t):=\lim \limits _{k \to \infty} f_k(t).
+\label{vztah_1.1}
+\end{align}
+Potom funkce $F:E \to \R$ je měřitelná.
+\label{v_1.13}
+\end{theorem}
+
+\begin{proof}
+Nechť $a \in \R$. Nechť dále pro $m,n,k \in \mathbb{N}$ platí
+\begin{align*}
+A_m^k&:= E(f_k > a+\frac{1}{m}), \\
+B_m^n &:= \bigcap \limits _{k=n}^{\infty}A_m^k.
+\end{align*}
+Zřejmě množiny $A_m^k$, $B_m^n$ jsou měřitelné pro všechna $m,n,j \in \mathbb{N}$. \\
+Chceme ukázat, že 
+\begin{align}
+E(F>a)= \bigcup \limits _{m,n \in \mathbb{N}} B_m^n.
+\label{vztah_1.2}
+\end{align} \\
+Nechť $t_0 \in E(F>a)$, t.j. $F(t_0)>a$. Pak existuje $m_0 \in \mathbb{N}$ takové, že $F(t_0)<a+\frac{1}{m_0}$. Dále, vzhledem k \eqref{vztah_1.1} existují $n_0 \in \mathbb{N}$ takové, že
+\begin{align*}
+f_k(t_0)>a+\frac{1}{m_0} \qquad \qquad \text{pro $k \geq n_0$.}
+\end{align*}
+Tedy $t_0 \in A_{m_0}^k$ pro $k \geq n_0$. Proto $t_0 \in B_{m_0}^{n_0}$ a tedy $t_0 \in \bigcup \limits _{m,n \in \mathbb{N}}B_{m}^n $. Jinými slovy jsme dokázali, že 
+\begin{align}
+E(f>a) \subset \bigcup_{m,n \in \mathbb{N}} B_m^n.
+\label{vztah_1.3}
+\end{align}
+Nechť nyní $t_0 \in \bigcup \limits _{m,n \in \mathbb{N}} B_m^n$. Pak existují $m_0, n_0 \in \mathbb{N}$ takové, že $t_0 \in B_{m_0}^{n_0}$ a tedy $t_0 \in A_{m_0}^k$ pro $k \geq n_0$. Tudíž dostáváme
+\begin{align*}
+f_k(t_0) < a+ \frac{1}{m_0} \quad \text{pro $k \geq n_0$.}
+\end{align*}
+Odtud, vzhledem k $\eqref{vztah_1.1}$ obdržíme, že $F(t_0) \geq a+ \frac{1}{m_0}$ a tedy $t_0 \in E(f>a)$. \\
+Dokázali jsme tedy, že 
+\begin{align*}
+\bigcup \limits _{m,n \in \mathbb{N}} B_m^n \subset E(F>a).
+\end{align*}
+Vezmeme-li v úvahu také vztah \eqref{vztah_1.2}, zjišťujeme, že množina $E(F>a)$ je sjednocení spočetně mnoha měřitelných množin a tedy je měřitelná. 
+\end{proof}
+
+\begin{theorem}
+Nechť $f_k:E \to \R$, $k \in \mathbb{N}$ jsou měřitelné funkce. Nechť dále pro skoro všechna $t \in E$ platí
+\begin{align*}
+F(t)=\lim \limits _{k \to \infty} f_k(t).
+\end{align*}
+Potom je funkce $F$ měřitelná.
+\end{theorem}
+
+\begin{proof}
+Označme $E_0$ množinu těch $t \in E$ pro které neplatí \eqref{vztah_1.1}. 
+Zřejmě $\mes(E_0)=0$. Proto množina $E \setminus E_0$ je měřitelná. Vzhledem k Věte \ref{v_1.13}
+(pro $E \setminus E_0$) funkce $F:E \setminus E_0 \to \R$ je měřitelná a tedy také $F:E \to \R$ je měřitelná.
+\end{proof}
+
+\section{Konvergence podle míry}
+V této sekci je zaveden pojem konvergence podle míry a následně je studován jeho vztah s ostatními typy konvergence, zejména s konvergencí skoro všude. 
+
+\begin{umluva}
+V následujícím odstavci se objeví množiny $E(|f-g| \geq a)$ a $E(|f-g|<a)$, kde $f,g: E \to \R$ jsou měřitelné. Jestli pro nějaké $t_0 \in E$ nastane situace, že $f(t_0)$ a $g(t_0)$ mají nekonečnou hodnotu stejného znamínka, pak rozdíl $|f(t_0)-g(t_0)|$ není definován.
+Budeme tedy pro jednoduchost předpokládat, že $t_0 \in E(|f-g| \geq a)$.
+\end{umluva}
+
+\begin{theorem}[Lebesgue]
+\label{konvergence_podle_miry}
+Nechť funkce $f_k:E \to \R$, $k \in \mathbb{N}$ jsou měřitelné a skoro všude konečné funkce. Nechť dále $f:E \to \R$ je skoro všude konečná funkce a 
+\begin{align*}
+f(x)=\lim \limits _{k \to \infty} f_k(x)
+\end{align*}
+pro skoro všechna $x \in E$. Potom pro každé $\delta>0$ platí 
+\begin{align}
+\lim \limits _{k \to \infty} \mes \Big(E(|f_k(x)-f|\geq \delta)\Big)=0.
+\end{align}
+\end{theorem}
+
+Věta \ref{konvergence_podle_miry} je dobrou motivací pro následující definici \footnote{Definice konvergence podle míry má obrovský význam, zejména v teorii pravděpodobnosti. V skutku, konečná míra $P$ vybavená vlastností, že $P(E)=1$ se nazývá pravděpodobnostní mírou. Pak se konvergenci podle míry hovoří aj konvergenci v pravděpodobnosti.}.
+
+
+\begin{definition}[Konvergence podle míry, Riesz]
+\label{d_1.15_konvergence_podle_miry}
+Nechť $f_k:E \to \R$, $k \in \mathbb{N}$ a $f:E \to \R$ jsou měřitelné a skoro všude konečné funkce. Řekněme, že posloupnost $\{f_k\}_{k=1}^{\infty}$ \textit{konverguje k funkci $f$ podle míry} jestliže pro každé $\delta \in \R$ platí \ref{konvergence_podle_miry}, t.j. že
+\begin{align*}
+\lim \limits _{k \to \infty} \mes \Big(E(|f_k(x)-f|\geq \delta)\Big)=0.
+\end{align*}
+
+\end{definition}
+
+Přirozenou otázkou, co by nás mohla po uvedené definici zajímat je, zdali konvergence podle míry implikuje konvergenci skoro všude, nebo naopak. 
+Následujícími příklady si ukážeme, že ani jedna z těchto implikací neplatí. 
+
+
+\begin{priklad}[Konvergence skoro všude $\centernot\implies$ Konvergence podle míry]
+\label{pr_1}
+Nechť $f_n: \R \to \R$ je definována jako $f_n= \chi _{[n,\infty)}$. Tedy $f_n \to 0$ bodově a tedy taky skoro všude, ale pro všechna $\epsilon \in (0,1)$ platí
+\begin{align*}
+\mes\Big(\{x \in \R: |f_n(x) > \epsilon|\}\Big)=\mes([n,\infty))=\infty.
+\end{align*}
+\end{priklad} 
+
+\begin{priklad}[Konvergence podle míry $\centernot\implies$ Konvergence skoro všude,  The Typewriter Sequence]
+\label{pr_2}
+Nechť je posloupnost funkcí $f_n:[0,1] \to [0,1]$ definována následovně. $f_1=\chi_{[0,1[}$, $f_2=\chi_{[0,\frac{1}{2}[}$, $f_3=\chi_{[\frac{1}{2},1[}$, $f_4=\chi_{[0,\frac{1}{4}[}$, $f_5=\chi_{[\frac{1}{4},\frac{1}{2}[}$, $f_5=\chi_{[\frac{1}{4},\frac{1}{2}[}$, $f_7=\chi_{[\frac{3}{4},1[}$,$f_8=\chi_{[0,\frac{1}{8}[}$ ... Pro dané $\epsilon>0$ je $\lim \limits _{n \to \infty} \mes \Big(\{x \in [0,1]:|f_n(x)|> \epsilon\}\Big)=0$. Na druhé straně nechť $p=\frac{1}{2}$ a nechť $x \in [0,1[$. Pro všechna $n \in \mathbb{N}$ existuje $m>n$ takové, že $|f_m(x)|=1 >\frac{1}{2}$. Tedy $\lim \limits _{n \to \infty} f_n(x) \neq 0$ na množině míry 1.
+\end{priklad}
+
+Na druhé straně je možné ukázat, že skoro stejnoměrná konvergence je silnější než konvergence v míre. 
+
+\begin{theorem}[Skoro stejnoměrná konvergence $\implies$ Konvergence podle míry]
+Nechť $f_n:\R \to \R$ je posloupnost funkcí konvergujících téměř stejnoměrně k měřitelné funkci $f:\R \to \R$. Potom $f_n \to f$ podle míry.
+\end{theorem}
+\begin{proof}
+Zvolíme pevné $\epsilon>0$ a libovolné $\nu>0$. Zavedeme množinu $E_{\epsilon, \nu}=\{x \in \R: |f_n(x)-f(x)|>\epsilon\}$. Pokusíme se ukázat, že existuje $N \in \mathbb{N}$ takové, že pro $n \geq N$ je $\mes(E_{\epsilon, \nu})<\nu.$
+Jelikož $f_n \to f$ téměř stejnoměrně, existuje množina $X_{\nu} \subset \R$ taková, že $\mes(\R \setminus X_{\nu}) < \nu$ a $f_n \to f$ stejnoměrně v $X_{\nu}$. Tedy existuje $N \in \mathbb{N}$ takové, že $|f_n(x)-f(x)|< \epsilon$ pro všechna $n \geq N$ a pro všechna $x \in X_{\nu}$. Tedy platí $E_{\epsilon, \nu} \subset \R \setminus X_{\nu}$. Dostáváme $\mes(E_{\epsilon, \nu})\leq \mes(\R \setminus X_{\nu}) < \nu$ pro všechna $\nu \geq N$.
+\end{proof}
+
+
+\begin{uloha}
+Nalezněte příklad posloupnosti funkcí $f_n:\R \to \R$, která konverguje podle míry a současně nekonverguje stejnoměrně.
+\end{uloha}
+
+Větu \ref{konvergence_podle_miry} m\r užeme přeformulovat následujícím zp\r usobem:
+\begin{theorem}
+Nechť posloupnost $f_k:E \to \R$, $k \in \mathbb{N}$ měřitelných a skoro všude spojitých funkcí konverguje skoro všude k funkci $f:E \to \R$.
+Pak posloupnost $\{f_k\}_{k=1}^{\infty}$ konverguje k $f$ podle míry.
+\label{lebegue_equiv}
+\end{theorem}
+
+\begin{uloha}
+Ukažte protipříkladem, že opačný směr implikace ve Větě \ref{lebegue_equiv} neplatí.
+\end{uloha}
+Nejblíže k opačnému směru implikace ve Věte \ref{lebegue_equiv} má následující Věta, která odhaluje vzájemné propojení konvergence podle míry a konvergence skoro všude.
+
+\begin{theorem}[Riesz]
+Nechť posloupnost $\{f_k\}_{k=1}^{\infty}$ koverguje podle míry k funkci $f:E \to \R$. 
+Potom existuje podposloupnost $\{f_{k_n}\}_{n=1}^{\infty}$, která konverguje k funkci $f$ skoro všude.
+\label{v_1.17_Riesz}
+\end{theorem}
+
+\begin{proof}
+Pro všechna $\epsilon>0$, nechť $E_{\epsilon, \nu}=\{x \in \R: |f_n(x)-f(x)|>\epsilon\}$. Z předpoklad\r u věty vyplývá, že 
+\begin{align*}
+\lim \limits _{n \to \infty} \mes(A_{\epsilon, \nu})=0.
+\end{align*}
+Nechť $\epsilon = 1$. Potom existuje $n_1 \in \mathbb{N}$ takové, že \begin{align*}
+\mes(A_{1,n_1})<\frac{1}{2}.
+\end{align*} 
+Nechť $\epsilon = \frac{1}{2}$. Potom existuje $n_2>n_1$ takové, že 
+\begin{align*}
+\mes(A_{\frac{1}{2},n_2})<\frac{1}{2^2}.
+\end{align*}
+Induktivně dostáváme
+\begin{align*}
+\mes(A_{\frac{1}{2^k},n_k})<\frac{1}{2^k}.
+\end{align*}
+Nechť $E=\bigcap \limits _{j=1}^{\infty} \bigcup _{k=j}^{\infty}A_{\frac{1}{k},n_k}$. Nechť $x \notin E$. Potom existuje $j \in \mathbb{N}$ takové, že $x \notin \bigcup \limits _{k=j}^{\infty} E_{\frac{1}{k},n_k}$, tedy $x \notin E_{\frac{1}{k},n_k}$ pro všechna $k \geq j$ (nebo ekvivalentně $|f_{n_k} - f(x)|\leq \frac{1}{k}$ pro $k \geq j$. Tedy posloupnost $\{f_{n_k}(x)\}_{k \in \mathbb{N}}$ konverguje k $f(x)$ pro všechna $x \notin E$.
+Na závěr je potřeba ukázat, že $\mes(E)=0$. Pro všechna $j \in \mathbb{N}$ platí
+\begin{align*}
+\mes(E) \leq \mes(\bigcup \limits _{k=j}^{\infty}E_{\frac{1}{k},n_k})< \sum \limits _{k=j}^{\infty}2^{-j}=2^{-j+1}.
+\end{align*}
+%%todo
+Jelikož $j$ je libovolné, $\mes(E)=0$.
+\end{proof}
+
+
+\begin{theorem}
+Nechť posloupnost $\{f_k\}_{k=1}^{\infty}$, ($f_k:E \to \R$, $k \in \mathbb{N}$) koverguje podle míry k funkci $f:E \to \R$.
+Nechť dále existuje funkce $g:E \to \R$, splňující $g \sim f$. Potom posloupnost $\{f_k\}_{k=1}^{\infty}$ koverguje podle míry k funkci $g$.
+\end{theorem}
+
+\begin{theorem}
+Nechť posloupnost $\{f_k\}_{k=1}^{\infty}$ koverguje podle míry jak k funkci $f:E \to \R$ tak k funkci $g:E \to \R$. 
+Potom $f \sim g$.
+\label{v_1.14}
+\end{theorem}
+
+\begin{uloha}
+Protipříkladem ukažte, že opačná implikace k k Věte \ref{v_1.14} neplatí.
+\end{uloha}
+
+
+
+
+Závěrečný výsledek této sekce -  práce italského matematika (Carlo Sverini) a ruského fyzika a geometra (Dmitri Egorov), odhaluje zajímavou vlastnost téměř všude konvergujících posloupností na množinách konečné míry.
+
+\begin{theorem}[Severini-Egorov]
+\label{v_1.18_Egorov}
+Nechť $E$ je podmnožina $\R$ konečné míry. Nechť $f_n:E \to \R$, $n \in \mathbb{N}$ a $f:E \to \mathbb{R}$ jsou měřitelné a skoro všude konečné funkce. 
+Nechť dále 
+\begin{align}
+\lim \limits _{n \to \infty} f_n(t)  = f(t)
+\label{vztah_1.5}
+\end{align}
+pro skoro všechna $t \in E$. Potom, ke každému $\delta > 0$ existuje měřitelná množina $E_{\delta} \subset E$ taková, že $\mes (E_{\delta}) > \mes (E) - \delta$ a na množině $E_{\delta}$ "konvergence" \eqref{vztah_1.5} je stejnoměrná.
+\end{theorem}
+
+\begin{proof}
+Pro všechna $n \in \mathbb{N}$ zavedeme 
+\begin{align*}
+E_{n}^k=\bigcap \limits _{j=n}^{\infty} \{x \in E : |f_j(x)-f(x)|<\frac{1}{k}\}.
+\end{align*}
+Pozorujeme, že pro pevně zvolené $k,n \in \mathbb{N}$ platí $E_{n}^k \subset E_{n+1}^k $. Tedy dostáváme $E \setminus E_n^{k} \subset E \setminus E_{n+1}^{k}$.\\
+Zavedeme množinu $E^{k}=\bigcup \limits _{n=1}^{\infty}E_n^k$. Jelikož platí \eqref{vztah_1.5}, existuje $N \subset E$ takové, že $m(N)=0$ a $f_n(x) \to f(x)$. Existuje tedy také $p \in \mathbb{N}$, že $|f_n(x)-f(x)| \leq \frac{1}{k}$ pro všechna $n \geq p$. Tedy platí, že $x \in E_p^{k} \subset E^k$. To implikuje $E \setminus E_k \subset N$. Jelikož $\mes(N)=0$, platí, že $E \setminus E^k$ je měřitelná a $\mes(E \setminus E^k)=0$. \\
+Z vlastnosti Lebesgueovy míry dostáváme
+\begin{align*}
+\lim \limits _{n \to \infty} \mes(E \setminus E_n^k) = \mes\Big(\bigcap \limits _{n \in \mathbb{N}}(E \setminus E^k_n)\Big) = \mes(E \setminus E^k) = 0.
+\end{align*}
+Tedy pro dané $\delta>0$ existuje $n_k \in \mathbb{N}$ takové, že $\mes(E \setminus E_{n_k}^k) < \delta 2^{-k}$ pro libovolné $k \in \mathbb{N}$.\\
+Zavedeme $E_{\delta}= \bigcap \limits _{k=1}^{\infty} E_{n_{k}}^k$ a ukážeme, že $\mes(E \setminus E_{\delta})< \delta$.
+\begin{align*}
+\mes(A\setminus E_{\delta}) &= \mes (E \setminus \bigcap \limits _{k=1}^{\infty} E_{n_k}^k) = \mes \Big(\bigcup \limits _{k=1}^{\infty} (E \setminus  E_{n_k}^k)\Big) \leq \\
+&\leq \sum \limits _{k=1}^{\infty} \mes(E \setminus E_{n_k}^k) < \delta \sum \limits _{k=1}^{\infty} 2 ^{-k} = \delta.
+\end{align*}
+Teď ukážeme, že $f_n \to f$ stejnoměrně na $E_{\delta}$. Nechť $\alpha>0$ a nechť $k \in \mathbb{N}$ takové, že $\frac{1}{k} < \alpha$. Nechť $x \in E$. Tedy $x \in E^k_{n_k}$ pro všechna $k$. Dostáváme
+\begin{align*}
+|f_j(x)-f(x)|<\frac{1}{k}<\alpha
+\end{align*}
+pro všechna $j \geq n_k=n(\alpha)$. Jelikož $n_k$ nezávisí na $x$, tvrzení je dokázáno.
+\end{proof}
+
+\section{Aproximace měřitelných funkcí spojitými funkcemi}
+
+\begin{theorem}
+Nechť $f:E \to \R$ je měřitelná a skoro všude konečná funkce. Potom ke každému $\epsilon>0$ existuje ohraničená a měřitelná funkce $g:E \to \R$ taková, že $\mes \Big(E(f \neq g)\Big) < \epsilon.$\label{v_1.19}
+\end{theorem}
+
+Klasifikace bod\r u množiny $E$ umožňuje následující formulaci definice bodové spojitosti funkce.
+
+\begin{definition}[Spojitá funkce]
+Nechť $f:E \to \R$, $t_0 \in E$ a $f(t_0) \neq \pm \infty$. 
+Řekněme, že funkce $f$ je \textit{spojitá v bodě $t_0$}, pokud platí alespoň jedna z následujících možností
+\begin{enumerate}
+\item[1.] $t_0$ je izolovaný bod množiny $E$,
+\item[2.] $t_0$ je hromadným bodem množiny $E$ a pro libovolnou posloupnost $\{t_k\}_{k=1}^{\infty} \subset E$ takovou, že $\lim \limits _{k \to \infty} t_k = t_0$ platí $\lim \limits _{k \to \infty} f(t_k)=f(t_0)$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Borel]
+\label{v_1.21_Borel}
+Nechť $f:[\alpha,\beta] \to \R$ je měřitelná a skoro všude konečná funkce. 
+Potom pro každé $\delta >0$ a $\epsilon >0$ existuje spojitá funkce $\Psi:[\alpha, \beta] \to \R$ taková, že 
+\begin{align*}
+\mes \Big(E(|f - \Psi|\geq \delta)\Big)< \epsilon.
+\end{align*}
+Jestliže navíc platí $|f(t)| \leq c$ pro $t \in [\alpha,\beta]$, pak lze funkce $\Psi$ vybrat tak, aby $|\Psi(t)|\leq k$, $k \in \R$ pro $t \in [\alpha, \beta]$.
+\end{theorem}
+
+\begin{dusledek}
+Nechť $f:[\alpha, \beta] \to \R$ je měřitelná a skoro všude konečná. Potom existuje posloupnost spojitých funkcí $\Psi_n:[\alpha, \beta]\to \R$, $n \in \mathbb{N}$ konvergující k funkci $f$ podle míry.
+\label{d_1.22}
+\end{dusledek}
+Z důsledku \ref{d_1.22} a Věty \ref{v_1.17_Riesz} plyne následující věta
+
+
+\begin{theorem}[Frechét]
+\label{v_1.23_Frechet}
+Nechť $f:[\alpha, \beta] \to \R$ je měřitelná a skoro všude konečná. Pak existuje posloupnost spojitých funkcí (na $[\alpha, \beta]$) konvergujících k $f$ skoro všude.
+\end{theorem}
+
+\begin{theorem}[Lusin]
+\label{v_1.4.6_Lusin}
+Nechť je $f:[\alpha, \beta]\to \R$ měřitelná a skoro všude konečná. Potom pro každé $\delta>0$ existuje $\phi \in C([\alpha, \beta])$ taková, že 
+\begin{align*}
+\mes\Big(E(f \neq \phi)\Big)<\delta.
+\end{align*}
+Je-li navíc $|f(t)| \leq c$ pro $t \in E$ pak $|\phi(t)|<c $ pro $t \in [\alpha, \beta]$.
+\end{theorem}
+
+\section{Trigonometrické mnohočleny}
+
+V předchozí kapitole jsme mluvily o aproximaci měřitelné funkce spojitými funkcemi. V této kapitole si ukážeme vybrané mnohočleny. 
+\begin{definition}[Bernstein\r uv mnohočlen]
+Nechť $f:[0,1]\to \R$ je konečná funkce. Mnohočlen 
+\begin{align*}
+B_n(x):=\sum \limits _{k=0}^{n} f\Big(\frac{k}{n}\Big)c^k_nx^k(1-x)^{n-k} \quad \text{pro $x \in [0,1]$}
+\end{align*}
+se nazývá \textit{Bernstein\r uv mnohočlen funkce $f$}..
+\label{def_bernstein}
+\end{definition}
+
+\begin{theorem}[Bernstein]
+Nechť funkce $f:[0,1] \to \R$ je spojitá. Potom 
+\begin{align*}
+\lim \limits _{n \to \infty} B_n(x)=f(x) \quad \textrm{stejnoměrně na $[0,1]$.}
+\end{align*}
+\end{theorem}
+
+
+Následující věta tvoří mimořádně důležitou součást teorie aproximací. Věta dokazuje existenci mnohočlen\r u potřebných k aproximaci spojitých funkcí. Důležité zobecnění této věty je možno nalézt pod názvem "Stone-Weierstrass approximation theorem".
+
+\begin{theorem}
+[Weierstrass]
+Nechť $f:[a,b] \to \R$ je spojitá funkce. Potom ke každému $\epsilon >0 $ existuje mnohočlen $P:[a,b] \to \R$ takový, že
+\begin{align*}
+|f(x)-p(x)|<\epsilon \qquad  \forall x \in [a,b].
+\end{align*}
+\label{v_1.27_Weierstrass}
+\end{theorem}
+
+S použitím Věty \ref{v_1.27_Weierstrass} lze Borelovu větu \ref{v_1.21_Borel} a Fréchetovu větu \ref{v_1.23_Frechet} přeformulovat. Například větu \ref{v_1.23_Frechet} můžeme naformulovat následovně
+
+\begin{theorem}[Fréchet - Reformulace]
+Nechť $f:[a,b] \to \R$ je měřitelná a skoro všude konečná funkce. Potom existuje posloupnost mnohočlen\r u $P_n:[a,b] \to \R$ takových, že 
+\begin{align*}
+\lim \limits _{n \to \infty} P_n(x)=f(x) \quad \text{skoro všude na $[a,b]$.}
+\end{align*}
+\end{theorem}
+
+\begin{definition}[Trigonometrický mnohočlen]
+\label{d_1.29_Trigonometricky_Mnohoclen}
+Funkce $T:\R \to \R$ dána vztahem 
+\begin{align*}
+T(x):=A+ \sum \limits _{k=1}^{n} \Big(a_k \cos(kx)+b_k \sin (kx) \Big) \quad \text{pro $x \in \R$}
+\end{align*}
+se nazývá \textit{trigonometrický mnohočlen.} \\
+Je-li $b_i=0$, $i \in \mathbb{N}$, pak trigonometrický mnohočlen $T$ se nazývá sudým. \\
+Analogicky, je-li $a_i=0$, $i \in \mathbb{N}$, pak trigonometrický mnohočlen $T$ se nazývá lichým. 
+\end{definition}
+
+
+
+\begin{uloha}
+Ověřte platnost následujícího lemmatu.
+\end{uloha}
+
+\begin{lemma}
+\label{l_1.31}
+\begin{enumerate}
+\item Funkce $\cos^n(x)$ lze vyjádřit jako sudý trigonometrický mnohočlen.
+\item Je-li $T$ trigonometrický mnohočlen pak $T(x)\sin(x)$ je taky trigonometrickým mnohočlenem.
+\item Je-li $T$ trigonometrický mnohočlen pak $T(x+c)$ je taky trigonometrickým mnohočlenem.
+\end{enumerate}
+\end{lemma}
+
+\begin{theorem}
+Nechť je funkce $f:[0,\pi] \to \R$ spojitá. Potom ke každému $\epsilon >0$ existuje sudý trigonometrický mnohočlen $T$ takový, že 
+\begin{align*}
+|f(x)-T(x)|< \epsilon \quad \text{pro $x \in [0,\pi]$.}
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Položme
+\begin{align*}
+F(x)=f\big(\arccos(y)\big) \quad \text{pro $y \in [-1,1]$.}
+\end{align*}
+Zřejmě je funkce $F:[-1,1] \to \R$ spojitá. 
+Zvolíme $\epsilon >0$. 
+Vzhledem k Větě \ref{v_1.27_Weierstrass} existuje mnohočlen $P(y)=\sum \limits _{k=0}^n a_k y^k$ takový, že
+\begin{align*}
+|F(y)-p(y)|< \epsilon \quad \text{$y \in [-1,1]$.}
+\end{align*}
+Nechť $x \in [0, \pi]$. Dosadíme-li v předchozí nerovnosti $y=\cos(x)$, obdržíme
+\begin{align*}
+|f(x)-\sum \limits _{k=0}^{n} a_k \cos^k(x)|< \epsilon \quad \text{$x \in [0, \pi]$.}
+\end{align*}
+Vzhledem k Lemma \ref{l_1.31} a) je funkce $\sum \limits_{n=0}^{k}a_k \cos^k(x)$ sudý trigonometrický mnohočlen.
+\end{proof}
+
+
+\begin{dusledek}
+Nechť je $f:\R \to \R$ $2\pi$-periodická, sudá a spojitá funkce. 
+Potom, ke každému $\epsilon>0$ existuje trigonometrický mnohočlen $T$ takový, že 
+\begin{align*}
+|f(x)-T(x)|< \epsilon \quad \text{pro $x \in \R$}.
+\end{align*}
+\label{d_1.33}
+\end{dusledek}
+
+Následující věta je konkrétním speciálním případem Weierstrassovy Věty \ref{v_1.27_Weierstrass} pro trigonometrické mnohočleny.
+
+\begin{theorem}[Weierstrass]
+Nechť je funkce $f:\R \to \R$ spojitá a $2\pi$-periodická. 
+Potom ke každému $\epsilon >0$ existuje trigonometrický mnohočlen $T$ takový, že 
+\begin{align*}
+|f(x)-T(x)|< \epsilon \quad \text{pro $x \in \R$}.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Vzhledem k Důsledku \ref{d_1.33} pro (sudé funkce) $f(x)+f(-x)$ a $(f(x)-f(-x))\sin(x)$ pro dané $\epsilon>0$ existují trigonometrické mnohočleny $T_1$ a $T_2$ takové, že 
+\begin{align}
+f(x)+f(-x)=T_1(x)+\alpha_1(x),
+\label{vztah_1.6}
+\end{align}
+\begin{align}
+\Big(f(x)-f(-x)\Big)\sin(x)=T_2(x)+\alpha_2(x)
+\label{vztah_1.7}
+\end{align}
+
+
+pro $x \in \R$, přičemž $\alpha_1$ a $\alpha_2$ jsou spojitá a $|\alpha_1(x)| < \frac{\epsilon}{2}$, $|\alpha_2(x)| < \frac{\epsilon}{2}$ pro každé $x \in \R$. \\
+
+Vynásobíme-li vztah \eqref{vztah_1.6} funkcí $\sin^2(x)$ a vztah \eqref{vztah_1.7} funkcí $\sin(x)$, sčítáním rovnic a podělením dvěma obdržíme
+\begin{align}
+f(x) \sin^2(x)=T_3(x) + \beta(x)
+\end{align}
+kde (vzhledem k Lemma \ref{l_1.31}) $T_3$ je trigonometrický mnohočlen a $|\beta(x)|< \epsilon$ pro $x \in \R$. \\
+Obdobně, (poněvadž $f$ je libovolná funkce) existují trigonometrické mnohočleny $T_4$ a $\gamma$ takové, že 
+\begin{align*}
+f(x-\frac{\pi}{2})\sin^2(x)&=T_4(x) + \gamma (x) \quad &\text{pro $x \in \R$.} \\
+|\gamma(x)|<\epsilon \quad & \text{pro $x \in \R$.}
+\end{align*}
+Odtud dostáváme, že 
+\begin{align*}
+f(x) \cos^2(x) = T_4(x+\pi)+\gamma(x+\pi) \quad \text{pro $x \in \R$.}
+\end{align*}
+Vzhledem k Lemma \ref{l_1.31} $T_4(x+\pi)$ je trigonometrický mnohočlen a tedy 
+
+\begin{align}
+f(x) \cos^2(x)=T_5(x)+\gamma_1(x) \quad \text{pro $x \in \R$}
+\label{vztah_1.8}
+\end{align}
+kde $T_5(x)$ je trigonometrický mnohočlen a $|\gamma_1|<\epsilon$ pro $x \in \R$.
+Závěr Věty plyne z \eqref{vztah_1.7} a \eqref{vztah_1.8}.
+\end{proof}

@@ -1,0 +1,707 @@
+
+
+\chapter{Prostor \texorpdfstring{$L^2([a,b])$}{L2}}
+
+
+\section{Zavedení prostoru}
+
+
+\begin{definition}[$L^2$ prostor]
+Nechť $f:[a,b] \to \R$ a
+\begin{align*}
+\int \limits_a^b f^2(t) \, dt<\infty
+\end{align*} 
+Potom $f \in L^2([a,b])$.
+\end{definition}
+
+
+\begin{tvrz}
+\label{tv_3.1}
+\begin{align*}
+L^2([a,b]) \subset L([a,b])
+\end{align*}
+\end{tvrz}
+\begin{proof}
+Nechť $f \in L^2([a,b])$. Jelikož $1 \in L^2([a,b])$, platí
+\begin{align*}
+\int \limits _{a}^b \frac{1}{2} \Big(1 + f^2(t)\Big) \, dt< \infty.
+\end{align*}
+Využitím nerovnosti 
+\begin{align*}
+|f(t)| \leq \frac{1}{2} \Big(1 + f^2(t)\Big) \quad \textrm{ pro } t \in [a,b]
+\end{align*}
+dokazujeme tvrzení.
+\end{proof}
+\begin{uloha}
+Protipříkladem ukažte, že opačná inkluze Tvrzení \ref{tv_3.1} neplatí.
+\end{uloha}
+
+
+\begin{tvrz}
+\label{tv_3.2}
+Nechť $f,g \in L^2([a,b])$. Potom $f \cdot g \in L([a,b])$.
+\end{tvrz}
+\begin{proof}
+Nechť $f,g \in L^2([a,b])$. Důkaz plyne z následující nerovnosti
+\begin{align*}
+|f(t) g(t)| \leq \frac{1}{2}\Big(f^2(t) + g^2(t)\Big).
+\end{align*}
+\end{proof}
+
+
+\section{Strukturní vlastnosti \texorpdfstring{$L^2$}{L2}}
+
+%metricky prostor
+\begin{definition}[Metrika $L^2$]
+Výraz $\rho: L^2([a,b]) \times L^2([a,b]) \to \mathbb{R} $ definován jako
+\begin{align*}
+\rho (f,g) := \int \limits _a^b \Big(f(x) - g(x)\Big)^2 \, dx
+\end{align*}
+nazýváme \textit{metrikou $L^2([a,b])$}.
+\end{definition}
+\begin{tvrz}
+\label{tvrz_L2_metricky}
+$(L^2([a,b]), \rho(\cdot, \cdot))$ tvoří metrický prostor.
+\end{tvrz}
+\begin{uloha}
+Dokažte tvrzení \ref{tvrz_L2_metricky}.
+\end{uloha}
+
+%lineární prostor
+\begin{tvrz}
+\label{tv_3.3}
+Množina $L^2 ([a,b])$ je lineární prostor, tj. $f,g \in L^2([a,b]) \Rightarrow \alpha f + \beta g \in L^2([a,b])$ pro $\forall \alpha, \beta \in \R$.
+\end{tvrz}
+\begin{uloha}
+Dokažte Tvrzení \ref{tv_3.3}.
+\end{uloha}
+\begin{tvrz}[Cauchy-Bunjakovského-Schwartzova nerovnost]
+Nechť $f,g \in L^2([a,b])$ potom platí
+\label{tv_3.4_Cauchy-Bunjakovskeho_Nerovnost}
+\begin{align*}
+\left( \int \limits_a^b f(t) g(t) dt \right)^2 \leq \int \limits_a^b f^2(t) dt \cdot \int \limits_a^b g^2(t) dt.
+\end{align*}
+\end{tvrz}
+\begin{poznamka}
+Cauchy-Bunjakovského-Schwartzova nerovnost \ref{tv_3.4_Cauchy-Bunjakovskeho_Nerovnost} je známým tvrzením z kurz\r u lineární algebry (tuto nerovnost je možno dokázat pro libovolný unitární prostor).
+\end{poznamka}
+\begin{uloha}
+Laskavý čtenář si zopakuje důkaz Tvrzení \ref{tv_3.4_Cauchy-Bunjakovskeho_Nerovnost}.
+\end{uloha}
+
+
+%unitární prostor
+\begin{definition}[Skalární součin na $L^2$]
+V prostoru $L^2([a,b])$ je \textit{skalární součin} $(\cdot, \cdot):L^2([a,b]) \times L^2([a,b]) \to \R$ definován následovně
+\begin{align*}
+(f \cdot g) := \int \limits_a^b f(t) g(t) dt.
+\end{align*}
+\end{definition}
+\begin{tvrz}
+\label{tv_L2_unit}
+$(L^2([a,b]), (\cdot, \cdot))$ je unitární prostor.
+\end{tvrz}
+\begin{uloha}
+Dokažte Tvrzení \ref{tv_L2_unit}.
+\end{uloha}
+
+%normovaný
+\begin{definition}[$L^2$-norma]
+Nechť $f:[a,b] \to \R$. Potom výraz
+\begin{align*}
+\|f\|_{L^2} := \left( \int \limits_a^b f^2(t) dt \right)^{\frac{1}{2}}
+\end{align*}
+nazýváme \textit{$L^2$-normou} funkce $f$.
+\end{definition}
+\begin{tvrz}
+\label{tv_L2_normovany}
+Prostor funkcí $(L^2([a,b]),\|\cdot \|_{L^2})$ je normovaný prostor. 
+\end{tvrz}
+\begin{uloha}
+Dokažte Tvrzení \ref{tv_L2_normovany}.
+\end{uloha}
+\begin{poznamka}
+Zřejmě norma prostoru $L^2$ je provázána s jeho metrikou a skalárním součinem následovnými vztahy
+\begin{align*}
+\rho(f,g)&=\|f-g\|_{L^2}, \\
+\sqrt{(f \cdot f)}&= \|f\|_{L^2}.
+\end{align*}
+\end{poznamka}
+
+
+
+\begin{theorem}
+\label{v_3.6}
+Nechť $\{f_n\}_{n \in \mathbb{N}}$ je posloupnost funkcí z $ L^2 ([a,b])$. Nechť dále $f \in L^2 ([a,b])$ a 
+\begin{align*}
+\lim_{n \rightarrow \infty} \| f_n - f \|_{L^2} = 0.
+\end{align*}
+Potom
+\begin{align*}
+\lim_{n \rightarrow \infty} f_n(t) = f(t) \quad \textrm{ podle míry.}
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Nechť $\sigma > 0$. Zavedeme množinu $A_n (\sigma) = E (|f_n - f| \geq \sigma)$. Potom konvergence plyne následovně
+\begin{align*}
+\int \limits_a^b \Big(f_n(t) - f(t)\Big)^2 \, dt \geq \int \limits_{A_n (\sigma)} \Big(f_n(t) - f(t)\Big)^2 \, dt \geq \sigma^2 \mes\{A_n (\sigma)\}.
+\end{align*}
+\end{proof}
+
+\begin{uloha}
+Nalezněte posloupnost funkcí splňující předpoklady Věty \ref{v_3.6}, pro kterou neplatí, že 
+\begin{align*}
+\lim_{n \rightarrow \infty} f_n(t) = f(t) \quad \textrm{ skoro všude v } [a,b]. 
+\end{align*}
+\end{uloha}
+
+
+
+
+
+\begin{dusledek}
+\label{3.7.dusledek}
+Nechť $\{f_n\}_{n \in \mathbb{N}}$ je posloupnost funkcí z $ L^2 ([a,b])$. Nechť dále $f \in L^2 ([a,b])$ a 
+\begin{align*}
+\lim_{n \rightarrow \infty} \| f_n - f \|_{L^2} = 0.
+\end{align*}
+Potom existuje podposloupnost $\{f_{n_k}\}$ taková, že
+\begin{align*}
+\lim_{k \rightarrow \infty} f_{n_k}(t) = f(t) \quad \textrm{ skoro všude na } [a,b].
+\end{align*}
+\end{dusledek}
+\begin{proof}
+Plyne z Věty \ref{v_3.6} a Rieszovy věty \ref{v_1.17_Riesz}.
+\end{proof}
+
+
+\begin{poznamka}\label{3.8.poznamka}
+
+Pokud
+\begin{align}\label{3.2}
+\lim_{n \rightarrow \infty} f_n(t) = f(t) \quad \textrm{ pro každé } t \in [a,b], 
+\end{align}
+pak (obecně) nemůžeme tvrdit, že platí 
+\begin{align*}
+\lim_{n \rightarrow \infty} \| f_n - f \|_{L^2} = 0.
+\end{align*}
+Vskutku, nechť
+\begin{align*}
+f_n(t)=
+\left\{
+\begin{array}{cl}
+n & \textrm{ pro } t \in [0, \frac{1}{n}]\\
+0 & \text{ pro } t \in ]\frac{1}{n},1]
+\end{array}
+\right.
+\end{align*}
+Potom platí \ref{3.2}, kde $f \equiv 0$. Však $\int \limits_0^1 (f_n(t))^2 \,  dt = n \rightarrow \infty$.
+\end{poznamka}
+
+\begin{theorem}\label{3.9}
+Nechť $\{f_n\}_{n \in \mathbb{N}}$ je posloupnost funkcí z $ L^2 ([a,b])$. Nechť dále $f \in L^2 ([a,b])$ a 
+\begin{align*}
+\lim \limits _{n \rightarrow \infty} \| f_n - f \|_{L^2} = 0.
+\end{align*}
+Potom $\lim \limits _{n \rightarrow \infty} \|f_n\|_{L^2} = \|f\|_{L^2}$.
+\end{theorem}
+\begin{proof}
+Důkaz plyne z nerovností
+\begin{align*}
+\|f_n\|_{L^2} &\leq \|f\|_{L^2} + \|f_n - f\|_{L^2},\\
+ \|f\|_{L^2} &\leq \|f_n\|_{L^2} + \|f_n - f \|_{L^2}.
+\end{align*}
+\end{proof}
+
+
+\begin{definition}[Cauchyovská posloupnost]\label{d_3.10_Cauchyovska_Posloupnost}
+Posloupnost $\{f_n\} \subset L^2$ se nazývá \textit{Cauchyovská}, jestliže $\forall \epsilon > 0$ $\exists n_{\epsilon} > 0$ a pro $\forall n,m : n>n_{\epsilon}, m>n_{\epsilon}$ platí $\|f_n - f_m\| < \epsilon$.
+\end{definition}
+
+\begin{definition}
+\label{d_3.11_Uplny_Metricky_Prostor}
+Metrický prostor $(X,\rho)$ se nazývá \textit{úplný}, jestliže každá Cauchyovská posloupnost má limitu, která leží v $X$.
+\end{definition}
+
+\begin{theorem}[Riesz-Fischer]\label{v_3.12_Fischer}
+Prostor $L^2([a,b])$ je úplný.
+\end{theorem}
+
+
+
+\begin{theorem}\label{v_3.13}
+Každá z následujících množin je hustá v $L^2([a,b])$:
+\begin{enumerate}
+\item $M([a,b])$ - množina ohraničených, měřitelných funkcí
+\item $C([a,b])$ - množina spojitých funkcí
+\item $P([a,b])$ - množina polynom\r u
+\item $\mathcal{S}([a,b])$ - Množina jednoduchých funkcí
+\end{enumerate}
+Je-li $[a,b] = [-\pi, \pi]$, pak množina trigonometrického mnohočlenu $T$ je hustá v $L^2$.
+\end{theorem}
+
+\begin{definition}\label{d_3.14_Slaba_Konvergence}
+Nechť $\{f_n\} \subset L^2([a,b])$ a $f \in L^2$. Řekneme, že posloupnost $\{f_n\}$ \textit{konverguje k $f$ slabě}, jestliže pro každou funkci $g \in L^2$ platí
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_a^b f_n(t) g(t) = \int \limits_a^b f(t) g(t) dt. 
+\end{align*}
+\end{definition}
+
+\begin{theorem}\label{v_3.14}
+Pokud $\{f_n\}$ konverguje k $f$ (v klasickém smyslu), pak konverguje i slabě.
+\end{theorem}
+\begin{proof}
+Použitím Tvrzení \ref{tv_3.4_Cauchy-Bunjakovskeho_Nerovnost} obdržíme
+
+\begin{align*}
+\left( \int \limits_a^b g(t) (f_n(t)-f(t)) \, dt \right)^2 \leq \int \limits_a^b g^2(t) \, dt \cdot \int \limits_a^b \Big(f_n(t)-f(t)\Big)^2 \, dt.
+\end{align*}
+\end{proof}
+
+\section{Ortogonální systémy}
+
+\begin{definition}\label{3.15.definition}
+Systém $\{ \omega_k \}_{k=1}^{\infty} \subset L^2([a,b])$ se nazývá ortonormální, jestliže $(\omega_k \cdot \omega_i) = \delta_{ki}$.
+\end{definition}
+
+\begin{priklad}\label{3.16.pr}
+Trigonometrický systém $\frac{1}{\sqrt{2\pi}}$, $\frac{1}{\sqrt{\pi}} \cos(t)$, $\frac{1}{\sqrt{\pi}} \sin(t)$, $\frac{1}{\sqrt{\pi}} \cos (2t)$, $\frac{1}{\sqrt{\pi}} \sin (2t)$, ... je ortonormální v $L ([-\pi, \pi])$.
+\end{priklad}
+
+%Fourierovy koeficienty
+\begin{definition}[Fourierova řada, Fourierovy koeficienty]\label{d_3.17_Fourierova_Rada}
+Nechť $\{ \omega_k \}_{k=1}^{\infty}$ je ortonormální systém v $L^2([a,b])$ a $f \in L^2([a,b])$. Čísla
+\begin{align*}
+c_k := \int \limits_a^b f(t) \omega_k(t) \, dt, \quad k \in \mathbb{N}
+\end{align*}
+se nazývají \textit{Fourierovy koeficienty funkce} $f$ vzhledem k systému $\{ \omega_k \}$. Dále řada (formální)
+\begin{align}\label{3.3}
+\sum \limits _{k=1}^{\infty} c_k \omega_k (t)
+\end{align}
+se nazývá \textit{Fourierova řada funkce} $f$ vzhledem k systému $\{ \omega_k \}$.
+\end{definition}
+Zavedením nekonečné řady \ref{3.3} přirozeně vzniká otázka, zdali řada konverguje a k čemu. Než odpovíme na tyto otázky je nutno lépe prostudovat čísla $c_k$ a zavedenou řadu \ref{3.3}. 
+
+%Besselova Nerovnost
+\begin{theorem}[Besselova nerovnost]
+\label{v_Besselova_Nerovnost}
+Nechť $f \in L^2([a,b])$ a $c_k$ jsou Fourierovy koeficienty této funkce. Pak platí
+\begin{align*}
+\sum \limits _{k=1}^{\infty}  c_k^2 \leq ||f||_{L^2}^2.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Zavedeme částečné součiny
+\begin{align*}
+S_n(t) := \sum \limits _{k=1}^n c_k \omega_k(t). 
+\end{align*}
+Jelikož $\{ \omega_k \}_{k=1}^{\infty}$ je ortonormální systém, platí
+\begin{align*}
+\int \limits_a^b S_n^2 (t) \, dt = \sum \limits _{i,k=1}^n c_i c_k \int \limits_a^b \omega_k \omega_i  \, dt = \sum \limits _{k=1}^n c_k^2.
+\end{align*}
+Dále, užitím definice Fourierových koeficient\r u \ref{d_3.17_Fourierova_Rada} dostáváme
+\begin{align*}
+\int \limits_a^b f(t) S_n^2 (t) \, dt = \sum \limits _{k=1}^n c_k \int \limits_a^b f(t) \omega_k (t) \, dt = \sum \limits _{k=1}^n c_k^2.
+\end{align*}
+Na základě těchto rovností obdržíme
+\begin{align}\label{3.4}
+\| f-S_n \|_{L^2}^2= \int \limits_a^b \Big(f^2(t) - 2 f(t)S_n(t) + S_n^2(t)\Big) \, dt = \| f \|_{L^2} - \sum \limits _{k=1}^n c_k^2,
+\end{align}
+a tudíž
+\begin{align*}
+\sum \limits _{k=1}^n c_k^2 \leq \|f\|_{L^2}^2.
+\end{align*}
+Odtud zřejmě plyne, že
+\begin{align*}
+\sum \limits _{k=1}^{\infty} c_k^2 \leq \|f\|_{L^2}^2.
+\end{align*}
+\end{proof}
+
+
+%Parsevalova rovnost -- uzavřený ortonormální systém
+\begin{definition}\label{d_3.18_Uzavreny_Ortonormalni_System}
+Řekneme, že ortonormální systém je \textit{uzavřený}, jestliže pro každou funkci $f \in L^2$ platí tzv. Parsevalova rovnost
+\begin{align*}
+\sum \limits _{k=1}^{\infty} c_k^2 = \|f\|_L^2.
+\end{align*}
+\end{definition}
+\begin{poznamka}
+Smysl Parsevalovy rovnosti spočívá v tom, že $\lim \limits _{n \rightarrow \infty} \| f - S_n \|_{L^2} = 0$ neboli $f$ je limitou $\{S_n\}$ v $L^2$.
+\end{poznamka}
+\begin{theorem}\label{3.19}
+Nechť ortonormální systém $\{ \omega_k \}$ je uzavřený. Potom pro $f,g \in L^2$ platí
+\begin{align*}
+(f \cdot g) = \sum \limits _{k=1}^{\infty} a_k b_k,
+\end{align*}
+kde $a_k = (f \cdot \omega_k),$ $b_k = (g \cdot \omega_k)$.
+\end{theorem}
+\begin{proof}
+Zřejmě $\{ a_k + b_k \}_{k \in \mathbb{N}}$ jsou Fourierovými koeficienty funkce $f + g$. Tedy podle Parsevalovy rovnosti
+\begin{align*}
+\|f + g\|_L^2 = \sum \limits _{k=1}^{\infty} (a_k + b_k)^2 = \sum a_k^2 + \sum b_k^2 + 2 \sum a_k b_k.
+\end{align*}
+Na druhé straně vzhledem k Větě \ref{3.19}
+\begin{align*}
+\|f + g\|^2 &= \int \limits_a^b (f(t) + g(t))^2 dt = \int \limits_a^b f^2(t) dt + 2 \int \limits_a^b f(t) g(t) dt + \int \limits_a^b g^2(t) dt =\\
+&= \sum \limits _{k=1}^\infty a_k^2 + \sum \limits _{k=1}^\infty b_k^2 + 2 \int \limits_a^b f g.
+\end{align*}
+\end{proof}
+
+
+\begin{dusledek}\label{3.20.dusledek}
+Nechť $\{ \omega_k \}$ je uzavřený systém. Potom pro každou měřitelnou množinu $E \subset [a,b]$ platí
+\begin{align}\label{3.5}
+\int \limits_E f(t) \, dt = \sum \limits _{k=1}^{\infty} c_k \cdot \int \limits_E \omega_k (t) \, dt.
+\end{align}
+\end{dusledek}
+
+\begin{proof}
+Nechť $g$ je charakteristická funkce množiny $E$. Zřejmě $g \in L^2([a,b])$ a pro Fourierovy koeficienty $b_k$ funkce $g$ platí
+\begin{align*}
+b_k = \int \limits_E \omega_k (t) dt.
+\end{align*}
+Nyní \ref{3.5} plyne z Věty \ref{3.19}.
+\end{proof}
+
+
+\begin{poznamka}\label{3.21.poznamka}
+Všimněme si, že samotná řada $\sum \limits _{k=1}^\infty c_k \omega_k (t)$ nemusí (obecně) konvergovat k $f$ vůbec.
+\end{poznamka}
+
+%Steklov-Severini
+\begin{theorem}[Steklov - Severini]\label{3.22}
+Nechť $A \subset L^2 ([a,b])$ je hustá. Nechť dále $\{ \omega_k \}$ je ortonormální systém a pro každou $g \in A$ platí Parsevalova rovnost vzhledem k $\{ \omega_k \}$. Potom systém $\{ \omega_k \}$ je uzavřený.
+\end{theorem}
+\begin{proof}
+Nechť $f \in L^2$ a $c_k$ jsou Fourierovy koeficienty vzhledem k $\{ \omega_k \}$. Položme
+\begin{align*}
+S_n(f) = \sum \limits _{k=1}^n c_k \omega_k (t).
+\end{align*}
+Zřejmě
+\begin{align*}
+S_n (\lambda f) &= \lambda S_n (f) \quad \textrm{ pro } \forall \lambda \in \mathbb{R}\\
+S_n (f_1 + f_2) &= S_n (f_1) + S_n (f_2).
+\end{align*}
+Dále vzhledem k Besselově nerovnosti platí
+\begin{align*}
+\|S_n(f)\|_{L^2} \leq \|f\|_{L^2},
+\end{align*}
+neboť
+\begin{align*}
+\|S_n(f)\|_{L^2}^2 = \sum \limits _{k=1}^n c_k^2 \leq \|f\|^2.
+\end{align*}
+Poněvadž $A$ je hustá pro $\epsilon > 0$ $\exists g \in A$ tak, že
+\begin{align*}
+\|f - g\| < \frac{1}{3} \epsilon.
+\end{align*}
+Potom zřejmě
+\begin{align*}
+\|f - S_n(f)\| \leq \|f - g\| + \|g - S_n(g)\| + \|S_n(g) - S_n(f)\|.
+\end{align*}
+Dále
+\begin{align*}
+\|S_n(g) - S_n(f)\| = \|S_n (g-f)\| \leq \|g-f\| < \frac{1}{3} \epsilon.
+\end{align*}
+Tedy
+\begin{align*}
+\|f - S_n(f)\| \leq \frac{2}{3} \epsilon + \|g - S_n(g)\|.
+\end{align*}
+Poněvadž $g \in A$ a pro $g$ platí Parsevalova rovnost $\exists n_0$ tak, že
+\begin{align*}
+\|g - S_n(g)\| < \frac{\epsilon}{3} \quad \textrm{ pro } n > n_0.
+\end{align*}
+Tedy pro $\epsilon > 0$ $\exists n_0$ tak, že
+\begin{align*}
+\|f - S_n(f)\| < \epsilon \quad \textrm{ pro } n > n_0.
+\end{align*}
+Jinými slovy, dokázali jsme, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \|S_n(f) - f\| = 0.
+\end{align*}
+Avšak odtud vzhledem k \ref{3.4} plyne, že pro $f$ platí Parsevalova rovnost.
+\end{proof}
+
+
+\begin{dusledek}\label{3.23.dusledek}
+Nechť pro každou funkci $f_k(t)=t^k$ platí Parsevalova rovnost. Potom systém $\{ \omega_k \}$ je uzavřený.
+\end{dusledek}
+\begin{proof}
+Vzhledem k Větám \ref{v_3.13} a \ref{3.22} stačí ukázat, že platí Parsevalova rovnost pro libovolný mnohočlen
+\begin{align*}
+p(t) = A_0 + A_1(t) + \ldots + A_m t^m.
+\end{align*}
+Avšak je zřejmé, že
+\begin{align*}
+S_n(p) = A_0 S_n(f_0) + A_1 S_n(f_1) + \ldots + A_m S_n(f_m).
+\end{align*}
+Tedy
+\begin{align*}
+\|p - S_n(p)\| \leq \sum \limits _{k=0}^m |A_k| \cdot \|f_k - S_n(f_k)\|.
+\end{align*}
+Poněvadž podle předpokladů pro $f_k$ platí Parsevalova rovnost, pak vzhledem k \ref{3.4} máme, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \|f_k - S_n(f_k)\|=0,
+\end{align*}
+a tudíž
+\begin{align*}
+\lim_{n \rightarrow \infty} \|p - S_n(p)\|=0,
+\end{align*}
+což opět na základě \ref{3.4} znamená, že pro $p$ platí Parsevalova rovnost.
+\end{proof}
+
+
+Mohla by nás zajímat otázka, zdali vůbec existuje uzavřený systém $\{ \omega_k \}$? Odpověď na tuto otázku poskytuje Věta \ref{3.22}.
+
+\begin{dusledek}\label{3.24.dusledek}
+Trigonometrický systém je uzavřený (v $L([-\pi,\pi])$).
+\end{dusledek}
+\begin{proof}
+Vzhledem k Větě \ref{3.22} stačí ukázat, že platí Parsevalova rovnost pro trigonometrický mnohočlen
+\begin{align*}
+T(t) = A +  \sum \limits _{k=1}^n \Big(a_k \cos(kt) + b_k \sin(kt)\Big),
+\end{align*}
+neboť vzhledem k Větě  \ref{v_3.13} je systém ${T}$ hustý v $L([-\pi,\pi])$. Pro $T$ je Parsevalova rovnost triviální.
+\end{proof}
+
+
+\begin{theorem}[Riesz-Fischer]\label{v_3.25_Riesz-Fisher}
+Nechť $\{ \omega_k \}$ je ortonormální systém a $\sum \limits _{k=1}^{\infty} c_k^2 < \infty$. Potom existuje $f \in L^2([a,b])$ taková, že
+\begin{align}\label{3.6}
+c_k = (f \cdot \omega_k ) \quad \textrm{ a } \quad \sum \limits _{k=1}^{\infty} c_k^2 = \|f_k\|_{L^2}^2.
+\end{align}
+\end{theorem}
+\begin{proof}
+Polože $S_n (t) = \sum \limits _{k=1}^{\infty} c_k \omega_k(t)$ a ukážeme, že posloupnost $\{S_n\}$ je Cauchyovská. Vskutku nechť $m > n$,
+\begin{align*}
+\|S_m - S_n\|^2 = \int \limits_a^b \Big(\sum \limits _{n+1}^m c_k \omega_k (t)\Big)^2 \, dt = \sum \limits _{i,k} c_i c_k \int \limits \omega_i \omega_k \, dt = \sum \limits _{k = n+1}^m c_k^2.
+\end{align*}
+Vzhledem k Větě \ref{v_3.12_Fischer} je prostor $L^2$ úplný a tedy $\exists f \in L^2$ tak, že
+\begin{align*}
+\lim_{n \rightarrow \infty} \|S_n - f\|_{L^2} = 0.
+\end{align*}
+Ukážeme nyní, že pro $f$ platí \ref{3.6}. Vzhledem k Větě \ref{v_3.14} posloupnost $\{S_n\}$ konverguje k $f$ a i slabě, tj. pro každou funkci $g \in L^2$
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_a^b S_n(t) g(t) \, dt = \int \limits_a^b f(t) g(t)\, dt.
+\end{align*}
+Speciálně, je-li $g(t) \equiv \omega_i (t)$ obdržíme
+\begin{align*}
+\int \limits_a^b f(t) \omega_i (t)\, dt = \lim_{n \rightarrow \infty} \int \limits_a^b S_n(t) \omega_i (t)\, dt = c_i.
+\end{align*}
+Tedy $c_k = (f \cdot \omega_k)$. Vezmeme-li kromě toho v úvahu \ref{3.4}, získáme i Parsevalovu rovnost.
+\end{proof}
+
+
+\begin{poznamka}\label{2.26.poznamka}
+Všimněme si, že existuje jediná funkce $f$ v závěru Riesz-Fischerovy věty \ref{v_3.25_Riesz-Fisher}. Vskutku, nechť obě $f$ a $g$ vyhovují závěru. Pak $f$ a $g$ mají stejné Fourierovy koeficienty $c_k$ (dle první vlastnosti) a dle druhé:
+\begin{align*}
+\lim \limits _{n \to \infty} \|S_n - f\| = 0, \quad \lim \limits _{n \to \infty} \|S_n - g\| = 0,
+\end{align*}
+kde $S_n(t) = \sum \limits _{k=1}^n c_k \omega_k(t)$. Z jednoznačnosti limity plyne $f \equiv g$.
+\end{poznamka}
+
+\begin{definition}\label{3.27.def}
+Systém $\{ \omega_k \}_1^\infty$ se nazývá úplným, pokud prostor jím vytvořený je taktéž z $L^2([a,b])$.
+\end{definition}
+
+\begin{theorem}\label{3.28}
+Systém $\{ \omega_k \}_{k=1}^{\infty}$ je úplný právě tehdy, když neexistuje $g \neq 0$ v $L^2$ tak, že
+\begin{align*}
+(g \cdot \omega_k) = 0 \quad \textrm{ pro každé } k \in \mathbb{N}.
+\end{align*}
+\end{theorem}
+
+\begin{theorem}\label{3.29}
+Systém $\{ \omega_k \}_{k=1}^{\infty}$ je úplný právě tehdy, když je uzavřený.
+\end{theorem}
+\begin{proof}
+Nechť $\{ \omega_k \}$ je uzavřený. Nechť dále $g \perp \omega_k$ pro $k \in \mathbb{N}$. Potom $c_k = 0$ pro $k \in \mathbb{N}$. Podle Parsevalovy rovnosti tedy $\|g\|^2 = \sum \limits _{k=1}^\infty c_k^2 = 0$ a tedy $g = 0$. Nyní plyne z Věty \ref{3.28}, že je $\{ \omega_k \}$ úplný. \\
+Nechť nyní je $\{ \omega_k \}$ úplný. Položme, že není uzavřený. Pak $\exists g \in L^2$ tak, že
+\begin{align*}
+\sum \limits _{k=1}^{\infty} c_k^2 < \|g\|^2, \quad \textrm{ kde } c_k = (g \cdot \omega_k).
+\end{align*}
+Vzhledem k Riesz-Fischerově Větě (\ref{v_3.25_Riesz-Fisher}) existuje funkce $f \in L^2$ taková, že $c_k = (f \cdot \omega_k)$ a $\|f\|^2 = \sum \limits _{k=1}^\infty c_k^2$. Uvažujeme $h = f - g$. Potom zřejmě $h \neq 0$. Avšak $h \perp \omega_k$, což je ve sporu s Větou \ref{3.29}.
+\end{proof}
+
+
+\begin{dusledek}\label{3.30.dusledek}
+V $L^2 ([ -\pi, \pi])$ je trigonometrický systém úplný.
+\end{dusledek}
+\begin{proof}
+Plyne z Věty \ref{3.29} a Důsledku \ref{3.24.dusledek}.
+\end{proof}
+
+
+Shrnutí: Uvažujme prostor $L^2 ([ -\pi, \pi])$ a trigonometrický systém
+\begin{align*}
+\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}} \cos(t), \frac{1}{\sqrt{\pi}} \sin(t), \frac{1}{\sqrt{\pi}} \cos(2t),...
+\end{align*}
+Potom Fourierovy koeficienty funkce $f \in L^2([-\pi, \pi])$ jsou
+\begin{align*}
+\frac{a_0}{2} &= \frac{1}{2\pi} \int \limits_{-\pi}^\pi f(t) \, dt,\\
+a_n &= \frac{1}{\pi} \int \limits_{-\pi}^\pi f(t) \cos (nt) \, dt,\\
+b_n &= \frac{1}{\pi} \int \limits_{-\pi}^\pi f(t) \sin (nt) \, dt.
+\end{align*}
+Fourierova řada má tvar
+\begin{align}\label{3.7}
+\frac{a_0}{2} + \sum \limits _{n=1}^{\infty} \Big(a_n \cos (nt) + b_n \sin (nt)\Big).
+\end{align}
+Uvažujme částečnou sumu
+\begin{align*}
+S_n(t) = \frac{a_0}{2} + \sum \limits _{k=1}^n \Big(a_k \cos (kt) + b_k \sin (kt)\Big).
+\end{align*}
+Potom platí to, že posloupnost $\{S_n\}_{n=1}^{\infty}$ konverguje ve smyslu prostoru $L^2 ([-\pi, \pi])$ k funkci $f$ tj.
+\begin{align*}
+\lim_{n \rightarrow \infty} \int \limits_a^b \Big(f(t) - S_n(t)\Big)^2 \, dt = 0.
+\end{align*}
+Kromě toho platí
+\begin{align*}
+\frac{1}{\pi} \int \limits_{-\pi}^\pi f^2(t) \, dt = \frac{a_0^2}{2} + \sum \limits _{k=1}^{\infty} (a_k^2 + b_k^2).
+\end{align*}
+Obráceně, pokud řady $\sum \limits _{k=1}^{\infty} a_k^2$ a $\sum \limits _{k=1}^{\infty} b_k^2$ konvergují, pak $\exists f \in L^2$ tak, že $a_k$ a $b_k$ jsou její Fourierovy koeficienty. Otevřenou otázkou zůstává, zdali je řada \ref{3.7} konvergentní bodově.
+
+
+
+\section{Lineární nezávislost}
+
+\begin{definition}\label{3.31.definition}
+Systém $\{ \omega_k \}_{k=1}^{\infty}$ se nazývá lineárně nezávislý, pokud žádný z prvků $\omega_i$ nemožno vyjádřit jako lineární kombinaci ostatních prvků.
+\end{definition}
+
+\begin{tvrz}\label{3.32.tvrz}
+Nechť je $\{ \omega_k \}_{k=1}^{\infty}$ ortonormální. Potom je lineárně nezávislý.
+\end{tvrz}
+\begin{proof}
+Nechť
+\begin{align*}
+\sum \limits _{k \in I} \lambda_k \omega_k(t) \sim 0, \quad Card\{I\} < \infty.
+\end{align*}
+Potom pro $i \in I$
+\begin{align*}
+0 = (\omega_i \cdot \sum \limits _{k \in I} \lambda_k \omega_k) = \lambda_i.
+\end{align*}
+\end{proof}
+
+
+\begin{theorem}[Věta o ortogonalizaci]\label{3.33}
+Nechť $\{ \varphi_k \}_{k=1}^{\infty}$ je lineárně nezávislý systém. Potom existuje ortonormální systém $\{ \omega_k \}$ takový, že
+\begin{enumerate}
+\item pro libovolné $n\in \mathbb{N}$ je $\omega_n$ lineární kombinace funkcí $\varphi_1, \varphi_2, \ldots, \varphi_n$
+\item pro libovolné $n\in \mathbb{N}$ je $\varphi_n$ lineární kombinace funkcí $\omega_1, \omega_2, \ldots, \omega_n$ 
+\end{enumerate}
+Uvažujme prostor $L^2([-1,1])$. Lehce lze ověřit, že systém
+\begin{align*}
+1, t, t^2, \ldots, t^n, \ldots
+\end{align*}
+tvoří lineárně nezávislý systém. Podle Věty \ref{3.33} potom existuje ortonormální systém
+\begin{align*}
+\omega_0, \omega_1, \ldots,
+\end{align*}
+přičemž $\omega_n$ je polynom n-tého stupně. Tyto polynomy se nazývají Legendrovy polynomy.
+\end{theorem} 
+
+\begin{theorem}\label{3.34}
+Systém Legendrových polynomů je uzavřený a tedy i úplný.
+\end{theorem}
+\begin{proof}
+Vzhledem k Větě \ref{3.33} (druhá část)
+\begin{align}\label{3.8}
+t^2 = \sum \limits _{k=0}^n a_k \omega_k (t).
+\end{align}
+Tedy $a_k$ jsou Fourierovy koeficienty funkce $t^n$ vzhledem k $\{ \omega_k \}_1^\infty$. Z \ref{3.8} zřejmě plyne
+\begin{align*}
+\int \limits_{-1}^1 t^{2n} \, dt = \sum \limits _{k=0}^n a_k \int \limits_{-1}^1 t^n \omega_k (t) \, dt = \sum \limits _{k=0}^n a_k^2.
+\end{align*}
+Tedy pro každou z funkcí $t^n$ platí Parsevalova rovnost. Vzhledem k Důsledku \ref{3.23.dusledek} je proto systém $\{ \omega_k \}$ uzavřený. Úplnost plyne z Věty \ref{3.29}.
+\end{proof}
+
+
+\begin{poznamka}[Rodrigues\r uv vzorec]
+
+Legendrovy polynomy se obvykle značí písmeny $P_0, P_1, \ldots$. ($P_k$ nejsou normované). Dá se ukázat, že
+\begin{align*}
+P_n(t) = \frac{1}{2^n \cdot n!} \frac{d^n}{dt^n} (t^n - 1)^n.
+\end{align*}
+Tento vzorec se nazývá Rodriguesovým vzorcem. Dále platí
+\begin{align*}
+\int \limits_{-1}^1 P_n(t) P_m(t) \, dt = 
+\left\{
+\begin{array}{cl}
+0 & \textrm{ pro } n\neq m\\
+\frac{2}{2n + 1} & \textrm{ pro } n=M.\\
+\end{array}
+\right.
+\end{align*}
+Speciálně:
+\begin{align*}
+P_0(t) = 1, \quad P_1(t) = t, \quad P_2 (t) = \frac{3}{2} t^2 - \frac{1}{2}, \quad P_3(t) = \frac{5}{2} t^3 - \frac{3}{2} t, \quad P_4(t) = \frac{35}{8} t^4 - \frac{15}{4} t^2 + \frac{3}{8}.
+\end{align*}
+
+\end{poznamka}
+
+
+
+
+\section{Systémy trigonometrických funkcí v \texorpdfstring{$L^2([ 0, \pi ])$}{L2}}
+
+\begin{priklad}
+
+Uvažujme systémy
+\begin{align}\label{vztah_3.9}
+1,\, \cos (x),\, \cos(2x),\, \cos(3x), \ldots
+\end{align}
+a
+\begin{align}\label{vztah_3.10}
+\sin(x),\, \sin(2x),\, \ldots.
+\end{align}
+Víme, že sjednocení systémů \eqref{vztah_3.9} a \eqref{vztah_3.10} tvoří ortogonální systém v $L^2([ -\pi, \pi])$. Ukážeme, že jak systém \eqref{vztah_3.9}, tak i systém \eqref{vztah_3.10} je ortogonální a úplný v $L^2([ 0, \pi])$. 
+
+\end{priklad}
+
+\begin{uloha}
+Přímím výpočtem ověřte ortogonalitu systém\r u \eqref{vztah_3.9} a \eqref{vztah_3.10}.
+\end{uloha}
+
+Ukážeme úplnost \eqref{vztah_3.9}. Nechť $f \in L^2([ 0, \pi])$. Zavedeme označení
+\begin{align*}
+\bar{f} (t) = 
+\left\{
+\begin{array}{cl}
+f(-t) & \textrm{ pro } t \in [ -\pi, 0[\\
+f(t) & \textrm{ pro } t \in ] 0, \pi].\\
+\end{array}
+\right.
+\end{align*}
+Zřejmě $\bar{f} \in  L^2([ -\pi, \pi])$. Poněvadž sjednocení systém\r u \eqref{vztah_3.9} a \eqref{vztah_3.10} je úplné v $L^2([ -\pi, \pi])$, pak funkci $\bar{f}$ lze aproximovat libovolnou přesností svou Fourierovou řadou, tj. funkcemi
+\begin{align}\label{vztah_3.11}
+S_n (t) = \sum \limits _{k=1}^n (a_k \cos ( kt) + b_k \sin (kt)) + a_0.
+\end{align}
+Všimněme si, že $b_k = 0$ $\forall k \in \mathbb{N}$. Vskutku
+\begin{align*}
+b_k&=\int \limits_{-\pi}^\pi \bar{f}(t) \sin (kt) dt \\
+&= \int \limits_{-\pi}^0 \bar{f}(t) \sin (kt) dt + \int \limits_0^\pi \bar{f}(t) \sin (kt) dt\\
+&= - \int \limits_0^\pi f(t) \sin (kt) dt + \int \limits_0^\pi f(t) \sin (kt) dt\\
+&= 0.
+\end{align*}
+Tedy funkce $S_n$ v \eqref{vztah_3.11} mají tvar
+\begin{align*}
+S_n(t) = a_0 + \sum \limits _{k=1}^n a_k \cos (kt).
+\end{align*}
+Poněvadž platí $\| \bar{f} - S_n \|_{L^2([ -\pi, \pi])} \rightarrow 0$, zřejmě platí i $\| f - S_n \|_{L^2([ 0, \pi])} \rightarrow 0$. 
+
+\begin{uloha}
+Analogicky ukažte úplnost systému \eqref{vztah_3.10}. Předpokládáme
+\begin{align*}
+\bar{f} (t) = 
+\left\{
+\begin{array}{cl}
+-f(-t) & \textrm{ pro } t \in [ -\pi, 0[\\
+f(t) & \textrm{ pro } t \in ] 0, \pi].\\
+\end{array}
+\right.
+\end{align*}
+\end{uloha}
+
+
+

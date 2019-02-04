@@ -1,0 +1,44 @@
+
+\DeclareMathOperator{\esssup}{Esssup}
+\DeclareMathOperator{\spt}{spt}
+\DeclareMathOperator{\mes}{mes}
+
+
+%\newtheoremstyle{break}
+%  {\topsep}{\topsep}%
+%  {}{}%
+%  {\bfseries}{}%
+%  {\newline}{}%
+%\theoremstyle{break}
+
+\newtheoremstyle{mytheoremstyle} % name
+    {}                    % Space above
+    {}                    % Space below
+    {\itshape}                   % Body font
+    {}                           % Indent amount
+    {\scshape}                   % Theorem head font
+    {}                          % Punctuation after theorem head
+    {.5em}                       % Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\theoremstyle{mytheoremstyle}
+
+\newtheorem{theorem}{Věta}[section]
+\newtheorem{definition}[theorem]{Definice}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{dusledek}[theorem]{D\r usledek}
+\newtheorem{umluva}[theorem]{Úmluva}
+\newtheorem{tvrz}[theorem]{Tvrzení}
+\newtheorem{poznamka}[theorem]{Poznámka}
+\newtheorem{uloha}[theorem]{Úloha}
+\newtheorem{priklad}[theorem]{Příklad}
+
+\newcommand{\R}{\mathbb{R}}
+
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Obsah}%
+}
+\addto\captionsenglish{\renewcommand\proofname{D\r ukaz}}
+\addto\captionsenglish{\renewcommand\chaptername{Kapitola}}
